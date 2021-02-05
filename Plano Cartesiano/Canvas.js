@@ -41,30 +41,58 @@ function coord_mx()
 function coord_my()
 {return -(mouseY-height/2)/escalay+cscreenY}
 
-function scrolling(tempo,scr_objetivo)
+function scrolling(passos,zoomx,zoomy,posx,posy)
 {
 	//this.incremento = scr_objetivo/tempo;
-	this.tempo = tempo;
-	this.incremento = (escalax*scr_objetivo-escalax)/tempo;
+	this.passos = passos;
+	//this.incremento = (escalax*scr_objetivo-escalax)/passos;
+	this.zoom_inicial_x = escalax;
+	this.zoom_inicial_y = escalay;
+
+	this.zoom_final_x = escalax*zoomx;
+	this.zoom_final_y = escalay*zoomy;
+
+	this.posicao_final_x = cscreenX + (posx-width/2)/escalax - (posx-width/2)/escalax/zoomx;
+	this.posicao_final_y = cscreenY - (posy-height/2)/escalay + (posy-height/2)/escalay/zoomy;
+
+	this.incremento_zoom_x = (this.zoom_final_x - escalax)/passos;
+	this.incremento_zoom_y = (this.zoom_final_y - escalay)/passos;
+
+	this.incremento_posicao_x = (this.posicao_final_x)/passos;
+	this.incremento_posicao_y = (this.posicao_final_y)/passos;
+
 	this.aplicar = function()
 	{
-		if (this.tempo>0)
+		if (this.passos>0)
 		{
-			escalax+=this.incremento;
-			escalay+=this.incremento;
-			this.tempo-=1;
+			var escala_x_anterior = escalax;
+			var escala_y_anterior = escalay;
+
+			escalax+=this.incremento_zoom_x;
+			escalay+=this.incremento_zoom_y;
+
+			cscreenX=cscreenX + (posx-width/2)/escala_x_anterior - (posx-width/2)/escalax;
+			cscreenY=cscreenY - (posy-height/2)/escala_y_anterior + (posy-height/2)/escalay;
+
+			this.passos-=1;
+
 		}
 		else
 		{
-			//escalax= Math.round(escalax*100)/100;
-			//escalay= Math.round(escalay*100)/100;
-
+			escalax = this.zoom_final_x;
+			escalay = this.zoom_final_y;
+			//cscreenX = coord_mx()-(mouseX-width/2)/(escalax);
+			//cscreenY = coord_my()+(mouseY-height/2)/(escalay);
+			cscreenX= this.posicao_final_x
+			cscreenY= this.posicao_final_y;
+			screvent = null;
 
 		}
 	}
 }
 function moving(tempo,mv_objetivox,mv_objetivoy)
 {
+
 	this.incrementox = mv_objetivox/tempo;
 	this.incrementoy = mv_objetivoy/tempo;
 	this.tempo = tempo;
@@ -156,8 +184,8 @@ function mouseWheel(event)
 	escalax_antes = escalax;
 	escalay_antes = escalay;
 	
-	screvent = new scrolling(5,delta_scroll)
-	mvevent = new moving(5,coord_mx()-cscreenX-(mouseX-width/2)/(escalax_antes*delta_scroll) , coord_my()-cscreenY+(mouseY-height/2)/(escalay_antes*delta_scroll));
+	screvent = new scrolling(5,delta_scroll,delta_scroll,mouseX,mouseY)
+	//mvevent = new moving(5,coord_mx()-cscreenX-(mouseX-width/2)/(escalax_antes*delta_scroll) , coord_my()-cscreenY+(mouseY-height/2)/(escalay_antes*delta_scroll));
 
 
 
@@ -170,12 +198,12 @@ function att_intervalo()
 
 	if (intervalo*escalax>200)
 	{
-		intervalo = intervalo/2.5;
+		intervalo = intervalo/10;
 	}
 
-	else if (intervalo*escalax<40)
+	if (intervalo*escalax<40)
 	{
-		intervalo=intervalo*2.5;
+		intervalo=intervalo*10;
 	}
 }
 
