@@ -10,11 +10,11 @@ function pixelY(coordY)
 }
 function coord_mx()
 {
-	return posicao_do_pixel_x(mouseX);
+	return posicao_do_pixel_x(sketch.mouseX);
 }
 function coord_my()
 {
-	return posicao_do_pixel_y(mouseY);
+	return posicao_do_pixel_y(sketch.mouseY);
 }
 function posicao_do_pixel_x(posx)
 {

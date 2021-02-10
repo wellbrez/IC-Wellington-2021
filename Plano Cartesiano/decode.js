@@ -24,4 +24,17 @@ function decode()
 		}
 		console.log(window.polygons);
 	}
+	else if (window.localStorage.getItem('lastsave')!=undefined)
+	{
+		local_polygons = JSON.parse(window.localStorage.getItem('lastsave'));
+		for (local_polygon of local_polygons)
+		{
+			polygons.push(new Polygon(local_polygon.nome,local_polygon.pontos));
+		}
+	}
+	else
+	{
+
+		polygons.push(new Polygon());
+	}
 }

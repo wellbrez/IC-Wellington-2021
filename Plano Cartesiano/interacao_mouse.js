@@ -74,14 +74,14 @@ function mouseWheel(event)
 	delta_scroll = (Math.abs(event.delta/1000)+1)**Math.sign(-event.delta);
 	escalax_antes = escalax;
 	escalay_antes = escalay;
-	screvent = new scrolling(5,delta_scroll,delta_scroll,mouseX,mouseY)
+	screvent = new scrolling(5,delta_scroll,delta_scroll,sketch.mouseX,sketch.mouseY)
 	//mvevent = new moving(5,coord_mx()-cscreenX-(mouseX-width/2)/(escalax_antes*delta_scroll) , coord_my()-cscreenY+(mouseY-height/2)/(escalay_antes*delta_scroll));
 }
 
-function mouseClicked()
+function mouse_clicked_canvas()
 {
 
-	polygons[0].add_ponto_por_pixel(mouseX,mouseY);
+	polygons[0].add_ponto_por_pixel(sketch.mouseX,sketch.mouseY);
 	adjtime=20;
 
 

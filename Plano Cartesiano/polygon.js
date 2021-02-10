@@ -18,49 +18,49 @@ function Polygon(nome,pontos)
 	}
 	this.adjusting = function()
 	{
-		console.log('adjusting');
+		//console.log('adjusting');
 		adjtime-=1;
-		fill(corPoligono)
-		stroke(corContorno)
-		strokeWeight(4)
-		beginShape()
+		sketch.fill(corPoligono)
+		sketch.stroke(corContorno)
+		sketch.strokeWeight(4)
+		sketch.beginShape()
 		for(i=0;i<this.pontos.length-2;i+=2)
 		{
-			vertex(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]));
+			sketch.vertex(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]));
 
-		console.log(i)
+		//console.log(i)
 		}
-		vary = map(adjtime,0,20,pixelY(this.pontos[i+1]),pixelY(midpointy))
-		varx = map(adjtime,0,20,pixelX(this.pontos[i]),pixelX(midpointx))
-		vertex(vary,varx);
+		vary = sketch.map(adjtime,0,20,pixelY(this.pontos[i+1]),pixelY(midpointy))
+		varx = sketch.map(adjtime,0,20,pixelX(this.pontos[i]),pixelX(midpointx))
+		sketch.vertex(vary,varx);
 
 
-		console.log(i)
+		//console.log(i)
 
-		endShape(CLOSE)
+		sketch.endShape(sketch.CLOSE)
 	}
 	this.bubbledraw = function()
 	{
-		push()
-		ellipseMode(CENTER)
-		fill(corBolha)
+		sketch.push()
+		sketch.ellipseMode(sketch.CENTER)
+		sketch.fill(corBolha)
 		for(i=0;i<this.pontos.length;i+=2)
 		{
-			ellipse(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]),10,10)
+			sketch.ellipse(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]),10,10)
 		}
-		pop()
+		sketch.pop()
 	}
 	this.draw = function()
 	{
-		stroke(corContorno)
-		strokeWeight(4)
-		fill(corPoligono)
-		beginShape()
+		sketch.stroke(corContorno)
+		sketch.strokeWeight(4)
+		sketch.fill(corPoligono)
+		sketch.beginShape()
 		for(i=0;i<this.pontos.length;i+=2)
 		{
-			vertex(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]));
+			sketch.vertex(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]));
 		}
 
-		endShape(CLOSE)
+		sketch.endShape(sketch.CLOSE)
 	}
 }

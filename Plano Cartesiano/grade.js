@@ -12,17 +12,17 @@ function att_intervalo()
 	}
 }
 
-function linhas_principais(corlp)
+function linhas_principais(p,corlp)
 {
-	push()
-	strokeWeight(3)
-	stroke(corlp)
-	line(-origin_pixeldisty,-width/2,-origin_pixeldisty,width/2)
-	line(-height/2,-origin_pixeldistx,height/2,-origin_pixeldistx)
-	pop()
+	p.push()
+	p.strokeWeight(3)
+	p.stroke(corlp)
+	p.line(-origin_pixeldisty,-width/2,-origin_pixeldisty,width/2)
+	p.line(-height/2,-origin_pixeldistx,height/2,-origin_pixeldistx)
+	p.pop()
 }
 
-function grade(intervalo)
+function grade(p,intervalo)
 {
 	minrangex = Math.floor((cscreenX-width/2/escalax)/intervalo)*intervalo
 	maxrangex = Math.ceil((cscreenX+width/2/escalax)/intervalo)*intervalo
@@ -36,10 +36,10 @@ function grade(intervalo)
 
 	for(i=minrangex;i<maxrangex;i+=intervalo)
 	{
-		line(-height/2,-origin_pixeldistx+i*escalax,height/2,-origin_pixeldistx+i*escalax)
+		p.line(-height/2,-origin_pixeldistx+i*escalax,height/2,-origin_pixeldistx+i*escalax)
 	}
 	for(i=minrangey;i<maxrangey;i+=intervalo)
 	{
-		line(-origin_pixeldisty+i*escalay,-width/2,-origin_pixeldisty+i*escalay,width/2)
+		p.line(-origin_pixeldisty+i*escalay,-width/2,-origin_pixeldisty+i*escalay,width/2)
 	}
 }

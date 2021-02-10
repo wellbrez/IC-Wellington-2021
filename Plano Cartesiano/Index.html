@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-	<script src="p5.js" type="text/javascript"></script>
-	<script src="p5.dom.js" type="text/javascript"></script>
-	<script src="p5.sound.js" type="text/javascript"></script>
-	<script src="conversoes.js" type="text/javascript"></script>
-	<script src="salvar.js" type="text/javascript"></script>
-	<script src="interacao_mouse.js" type="text/javascript"></script>
-	<script src="grade.js" type="text/javascript"></script>
-	<script src="polygon.js" type="text/javascript"></script>
-	<script src="decode.js" type="text/javascript"></script>
-	<script src="Canvas.js" type="text/javascript"></script>
-	<style>
-	</style>
+	
+<script src="p5.js" type="text/javascript"></script>
+<script src="qrcode.min.js" type="text/javascript"></script>
+<script src="p5.dom.js" type="text/javascript"></script>
+<script src="p5.sound.js" type="text/javascript"></script>
+<script src="conversoes.js" type="text/javascript"></script>
+<script src="salvar.js" type="text/javascript"></script>
+<script src="interacao_mouse.js" type="text/javascript"></script>
+<script src="grade.js" type="text/javascript"></script>
+<script src="polygon.js" type="text/javascript"></script>
+<script src="decode.js" type="text/javascript"></script>
+<script src="buttons.js" type="text/javascript"></script>
+<script src="Canvas.js" type="text/javascript"></script>
+<link rel="stylesheet" href="style.css"></link>
 <meta charset="UTF-8">
 <title>Plano Cartesiano</title>
 </head>
 <body>
-
+<div id=botao_compartilhar onclick=btn_compartilhar() class=botoesnav>Exportar</div>
+<div id=botao_limpar onclick=limpar_tela() class=botoesnav>Limpar</div>
 <div id=compartilhamento>
-	<div>
-		<p>Link</p>
-		<div id=botao_gerarqrcode onclick="gerar_link()">Gerar Link</div>
+	<div class=compartcontainer>
+		<h2>Link</h2>
+		<div id=botao_gerarlink class=botao1 onclick="gerar_link()">Gerar Link</div>
 		<p id=compartlink></p>
 	</div>
 	
-	<div><p>Salvar no navegador</p>
-	<div id=botao_armazenar onclick="armazenar_navegador()">Salvar</div>
+	<div class=compartcontainer><h2>Salvar no navegador</h2>
+	<div id=botao_armazenar class=botao1 onclick="armazenar_navegador()">Salvar</div>
 		</div>
 	
-	<div>
-		<p>Gerar QR-CODE</p></div>
-		<div id=botao_gerarqrcode onclick="gerar_qrcode()">Gerar</div>
-		<img id="qrcode" src="" alt="">
-		
-	<div>
-		<p>arquivo</p>
-		<div id=gerar_arquivo onclick="gerar_arquivo()">Gerar</div>
+	<div class=compartcontainer>
+		<h2>Gerar QR-CODE</h2>
+		<div id=botao_gerarqrcode class=botao1 onclick="gerar_qrcode()">Gerar</div>
+		<div id="qrcode"></div>
+	</div>
+	<div class=compartcontainer>
+		<h2>Gerar .txt</h2>
+		<div id=botao_gerararquivo class=botao1 onclick="gerar_arquivo()">Gerar</div>
 	</div>
 </div>
+<div id=canvas2 onclick=mouse_clicked_canvas()></div>
+<script>
+	
+	sketch = new p5(sketch);
 
+
+</script>
 </body>
 </html>
 

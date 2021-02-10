@@ -1,99 +1,117 @@
-function setup()
+
+
+function resizewindow()
 {
-	frameRate(60)
-	screvent = null;
-	mvevent = null;
-	width = (windowWidth*0.9);
-	height = (windowHeight*0.9);
-	createCanvas(width,height);
-
-	escalax=1;
-	escalay=1;
-
-	cscreenX = 0;
-	cscreenY = 0;
-
-	origin_pixeldistx = cscreenX*escalax;
-	origin_pixeldisty = cscreenY*escalay;
-
-	intervalo = 10;
-	decode();
-
-	
-	
-
-	adjtime=0;
-	adjinty=0;
-	adjintx=0;
-
-	//TABELA DE CORES//
-	corBolha = '#7fcd91'
-	corGradePrincipal = '#5b5656'
-	corGradeSecundaria = '#5b5656'
-	corFundo = '#4d4646'
-	corLinhasPrincipais = "#7fcd91"
-	corContorno = '#5b5656'
-	corPoligono = "#f5eaea"
-	
-
+	w = document.getElementById('canvas2').getBoundingClientRect().width;
+	h = document.getElementById('canvas2').getBoundingClientRect().height;
+	window.sketch.resizeCanvas(w,h,true);
 }
-//console.log("mensagem"+str(parametro))
-function draw()
+var sketch = function(p)
 {
-	//distância, em pixels, da origem do plano cartesiano (atualizacao)
-	origin_pixeldistx = cscreenX*escalax;
-	origin_pixeldisty = cscreenY*escalay;
-	//definindo cor de fundo do canvas
-	background(corFundo);
-	//translacção ao meio da tela
-	translate(width/2,height/2);
-	//rotacao do canvas (?)
-	rotate(-90*Math.PI/180);
-	att_intervalo()
-	//grade principal
-	stroke(corGradePrincipal)
-	strokeWeight(2)
-	grade(intervalo);
-	//grade secundária
-	strokeWeight(1)
-	stroke(corGradeSecundaria);
-	grade(intervalo/5);
-
-	linhas_principais(corLinhasPrincipais);
-
-
-	//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
-	
-	
-
-	
-	for(let poligono of polygons)
+	p.setup = function()
 	{
-		push()
-		fill('red')
-		if(adjtime==0||poligono.pontos.length<=4)
-		{
-			poligono.draw();
-			poligono.bubbledraw();
-		}
-		else
-		{
-			poligono.adjusting();
-			poligono.bubbledraw();
-		}
+		p.frameRate(60)
+		screvent = null;
+		mvevent = null;
+		width = (p.windowWidth);
+		height = (p.windowHeight);
+		p.cnv = p.createCanvas(width,height);
+
+		escalax=1;
+		escalay=1;
+
+		cscreenX = 0;
+		cscreenY = 0;
+
+		origin_pixeldistx = cscreenX*escalax;
+		origin_pixeldisty = cscreenY*escalay;
+
+		intervalo = 10;
+		decode();
+
 		
-		pop()
+		
+
+		adjtime=0;
+		adjinty=0;
+		adjintx=0;
+
+		//TABELA DE CORES//
+		corBolha = '#DC0073'
+		corGradePrincipal = '#5E1808'
+		corGradeSecundaria = '#5E1808'
+		corFundo = '#230903'
+		corLinhasPrincipais = "#E8EBE4"
+		corContorno = '#E8EBE4'
+		corPoligono = "#14342B"
+		
+		resizewindow();
+
 	}
+	//console.log("mensagem"+str(parametro))
+	p.mouseWheel = function(event)
+	{
+		mouseWheel(event);
+	}
+	p.draw = function()
+	{
+		resizewindow();
+		//distância, em pixels, da origem do plano cartesiano (atualizacao)
+		origin_pixeldistx = cscreenX*escalax;
+		origin_pixeldisty = cscreenY*escalay;
+		//definindo cor de fundo do canvas
+		p.background(corFundo);
+		//translacção ao meio da tela
+		p.translate(width/2,height/2);
+		//rotacao do canvas (?)
+		p.rotate(-90*Math.PI/180);
+		att_intervalo()
+		//grade principal
+		p.stroke(corGradePrincipal)
+		p.strokeWeight(2)
+		grade(p,intervalo);
+		//grade secundária
+		p.strokeWeight(1)
+		p.stroke(corGradeSecundaria);
+		grade(p,intervalo/5);
 
-	if(screvent!=null){
-	screvent.aplicar()}
-	if(mvevent!=null){
-	mvevent.aplicar()};
+		linhas_principais(p,corLinhasPrincipais);
+
+
+		//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
+		
+		
+
+		
+		for(let poligono of polygons)
+		{
+			p.push()
+			p.fill('red')
+			if(adjtime==0||poligono.pontos.length<=4)
+			{
+				poligono.draw();
+				poligono.bubbledraw();
+			}
+			else
+			{
+				poligono.adjusting();
+				poligono.bubbledraw();
+			}
+			
+			p.pop()
+		}
+
+		if(screvent!=null){
+		screvent.aplicar()}
+		if(mvevent!=null){
+		mvevent.aplicar()};
 
 
 
 
+	}
 }
+
 
 
 
