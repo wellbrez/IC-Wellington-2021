@@ -1,3 +1,6 @@
+
+
+
 function scrolling(passos,zoomx,zoomy,posx,posy)
 {
 	//this.incremento = scr_objetivo/tempo;
@@ -78,12 +81,12 @@ function mouseWheel(event)
 function mouseClicked()
 {
 
-	pol1.add_ponto_por_pixel(mouseX,mouseY);
+	polygons[0].add_ponto_por_pixel(mouseX,mouseY);
 	adjtime=20;
 
 
-	midpointx = (pol1.pontos[0]+pol1.pontos[pol1.pontos.length-4])/2
-	midpointy = (pol1.pontos[1]+pol1.pontos[pol1.pontos.length-3])/2
+	midpointx = (polygons[0].pontos[0]+polygons[0].pontos[polygons[0].pontos.length-4])/2
+	midpointy = (polygons[0].pontos[1]+polygons[0].pontos[polygons[0].pontos.length-3])/2
 	console.log('midpointx'+midpointx)
 	console.log('midpointy'+midpointy)
 	adjintx = (coord_mx() - midpointx)

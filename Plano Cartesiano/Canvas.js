@@ -17,13 +17,10 @@ function setup()
 	origin_pixeldisty = cscreenY*escalay;
 
 	intervalo = 10;
+	decode();
 
-	pol1 = new Polygon();
-
-	for (m=0;m<pontos_pre_carregados.length;m+=2)
-	{
-		pol1.add_ponto_por_coordenada(pontos_pre_carregados[m],pontos_pre_carregados[m+1]);
-	}
+	
+	
 
 	adjtime=0;
 	adjinty=0;
@@ -66,15 +63,27 @@ function draw()
 
 
 	//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
-	push()
-	fill('red')
-
-	if(adjtime==0||pol1.pontos.length<=4)
-	{pol1.draw()}
-	else{pol1.adjusting()}
-	pop()
 	
-	pol1.bubbledraw()
+	
+
+	
+	for(let poligono of polygons)
+	{
+		push()
+		fill('red')
+		if(adjtime==0||poligono.pontos.length<=4)
+		{
+			poligono.draw();
+			poligono.bubbledraw();
+		}
+		else
+		{
+			poligono.adjusting();
+			poligono.bubbledraw();
+		}
+		
+		pop()
+	}
 
 	if(screvent!=null){
 	screvent.aplicar()}
@@ -92,67 +101,3 @@ function draw()
 
 
 
-function Polygon()
-{
-	this.pontos = [];
-	this.encostounabolha = function()
-	{
-	}
-	this.add_ponto_por_pixel = function(posx,posy)
-	{
-		this.pontos.push(posicao_do_pixel_x(posx));
-		this.pontos.push(posicao_do_pixel_y(posy));
-	}
-	this.add_ponto_por_coordenada = function(posx,posy)
-	{
-		this.pontos.push(posx);
-		this.pontos.push(posy);
-	}
-	this.adjusting = function()
-	{
-		console.log('adjusting');
-		adjtime-=1;
-		fill(corPoligono)
-		stroke(corContorno)
-		strokeWeight(4)
-		beginShape()
-		for(i=0;i<this.pontos.length-2;i+=2)
-		{
-			vertex(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]));
-
-		console.log(i)
-		}
-		vary = map(adjtime,0,20,pixelY(this.pontos[i+1]),pixelY(midpointy))
-		varx = map(adjtime,0,20,pixelX(this.pontos[i]),pixelX(midpointx))
-		vertex(vary,varx);
-
-
-		console.log(i)
-
-		endShape(CLOSE)
-	}
-	this.bubbledraw = function()
-	{
-		push()
-		ellipseMode(CENTER)
-		fill(corBolha)
-		for(i=0;i<this.pontos.length;i+=2)
-		{
-			ellipse(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]),10,10)
-		}
-		pop()
-	}
-	this.draw = function()
-	{
-		stroke(corContorno)
-		strokeWeight(4)
-		fill(corPoligono)
-		beginShape()
-		for(i=0;i<this.pontos.length;i+=2)
-		{
-			vertex(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]));
-		}
-
-		endShape(CLOSE)
-	}
-}
