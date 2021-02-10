@@ -1,26 +1,33 @@
-function btn_compartilhar()
+function show_hide(id,idproprio)
 {
     
-    divcompartilhar = document.getElementById("compartilhamento");
-    btn_exportar = document.getElementById("botao_compartilhar");
-    if(divcompartilhar.style.maxHeight == "100%")
+    elemento = document.getElementById(id);
+    botao = document.getElementById(idproprio);
+    navbar = document.getElementById("navbar");
+    botoes = document.getElementsByClassName("botoesnav");
+    if(elemento.style.maxHeight == "100%")
     {
-        divcompartilhar.style.maxHeight = "0%";
-        btn_exportar.innerHTML = "Exportar"
-        btn_exportar.style.maxWidth = "100%";
-        btn_exportar.style.padding = "2vw";
+        elemento.style.maxHeight = "0%";
+        navbar.style.marginRight = 0;
+        for(btn of botoes)
+        {
+            btn.classList.remove("hidden");
+            btn.classList.remove("ativo");
+        }
 
-        document.getElementById("botao_limpar").classList.remove("hidden");
 
     }
     else
     {
-        divcompartilhar.style.maxHeight = "100%";
-        btn_exportar.innerHTML="X";
-        btn_exportar.style.maxWidth = "4vw";
-        btn_exportar.style.padding = "1vw";
+        elemento.style.maxHeight = "100%";
+        navbar.style.marginRight = "-50px";
+        for(btn of botoes)
+        {
+            btn.classList.add("hidden");
+        }
+        botao.classList.remove("hidden");
+        botao.classList.add("ativo");
 
-        document.getElementById("botao_limpar").classList.add("hidden");
     }
 }
 function limpar_tela()

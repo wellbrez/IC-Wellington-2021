@@ -20,13 +20,21 @@ function gerar_link(option)
     }
     else
     {
-        document.getElementById("compartlink").innerHTML = "https://wellbrez.github.io/IC-Wellington-2021/Plano%20Cartesiano/Index.html#"+polygon_sufix;
-    
+        document.getElementById("compartlink").value = "https://wellbrez.github.io/IC-Wellington-2021/Plano%20Cartesiano/Index.html#"+polygon_sufix;
+        copyText = document.getElementById("compartlink");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+        document.execCommand("copy");
+        alert("Link copiado para área de transferência");
     }
 }
 function armazenar_navegador()
 {
     window.localStorage.setItem('lastsave', JSON.stringify(polygons));
+    location.href = "https://wellbrez.github.io/IC-Wellington-2021/Plano%20Cartesiano/Index.html";
+    alert("Poligono salvo no navegador");
 }
 function gerar_qrcode()
 {
@@ -37,22 +45,7 @@ function gerar_qrcode()
 }
 function gerar_arquivo()
 {
-    string_final = "";
-    alternador = 0;
-    strings_temporarias = JSON.stringify(polygons).split(',')
-    for(string_temporaria of strings_temporarias)
-    {
-        if(alternador==0)
-        {
-            string_final+=string_temporaria+",\n";
-            alternador = 1;
-        }
-        else if(alternador==1)
-        {
-            string_final+=string_temporaria+",";
-            alternador = 0;
-        }
-    }
+    string_final = JSON.stringify(polygons).replace(",",",\n")
     download("Poligonos",string_final)
 }
 

@@ -22,48 +22,42 @@
     color:white;
     
 }
+#importacao
+{
+    background-color:#14342B;
+    position:fixed;
+    width:100%;
+    overflow:hidden;
+    transition: max-height .5s;
+    z-index:201;
+    max-height:0%;
+    color:white;
+}
+#importacao input
+{
+    padding:30px;
+}
 #botao_compartilhar
 {
-    position:fixed;
-    right:0;
-    padding:20px;
-    background-color:rgb(19, 181, 209);
-    z-index:40;
-    border-radius:20px;
-    cursor:pointer;
-    user-select:none;
-    transition: padding .5s;
-    overflow:hidden;
-    z-index:202;
+    top:50px;
 }
-#botao_compartilhar:hover
+#botao_limpar
 {
-    background-color:burlywood;
-    
+    top:100px;
+}
+#botao_importar
+{
+    top:150px;
 }
 .hidden
 {
     display:none;
 }
-#botao_limpar
+.ativo
 {
-    position:fixed;
-    right:0;
-    top:100px;
-    padding:20px;
-    background-color:rgb(19, 181, 209);
-    z-index:40;
-    border-radius:20px;
-    cursor:pointer;
-    user-select:none;
-    transition: padding .5s;
-    overflow:hidden;
-    z-index:202;
+    background-color:pink;
 }
-#botao_limpar:hover
-{
-    background-color:burlywood;
-}
+    
 body
 {
     position:absolute;
@@ -104,4 +98,38 @@ h2
 #qrcode img
 {
     width:100%;
+}
+ul
+{
+    
+    text-decoration:none;
+    position:fixed;
+    display:block;
+    right:0;
+    z-index:202;
+    transition: margin-right 0.5s;
+}
+ul .botoesnav
+{
+    left:0;
+    padding:20px;
+    background-color:rgb(19, 181, 209);
+    z-index:40;
+    border-radius:20px;
+    cursor:pointer;
+    user-select:none;
+    transition: padding .5s;
+    overflow:hidden;
+    z-index:203;
+}
+ul .botoesnav:hover
+{
+    background-color:burlywood;
+}
+#compartlink
+{
+    height:auto;
+    overflow:auto;
+    background-color:white;
+    color:black;
 }
