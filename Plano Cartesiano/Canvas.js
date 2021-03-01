@@ -2,9 +2,9 @@
 
 function resizewindow()
 {
-	w = document.getElementById('canvas2').getBoundingClientRect().width;
-	h = document.getElementById('canvas2').getBoundingClientRect().height;
-	window.sketch.resizeCanvas(w,h,true);
+	width = document.getElementById('canvas2').getBoundingClientRect().width;
+	height = document.getElementById('canvas2').getBoundingClientRect().height;
+	window.sketch.resizeCanvas(width,height,true);
 }
 var sketch = function(p)
 {

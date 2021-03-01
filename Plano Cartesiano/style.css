@@ -25,6 +25,7 @@
 #importacao
 {
     background-color:#14342B;
+    text-align:center;
     position:fixed;
     width:100%;
     overflow:hidden;
@@ -60,13 +61,15 @@
     
 body
 {
+    font-family:consolas;
     position:absolute;
     margin: 0 auto;
     padding:0;
+    overflow:hidden;
 }
 h2
 {
-    font-family:consolas;
+    
     padding:10px;
     text-align:center;
 }
@@ -78,7 +81,7 @@ h2
     padding:10px;
     border-radius:20px;
     text-align:center;
-    font-family:consolas;
+    font-weight:bold;
 }
 .botao1:hover
 {
@@ -87,9 +90,8 @@ h2
 #canvas2
 {
     position:absolute;
-    left:0;
-    top:0;
-    width:100%;
+    margin: 0 auto;
+    width:100vw;
     height:100vh;
     background-color:rgba(0,0,0,0.2);
     overflow:hidden;
@@ -97,7 +99,9 @@ h2
 }
 #qrcode img
 {
-    width:100%;
+    width:85%;
+    background:white;
+    padding:20px;
 }
 ul
 {
@@ -120,6 +124,7 @@ ul .botoesnav
     user-select:none;
     transition: padding .5s;
     overflow:hidden;
+    font-weight:bold;
     z-index:203;
 }
 ul .botoesnav:hover
@@ -130,6 +135,9 @@ ul .botoesnav:hover
 {
     height:auto;
     overflow:auto;
-    background-color:white;
-    color:black;
+    background-color:#14342B;
+    color:white;
+    text-align:center;
+    width:95%;
+    padding:5px;
 }
