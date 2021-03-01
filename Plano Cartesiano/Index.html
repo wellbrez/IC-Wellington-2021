@@ -62,6 +62,7 @@
 		{
 			if(e.which==2)
 			{
+				e.preventDefault();
 				middledragstart = [posicao_do_pixel_x(e.pageX),posicao_do_pixel_y(e.pageY)];
 				middledragactive = true;
 				console.log("banana");
@@ -71,6 +72,7 @@
 		{
 			if(middledragactive)
 			{
+				e.preventDefault();
 				console.log("batata");
 				mvevent = new moving(2,-posicao_do_pixel_x(e.pageX)+middledragstart[0],-posicao_do_pixel_y(e.pageY)+middledragstart[1]);
 				middledragstart = [posicao_do_pixel_x(e.pageX),posicao_do_pixel_y(e.pageY)];
@@ -80,6 +82,7 @@
 		{
 			if(e.which==2)
 			{
+				e.preventDefault();
 				console.log("beterraba");
 				middledragstart = [0,0]
 				middledragactive = false;
