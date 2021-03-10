@@ -18,9 +18,9 @@ function coord_my()
 }
 function posicao_do_pixel_x(posx)
 {
-	return (posx-width/2)/escalax+cscreenX
+	return (posx-width/2)/escalax +cscreenX;
 }
 function posicao_do_pixel_y(posy)
 {
-	return  -(posy-height/2)/escalay+cscreenY
+	return  (posy-height/2)/escalay +cscreenY;
 }

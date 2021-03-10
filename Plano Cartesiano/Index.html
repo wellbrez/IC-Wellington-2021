@@ -1,20 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
-<script src="p5.js" type="text/javascript"></script>
-<script src="qrcode.min.js" type="text/javascript"></script>
-<script src="p5.dom.js" type="text/javascript"></script>
-<script src="p5.sound.js" type="text/javascript"></script>
-<script src="conversoes.js" type="text/javascript"></script>
-<script src="salvar.js" type="text/javascript"></script>
-<script src="interacao_mouse.js" type="text/javascript"></script>
-<script src="grade.js" type="text/javascript"></script>
-<script src="polygon.js" type="text/javascript"></script>
-<script src="decode.js" type="text/javascript"></script>
-<script src="buttons.js" type="text/javascript"></script>
-<script src="Canvas.js" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="style.css"></link>
 <meta charset="UTF-8">
 <title>Plano Cartesiano</title>
@@ -52,50 +38,29 @@
 	</div>
 </div>
 <div id=canvas2 ></div>
+
+
+<script src="p5.js" type="text/javascript"></script>
+<script src="qrcode.min.js" type="text/javascript"></script>
+<script src="p5.dom.js" type="text/javascript"></script>
+<script src="p5.sound.js" type="text/javascript"></script>
+<script src="conversoes.js" type="text/javascript"></script>
+<script src="salvar.js" type="text/javascript"></script>
+<script src="grade.js" type="text/javascript"></script>
+<script src="polygon.js" type="text/javascript"></script>
+<script src="decode.js" type="text/javascript"></script>
+<script src="buttons.js" type="text/javascript"></script>
+<script src="Canvas.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 	var middledragstart = [0,0];
 	var middledragactive = false;
 	sketch = new p5(sketch);
-	$("#canvas2").on("mousedown mousemove mouseup",function(e)
-	{
-		if(e.type=="mousedown")
-		{
-			if(e.which==2)
-			{
-				e.preventDefault();
-				middledragstart = [posicao_do_pixel_x(e.pageX),posicao_do_pixel_y(e.pageY)];
-				middledragactive = true;
-				console.log("banana");
-			}
-		}
-		else if(e.type=="mousemove")
-		{
-			if(middledragactive)
-			{
-				e.preventDefault();
-				console.log("batata");
-				mvevent = new moving(2,-posicao_do_pixel_x(e.pageX)+middledragstart[0],-posicao_do_pixel_y(e.pageY)+middledragstart[1]);
-				middledragstart = [posicao_do_pixel_x(e.pageX),posicao_do_pixel_y(e.pageY)];
-			}
-		}
-		else if(e.type=="mouseup")
-		{
-			if(e.which==2)
-			{
-				e.preventDefault();
-				console.log("beterraba");
-				middledragstart = [0,0]
-				middledragactive = false;
-			}
-		}
-	
-	});
-	$("#canvas2").on("click",function(e)
-	{
-		mouse_clicked_canvas(e);
-	});
-
 </script>
+
+<script src="interacao_mouse.js" type="text/javascript"></script>
+<script src="interacao_dedos.js" type="text/javascript"></script>
+
 <script src="importar.js" type="text/javascript"></script>
 </body>
 </html>

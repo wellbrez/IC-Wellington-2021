@@ -13,7 +13,8 @@ function scrolling(passos,zoomx,zoomy,posx,posy)
 	this.zoom_final_y = escalay*zoomy;
 
 	this.posicao_final_x = cscreenX + (posx-width/2)/escalax - (posx-width/2)/escalax/zoomx;
-	this.posicao_final_y = cscreenY - (posy-height/2)/escalay + (posy-height/2)/escalay/zoomy;
+	this.posicao_final_y = cscreenY + (posy-height/2)/escalay - (posy-height/2)/escalay/zoomy;
+	
 
 	this.incremento_zoom_x = (this.zoom_final_x - escalax)/passos;
 	this.incremento_zoom_y = (this.zoom_final_y - escalay)/passos;
@@ -32,7 +33,7 @@ function scrolling(passos,zoomx,zoomy,posx,posy)
 			escalay+=this.incremento_zoom_y;
 
 			cscreenX=cscreenX + (posx-width/2)/escala_x_anterior - (posx-width/2)/escalax;
-			cscreenY=cscreenY - (posy-height/2)/escala_y_anterior + (posy-height/2)/escalay;
+			cscreenY=cscreenY + (posy-height/2)/escala_y_anterior - (posy-height/2)/escalay;
 
 			this.passos-=1;
 
@@ -53,6 +54,8 @@ function scrolling(passos,zoomx,zoomy,posx,posy)
 
 function moving(tempo,mv_objetivox,mv_objetivoy)
 {
+	mv_objetivox = mv_objetivox/escalax;
+	mv_objetivoy = mv_objetivoy/escalay;
 
 	this.incrementox = mv_objetivox/tempo;
 	this.incrementoy = mv_objetivoy/tempo;
@@ -95,3 +98,41 @@ function mouse_clicked_canvas(event)
 
 	
 }
+$("#canvas2").on("mousedown mousemove mouseup",function(e)
+	{
+		if(e.type=="mousedown")
+		{
+			if(e.which==2)
+			{
+				e.preventDefault();
+				middledragstart = [e.pageX,e.pageY];
+				middledragactive = true;
+				console.log("banana");
+			}
+		}
+		else if(e.type=="mousemove")
+		{
+			if(middledragactive)
+			{
+				e.preventDefault();
+				console.log("batata");
+				mvevent = new moving(1,-e.pageX+middledragstart[0],-e.pageY+middledragstart[1]);
+				middledragstart = [e.pageX,e.pageY];
+			}
+		}
+		else if(e.type=="mouseup")
+		{
+			if(e.which==2)
+			{
+				e.preventDefault();
+				console.log("beterraba");
+				middledragstart = [0,0]
+				middledragactive = false;
+			}
+		}
+	
+	});
+	$("#canvas2").on("click",function(e)
+	{
+		mouse_clicked_canvas(e);
+	});

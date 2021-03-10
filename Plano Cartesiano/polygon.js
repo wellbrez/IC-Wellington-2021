@@ -26,13 +26,13 @@ function Polygon(nome,pontos)
 		sketch.beginShape()
 		for(i=0;i<this.pontos.length-2;i+=2)
 		{
-			sketch.vertex(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]));
+			sketch.vertex(pixelX(this.pontos[i]),pixelY(this.pontos[i+1]));
 
 		//console.log(i)
 		}
 		vary = sketch.map(adjtime,0,20,pixelY(this.pontos[i+1]),pixelY(midpointy))
 		varx = sketch.map(adjtime,0,20,pixelX(this.pontos[i]),pixelX(midpointx))
-		sketch.vertex(vary,varx);
+		sketch.vertex(varx,vary);
 
 
 		//console.log(i)
@@ -46,7 +46,7 @@ function Polygon(nome,pontos)
 		sketch.fill(corBolha)
 		for(i=0;i<this.pontos.length;i+=2)
 		{
-			sketch.ellipse(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]),10,10)
+			sketch.ellipse(pixelX(this.pontos[i]),pixelY(this.pontos[i+1]),10,10)
 		}
 		sketch.pop()
 	}
@@ -58,7 +58,7 @@ function Polygon(nome,pontos)
 		sketch.beginShape()
 		for(i=0;i<this.pontos.length;i+=2)
 		{
-			sketch.vertex(pixelY(this.pontos[i+1]),pixelX(this.pontos[i]));
+			sketch.vertex(pixelX(this.pontos[i]),pixelY(this.pontos[i+1]));
 		}
 
 		sketch.endShape(sketch.CLOSE)

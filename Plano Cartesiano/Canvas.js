@@ -64,7 +64,6 @@ var sketch = function(p)
 		//translacção ao meio da tela
 		p.translate(width/2,height/2);
 		//rotacao do canvas (?)
-		p.rotate(-90*Math.PI/180);
 		att_intervalo()
 		//grade principal
 		p.stroke(corGradePrincipal)
@@ -105,7 +104,9 @@ var sketch = function(p)
 		screvent.aplicar()}
 		if(mvevent!=null){
 		mvevent.aplicar()};
-
+		p.stroke('white');
+		p.strokeWeight(2);
+		p.line(-origin_pixeldistx,-origin_pixeldisty,0,0);
 
 
 
