@@ -4,23 +4,23 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
 		if(e.type=="touchstart")
         {
             pagexstart1 = pagexstart2 = pageystart1 = pageystart2 = pagexnew1 = pagexnew2 = pageynew1 = pageynew2 = D_em_coord = 0;
-            handleStart;
+            handleStart(e);
         }
         else if(e.type=="touchmove")
         {
-            handleMove;
+            handleMove(e);
         }
         else if(e.type=="touchend")
         {
-            handleEnd;
+            handleEnd(e);
         }
         else if(e.type=="touchcancel")
         {
-            handleCancel;
+            handleCancel(e);
         }
         else if(e.type=="touchleave")
         {
-            handleLeave;
+            handleLeave(e);
         }
 	});
 
