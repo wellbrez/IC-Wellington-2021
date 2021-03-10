@@ -10,6 +10,9 @@ var sketch = function(p)
 {
 	p.setup = function()
 	{
+		d_circle = 0;
+		toquex=0;
+		toquey=0;
 		p.frameRate(60)
 		screvent = null;
 		mvevent = null;
@@ -55,6 +58,7 @@ var sketch = function(p)
 	}
 	p.draw = function()
 	{
+		p.clear();
 		resizewindow();
 		//distância, em pixels, da origem do plano cartesiano (atualizacao)
 		origin_pixeldistx = cscreenX*escalax;
@@ -76,7 +80,7 @@ var sketch = function(p)
 
 		linhas_principais(p,corLinhasPrincipais);
 
-
+		p.ellipse(0,0,d_circle/2,d_circle/2)
 		//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
 		
 		
@@ -107,6 +111,7 @@ var sketch = function(p)
 		p.stroke('white');
 		p.strokeWeight(2);
 		p.line(-origin_pixeldistx,-origin_pixeldisty,0,0);
+		p.ellipse(toquex-width/2,toquey-height/2,10,10);
 
 
 

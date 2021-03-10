@@ -1,7 +1,7 @@
 
 
 
-function scrolling(passos,zoomx,zoomy,posx,posy)
+function zooming(passos,zoomx,zoomy,posx,posy)
 {
 	//this.incremento = scr_objetivo/tempo;
 	this.passos = passos;
@@ -77,7 +77,7 @@ function mouseWheel(event)
 	delta_scroll = (Math.abs(event.delta/1000)+1)**Math.sign(-event.delta);
 	escalax_antes = escalax;
 	escalay_antes = escalay;
-	screvent = new scrolling(5,delta_scroll,delta_scroll,sketch.mouseX,sketch.mouseY)
+	screvent = new zooming(5,delta_scroll,delta_scroll,sketch.mouseX,sketch.mouseY)
 	//mvevent = new moving(5,coord_mx()-cscreenX-(mouseX-width/2)/(escalax_antes*delta_scroll) , coord_my()-cscreenY+(mouseY-height/2)/(escalay_antes*delta_scroll));
 }
 
