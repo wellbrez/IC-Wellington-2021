@@ -33,7 +33,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             meio_dos_dedos_inicial_y = (evt.originalEvent.changedTouches[0].pageY + evt.originalEvent.changedTouches[1].pageY)/2;
             dx_entre_dedos_inicial = evt.originalEvent.changedTouches[0].pageX - evt.originalEvent.changedTouches[1].pageX
             dy_entre_dedos_inicial = evt.originalEvent.changedTouches[0].pageY - evt.originalEvent.changedTouches[1].pageY
-            D_entre_dedos_inicial = Math.sqrt(dx_entre_dedos**2+dy_entre_dedos**2);
+            D_entre_dedos_inicial = Math.sqrt(dx_entre_dedos_inicial**2+dy_entre_dedos_inicial**2);
             d_circle = D_entre_dedos_inicial;
         }
         else
@@ -56,7 +56,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             meio_dos_dedos_y = (evt.originalEvent.changedTouches[0].pageY + evt.originalEvent.changedTouches[1].pageY)/2;
             dx_entre_dedos = evt.originalEvent.changedTouches[0].pageX - evt.originalEvent.changedTouches[1].pageX
             dy_entre_dedos = evt.originalEvent.changedTouches[0].pageY - evt.originalEvent.changedTouches[1].pageY
-            D_entre_dedos = Math.sqrt(dx_entre_dedos**2+dy_entre_dedos**2);
+            D_entre_dedos = (dx_entre_dedos**2+dy_entre_dedos**2)**0.5;
             d_circle = D_entre_dedos;
         }
         else
