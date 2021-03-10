@@ -42,11 +42,6 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             D_entre_dedos_inicial = Math.sqrt(dx_entre_dedos_inicial**2+dy_entre_dedos_inicial**2);
             D_em_coord = ((dx_entre_dedos_inicial/escalax)**2+(dy_entre_dedos_inicial/escalay)**2)**0.5;
         }
-        else
-        {
-            d_circle = 0;
-        }
-        console.log(evt.originalEvent.targetTouches);
         
     }
     function handleMove(evt) 
@@ -74,7 +69,6 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             screvent = new zooming(1,dzoom/escalax,dzoom/escalay,meio_dos_dedos_x,meio_dos_dedos_y);
             mvevent = new moving(1,deslocamento_meio_x,deslocamento_meio_y);
         }
-        console.log(evt.originalEvent.targetTouches);
     }
     function handleEnd(evt) 
     {
