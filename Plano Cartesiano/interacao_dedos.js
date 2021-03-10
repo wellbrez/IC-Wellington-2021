@@ -53,6 +53,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         qtd_toques = evt.originalEvent.targetTouches.length;
         if(qtd_toques==2)
         {
+            console.log(evt.originalEvent.changedTouches);
             meio_dos_dedos_x = (evt.originalEvent.changedTouches[0].pageX + evt.originalEvent.changedTouches[1].pageX)/2;
             meio_dos_dedos_y = (evt.originalEvent.changedTouches[0].pageY + evt.originalEvent.changedTouches[1].pageY)/2;
             dx_entre_dedos = evt.originalEvent.changedTouches[0].pageX - evt.originalEvent.changedTouches[1].pageX
