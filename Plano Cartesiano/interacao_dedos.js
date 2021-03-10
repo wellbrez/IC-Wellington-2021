@@ -66,6 +66,8 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             dy_entre_dedos = pageynew1 - pageynew2
             deslocamento_meio_x = meio_dos_dedos_x - meio_dos_dedos_inicial_x
             deslocamento_meio_y = meio_dos_dedos_y - meio_dos_dedos_inicial_y
+            meio_dos_dedos_inicial_x = meio_dos_dedos_x
+            meio_dos_dedos_inicial_y = meio_dos_dedos_y
             D_entre_dedos = (dx_entre_dedos**2+dy_entre_dedos**2)**0.5;
             dzoom = D_entre_dedos/D_em_coord;
             screvent = new zooming(1,dzoom/escalax,dzoom/escalay,meio_dos_dedos_x,meio_dos_dedos_y);
