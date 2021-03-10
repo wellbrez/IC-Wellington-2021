@@ -104,10 +104,11 @@ var sketch = function(p)
 			p.pop()
 		}
 
+		
+		if(mvevent!=null){
+			mvevent.aplicar()};
 		if(screvent!=null){
 		screvent.aplicar()}
-		if(mvevent!=null){
-		mvevent.aplicar()};
 		//p.stroke('white');
 		//p.strokeWeight(2);
 		//p.line(-origin_pixeldistx,-origin_pixeldisty,0,0);
