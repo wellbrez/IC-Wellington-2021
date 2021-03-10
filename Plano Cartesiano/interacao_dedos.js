@@ -58,9 +58,9 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             dx_entre_dedos = evt.originalEvent.changedTouches[0].pageX - evt.originalEvent.changedTouches[1].pageX
             dy_entre_dedos = evt.originalEvent.changedTouches[0].pageY - evt.originalEvent.changedTouches[1].pageY
             D_entre_dedos = (dx_entre_dedos**2+dy_entre_dedos**2)**0.5;
-            dzoom = d_entre_dedos/D_em_coord;
+            dzoom = D_entre_dedos/D_em_coord;
             screvent = new zooming(1,dzoom/escalax,dzoom/escalay,meio_dos_dedos_x,meio_dos_dedos_y);
-            d_circle = D_entre_dedos;
+            d_circle = 100;
         }
         else
         {
