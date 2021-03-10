@@ -3,6 +3,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         
 		if(e.type=="touchstart")
         {
+            pagexstart1 = pagexstart2 = pageystart1 = pageystart2 = pagexnew1 = pagexnew2 = pageynew1 = pageynew2 = D_em_coord = 0;
             handleStart(e);
         }
         else if(e.type=="touchmove")
@@ -29,10 +30,15 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         qtd_toques = evt.originalEvent.targetTouches.length;
         if(qtd_toques==2)
         {
-            meio_dos_dedos_inicial_x = (evt.originalEvent.changedTouches[0].pageX + evt.originalEvent.changedTouches[1].pageX)/2;
-            meio_dos_dedos_inicial_y = (evt.originalEvent.changedTouches[0].pageY + evt.originalEvent.changedTouches[1].pageY)/2;
-            dx_entre_dedos_inicial = evt.originalEvent.changedTouches[0].pageX - evt.originalEvent.changedTouches[1].pageX
-            dy_entre_dedos_inicial = evt.originalEvent.changedTouches[0].pageY - evt.originalEvent.changedTouches[1].pageY
+            
+            pagexstart1 = evt.originalEvent.changedTouches[0].pageX
+            pageystart1 = evt.originalEvent.changedTouches[0].pageY
+            pagexstart2 = evt.originalEvent.changedTouches[1].pageX
+            pageystart2 = evt.originalEvent.changedTouches[1].pageY
+            meio_dos_dedos_inicial_x = (pagexstart1 + pagexstart2)/2;
+            meio_dos_dedos_inicial_y = pageystart1 - pageystart2
+            dx_entre_dedos_inicial = pagexstart1 - pagexstart2
+            dy_entre_dedos_inicial = pageystart1 - pageystart2
             D_entre_dedos_inicial = Math.sqrt(dx_entre_dedos_inicial**2+dy_entre_dedos_inicial**2);
             D_em_coord = ((dx_entre_dedos/escalax)**2+(dy_entre_dedos/escalay)**2)**0.5;
             d_circle = D_entre_dedos_inicial;
@@ -54,10 +60,14 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         if(qtd_toques==2)
         {
             console.log(evt.originalEvent.changedTouches);
-            meio_dos_dedos_x = (evt.originalEvent.changedTouches[0].pageX + evt.originalEvent.changedTouches[1].pageX)/2;
-            meio_dos_dedos_y = (evt.originalEvent.changedTouches[0].pageY + evt.originalEvent.changedTouches[1].pageY)/2;
-            dx_entre_dedos = evt.originalEvent.changedTouches[0].pageX - evt.originalEvent.changedTouches[1].pageX
-            dy_entre_dedos = evt.originalEvent.changedTouches[0].pageY - evt.originalEvent.changedTouches[1].pageY
+            pagexnew1 = evt.originalEvent.changedTouches[0].pageX
+            pageynew1 = evt.originalEvent.changedTouches[0].pageY
+            pagexnew2 = evt.originalEvent.changedTouches[1].pageX
+            pageynew2 = evt.originalEvent.changedTouches[1].pageY
+            meio_dos_dedos_x = (pagexnew1 + pagexnew2)/2;
+            meio_dos_dedos_y = (pageynew1 + pageynew2)/2;
+            dx_entre_dedos = pagexnew1 - pagexnew2
+            dy_entre_dedos = pageynew1 - pageynew2
             D_entre_dedos = (dx_entre_dedos**2+dy_entre_dedos**2)**0.5;
             dzoom = D_entre_dedos/D_em_coord;
             screvent = new zooming(1,dzoom/escalax,dzoom/escalay,meio_dos_dedos_x,meio_dos_dedos_y);
