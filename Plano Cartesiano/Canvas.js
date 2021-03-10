@@ -80,7 +80,7 @@ var sketch = function(p)
 
 		linhas_principais(p,corLinhasPrincipais);
 
-		p.ellipse(0,0,d_circle/2,d_circle/2)
+		p.ellipse(0,0,d_circle,d_circle)
 		//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
 		
 		
