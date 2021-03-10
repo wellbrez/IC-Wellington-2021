@@ -31,16 +31,16 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         if(qtd_toques==2)
         {
             
-            pagexstart1 = evt.originalEvent.changedTouches[0].pageX
-            pageystart1 = evt.originalEvent.changedTouches[0].pageY
-            pagexstart2 = evt.originalEvent.changedTouches[1].pageX
-            pageystart2 = evt.originalEvent.changedTouches[1].pageY
+            pagexstart1 = evt.originalEvent.touches[0].pageX
+            pageystart1 = evt.originalEvent.touches[0].pageY
+            pagexstart2 = evt.originalEvent.touches[1].pageX
+            pageystart2 = evt.originalEvent.touches[1].pageY
             meio_dos_dedos_inicial_x = (pagexstart1 + pagexstart2)/2;
             meio_dos_dedos_inicial_y = pageystart1 - pageystart2
             dx_entre_dedos_inicial = pagexstart1 - pagexstart2
             dy_entre_dedos_inicial = pageystart1 - pageystart2
             D_entre_dedos_inicial = Math.sqrt(dx_entre_dedos_inicial**2+dy_entre_dedos_inicial**2);
-            D_em_coord = ((dx_entre_dedos/escalax)**2+(dy_entre_dedos/escalay)**2)**0.5;
+            D_em_coord = ((dx_entre_dedos_inicial/escalax)**2+(dy_entre_dedos_inicial/escalay)**2)**0.5;
             d_circle = D_entre_dedos_inicial;
         }
         else
