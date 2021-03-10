@@ -103,7 +103,7 @@ h2
     background:white;
     padding:5%;
 }
-#qrcode img
+#qrcode img, #qrcode canvas
 {
     width:100%;
 }
