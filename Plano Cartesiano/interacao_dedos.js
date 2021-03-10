@@ -31,10 +31,10 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         if(qtd_toques==2)
         {
             
-            pagexstart1 = evt.originalEvent.touches[0].pageX
-            pageystart1 = evt.originalEvent.touches[0].pageY
-            pagexstart2 = evt.originalEvent.touches[1].pageX
-            pageystart2 = evt.originalEvent.touches[1].pageY
+            pagexstart1 = evt.originalEvent.targetTouches[0].pageX
+            pageystart1 = evt.originalEvent.targetTouches[0].pageY
+            pagexstart2 = evt.originalEvent.targetTouches[1].pageX
+            pageystart2 = evt.originalEvent.targetTouches[1].pageY
             meio_dos_dedos_inicial_x = (pagexstart1 + pagexstart2)/2;
             meio_dos_dedos_inicial_y = pageystart1 - pageystart2
             dx_entre_dedos_inicial = pagexstart1 - pagexstart2
@@ -46,7 +46,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         {
             d_circle = 0;
         }
-        console.log(evt.originalEvent.changedTouches);
+        console.log(evt.originalEvent.targetTouches);
         
     }
     function handleMove(evt) 
@@ -55,11 +55,11 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         qtd_toques = evt.originalEvent.targetTouches.length;
         if(qtd_toques==2)
         {
-            console.log(evt.originalEvent.changedTouches);
-            pagexnew1 = evt.originalEvent.changedTouches[0].pageX
-            pageynew1 = evt.originalEvent.changedTouches[0].pageY
-            pagexnew2 = evt.originalEvent.changedTouches[1].pageX
-            pageynew2 = evt.originalEvent.changedTouches[1].pageY
+            console.log(evt.originalEvent.targetTouches);
+            pagexnew1 = evt.originalEvent.targetTouches[0].pageX
+            pageynew1 = evt.originalEvent.targetTouches[0].pageY
+            pagexnew2 = evt.originalEvent.targetTouches[1].pageX
+            pageynew2 = evt.originalEvent.targetTouches[1].pageY
             meio_dos_dedos_x = (pagexnew1 + pagexnew2)/2;
             meio_dos_dedos_y = (pageynew1 + pageynew2)/2;
             dx_entre_dedos = pagexnew1 - pagexnew2
@@ -71,7 +71,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             screvent = new zooming(1,dzoom/escalax,dzoom/escalay,meio_dos_dedos_x,meio_dos_dedos_y);
             mvevent = new moving(1,deslocamento_meio_x,deslocamento_meio_y);
         }
-        console.log(evt.originalEvent.changedTouches);
+        console.log(evt.originalEvent.targetTouches);
     }
     function handleEnd(evt) 
     {
