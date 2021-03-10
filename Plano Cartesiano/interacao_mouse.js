@@ -52,10 +52,11 @@ function zooming(passos,zoomx,zoomy,posx,posy)
 	}
 }
 
-function moving(tempo,mv_objetivox,mv_objetivoy)
+function moving(tempo,cscreenxinicial,cscreenyinicial,mv_objetivox,mv_objetivoy)
 {
-	mv_objetivox = mv_objetivox/escalax;
-	mv_objetivoy = mv_objetivoy/escalay;
+	mv_objetivox = (mv_objetivox)/escalax
+	mv_objetivoy = (mv_objetivoy)/escalay
+	console.log(mv_objetivox);
 
 	this.incrementox = mv_objetivox/tempo;
 	this.incrementoy = mv_objetivoy/tempo;
@@ -64,8 +65,8 @@ function moving(tempo,mv_objetivox,mv_objetivoy)
 	{
 		if (this.tempo>0)
 		{
-			cscreenX+=this.incrementox;
-			cscreenY+=this.incrementoy;
+			cscreenX=cscreenxinicial+this.incrementox;
+			cscreenY=cscreenyinicial+this.incrementoy;
 			this.tempo-=1;
 		}
 	}
@@ -106,6 +107,7 @@ $("#canvas2").on("mousedown mousemove mouseup",function(e)
 			{
 				e.preventDefault();
 				middledragstart = [e.pageX,e.pageY];
+				centerscreen = [cscreenX,cscreenY];
 				middledragactive = true;
 				console.log("banana");
 			}
@@ -116,8 +118,7 @@ $("#canvas2").on("mousedown mousemove mouseup",function(e)
 			{
 				e.preventDefault();
 				console.log("batata");
-				mvevent = new moving(1,-e.pageX+middledragstart[0],-e.pageY+middledragstart[1]);
-				middledragstart = [e.pageX,e.pageY];
+				mvevent = new moving(1,centerscreen[0],centerscreen[1],-e.pageX+middledragstart[0],-e.pageY+middledragstart[1]);
 			}
 		}
 		else if(e.type=="mouseup")

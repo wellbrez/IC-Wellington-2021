@@ -37,6 +37,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             pageystart2 = evt.originalEvent.targetTouches[1].pageY
             meio_dos_dedos_inicial_x = (pagexstart1 + pagexstart2)/2
             meio_dos_dedos_inicial_y = (pageystart1 + pageystart2)/2
+            centerscreen = [cscreenX,cscreenY];
             dx_entre_dedos_inicial = pagexstart1 - pagexstart2
             dy_entre_dedos_inicial = pageystart1 - pageystart2
             D_entre_dedos_inicial = Math.sqrt(dx_entre_dedos_inicial**2+dy_entre_dedos_inicial**2);
@@ -61,13 +62,11 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             dy_entre_dedos = pageynew1 - pageynew2
             deslocamento_meio_x = -meio_dos_dedos_x + meio_dos_dedos_inicial_x
             deslocamento_meio_y = -meio_dos_dedos_y + meio_dos_dedos_inicial_y
-            meio_dos_dedos_inicial_x = meio_dos_dedos_x
-            meio_dos_dedos_inicial_y = meio_dos_dedos_y
             console.log(deslocamento_meio_x,deslocamento_meio_y);
             D_entre_dedos = (dx_entre_dedos**2+dy_entre_dedos**2)**0.5;
             dzoom = D_entre_dedos/D_em_coord;
             
-            mvevent = new moving(1,deslocamento_meio_x,deslocamento_meio_y);
+            mvevent = new moving(1,centerscreen[0],centerscreen[1],deslocamento_meio_x,deslocamento_meio_y);
             screvent = new zooming(1,dzoom/escalax,dzoom/escalay,meio_dos_dedos_x,meio_dos_dedos_y);
         }
     }
