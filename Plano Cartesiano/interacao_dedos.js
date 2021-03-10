@@ -41,16 +41,12 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             dy_entre_dedos_inicial = pageystart1 - pageystart2
             D_entre_dedos_inicial = Math.sqrt(dx_entre_dedos_inicial**2+dy_entre_dedos_inicial**2);
             D_em_coord = ((dx_entre_dedos_inicial/escalax)**2+(dy_entre_dedos_inicial/escalay)**2)**0.5;
-            d_circle = D_entre_dedos_inicial;
         }
         else
         {
             d_circle = 0;
         }
         console.log(evt.originalEvent.changedTouches);
-        var toques = evt.originalEvent.targetTouches[0];
-        toquex = toques.pageX;
-        toquey = toques.pageY;
         
     }
     function handleMove(evt) 
@@ -71,16 +67,8 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             D_entre_dedos = (dx_entre_dedos**2+dy_entre_dedos**2)**0.5;
             dzoom = D_entre_dedos/D_em_coord;
             screvent = new zooming(1,dzoom/escalax,dzoom/escalay,meio_dos_dedos_x,meio_dos_dedos_y);
-            d_circle = 100;
-        }
-        else
-        {
-            d_circle = 0;
         }
         console.log(evt.originalEvent.changedTouches);
-        var toques = evt.originalEvent.targetTouches[0];
-        toquex = toques.pageX;
-        toquey = toques.pageY;
     }
     function handleEnd(evt) 
     {

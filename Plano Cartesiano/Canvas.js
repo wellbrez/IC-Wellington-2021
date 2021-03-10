@@ -80,7 +80,7 @@ var sketch = function(p)
 
 		linhas_principais(p,corLinhasPrincipais);
 
-		p.ellipse(0,0,d_circle,d_circle)
+		//p.ellipse(0,0,d_circle,d_circle)
 		//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
 		
 		
@@ -108,10 +108,10 @@ var sketch = function(p)
 		screvent.aplicar()}
 		if(mvevent!=null){
 		mvevent.aplicar()};
-		p.stroke('white');
-		p.strokeWeight(2);
-		p.line(-origin_pixeldistx,-origin_pixeldisty,0,0);
-		p.ellipse(toquex-width/2,toquey-height/2,10,10);
+		//p.stroke('white');
+		//p.strokeWeight(2);
+		//p.line(-origin_pixeldistx,-origin_pixeldisty,0,0);
+		//p.ellipse(toquex-width/2,toquey-height/2,10,10);
 
 
 
