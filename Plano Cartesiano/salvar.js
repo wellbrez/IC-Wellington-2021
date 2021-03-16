@@ -8,6 +8,10 @@ function gerar_link(option)
         {
             polygon_sufix+= ";"+polygons[i].pontos[j]
         }
+        if(i<polygons.length-1)
+        {
+            polygon_sufix+=";";
+        }
     }
     
     if(option==true)
