@@ -31,6 +31,7 @@ var sketch = function(p)
 
 		intervalo = 10;
 		decode();
+		polygons[polygons.length-1].selected = true;
 
 		
 		
@@ -46,7 +47,7 @@ var sketch = function(p)
 		corFundo = '#230903'
 		corLinhasPrincipais = "#E8EBE4"
 		corContorno = '#E8EBE4'
-		corPoligono = "#14342B"
+		corPoligono = "white"
 		
 		resizewindow();
 
@@ -90,13 +91,13 @@ var sketch = function(p)
 		{
 			p.push()
 			p.fill('red')
-			if(adjtime==0||poligono.pontos.length<=4)
+			if(adjtime==0||poligono.pontos.length<=4 || !poligono.selected)
 			{
 				poligono.draw();
 				poligono.bubbledraw();
 			}
 			else
-			{
+				{
 				poligono.adjusting();
 				poligono.bubbledraw();
 			}

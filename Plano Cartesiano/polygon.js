@@ -2,9 +2,15 @@ function Polygon(nome,pontos)
 {
     this.nome = (nome==null ? "" : nome);
     this.pontos = (pontos==null ? [] : pontos);
+	this.selected = false;
+	this.color = sketch.color(sketch.random(0,255),sketch.random(0,255),sketch.random(0,255));
     
 
-
+	this.definir_inicio_da_animacao_de_ajuste = function()
+	{
+		this.midpointx = (this.pontos[0]+this.pontos[this.pontos.length-4])/2
+		this.midpointy = (this.pontos[0]+this.pontos[this.pontos.length-3])/2
+	}
 	
 	this.add_ponto_por_pixel = function(posx,posy)
 	{
@@ -30,8 +36,8 @@ function Polygon(nome,pontos)
 
 		//console.log(i)
 		}
-		vary = sketch.map(adjtime,0,20,pixelY(this.pontos[i+1]),pixelY(midpointy))
-		varx = sketch.map(adjtime,0,20,pixelX(this.pontos[i]),pixelX(midpointx))
+		vary = sketch.map(adjtime,0,20,pixelY(this.pontos[i+1]),pixelY(this.midpointy))
+		varx = sketch.map(adjtime,0,20,pixelX(this.pontos[i]),pixelX(this.midpointx))
 		sketch.vertex(varx,vary);
 
 
@@ -54,7 +60,14 @@ function Polygon(nome,pontos)
 	{
 		sketch.stroke(corContorno)
 		sketch.strokeWeight(4)
-		sketch.fill(corPoligono)
+		if(this.selected)
+		{
+			sketch.fill(corPoligono)
+		}
+		else
+		{
+			sketch.fill(this.color)
+		}
 		sketch.beginShape()
 		for(i=0;i<this.pontos.length;i+=2)
 		{

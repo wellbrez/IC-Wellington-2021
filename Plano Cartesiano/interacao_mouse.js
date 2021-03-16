@@ -84,18 +84,17 @@ function mouseWheel(event)
 
 function mouse_clicked_canvas(event)
 {
+	poligono_selecionado = polygons.length-1;
 
 	console.log(event);
-	polygons[0].add_ponto_por_pixel(sketch.mouseX,sketch.mouseY);
+	polygons[poligono_selecionado].add_ponto_por_pixel(sketch.mouseX,sketch.mouseY);
+	polygons[poligono_selecionado].definir_inicio_da_animacao_de_ajuste();
 	adjtime=20;
-
-
-	midpointx = (polygons[0].pontos[0]+polygons[0].pontos[polygons[0].pontos.length-4])/2
-	midpointy = (polygons[0].pontos[1]+polygons[0].pontos[polygons[0].pontos.length-3])/2
+	
 	//console.log('midpointx'+midpointx)
 	//console.log('midpointy'+midpointy)
-	adjintx = (coord_mx() - midpointx)
-	adjinty = (coord_my() - midpointy)
+	//adjintx = (coord_mx() - midpointx)
+	//adjinty = (coord_my() - midpointy)
 
 	
 }
