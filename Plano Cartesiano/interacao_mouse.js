@@ -90,6 +90,7 @@ function mouse_clicked_canvas(event)
 	polygons[poligono_selecionado].add_ponto_por_pixel(sketch.mouseX,sketch.mouseY);
 	polygons[poligono_selecionado].definir_inicio_da_animacao_de_ajuste();
 	adjtime=20;
+	polygons[0].atualizar_area();
 	
 	//console.log('midpointx'+midpointx)
 	//console.log('midpointy'+midpointy)

@@ -35,7 +35,7 @@ var sketch = function(p)
 
 		
 		
-
+		mostrar_area = false;
 		adjtime=0;
 		adjinty=0;
 		adjintx=0;
@@ -91,7 +91,18 @@ var sketch = function(p)
 		{
 			p.push()
 			p.fill('red')
-			if(adjtime==0||poligono.pontos.length<=4 || !poligono.selected)
+			for(t=0;t<poligono.transicoes.length;t++)
+			{
+				poligono.transicoes[t].attframe();
+				if(poligono.transicoes[t].ended)
+				{
+					poligono.transicoes.splice(t,1);
+				}
+
+			}
+			poligono.draw();
+			poligono.bubbledraw();
+			/*if(adjtime==0||poligono.pontos.length<=4 || !poligono.selected)
 			{
 				poligono.draw();
 				poligono.bubbledraw();
@@ -101,10 +112,15 @@ var sketch = function(p)
 				poligono.adjusting();
 				poligono.bubbledraw();
 			}
-			
+			*/
 			p.pop()
 		}
-
+		if(mostrar_area)
+		{
+			p.textSize(30);
+			p.fill("green");
+			p.text("Area = "+polygons[0].area.toFixed(2),100,100);
+		}
 		
 		if(mvevent!=null){
 			mvevent.aplicar()};
