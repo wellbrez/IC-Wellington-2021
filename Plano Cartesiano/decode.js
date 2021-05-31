@@ -1,40 +1,61 @@
-polygons = [];
-function decode()
-{
-	informacao = location.href.split("#")[1];
+let polygons = [];
 
-	if (informacao!=undefined)
+function decode(dadosCompactados)
+{
+	dadosCompactados = decodeURI(dadosCompactados);
+	console.log("Decode iniciado")
+	if (dadosCompactados!=undefined)
 	{
-		indice=0;
-		pontos_pre_carregados_em_string = informacao.split(";");
-		indice_info = 0;
-		while(indice_info<pontos_pre_carregados_em_string.length)
+		console.log("os dados sao")
+		console.log(dadosCompactados)
+		let dadosEmString = descomprimir(dadosCompactados);
+		console.log("os dados em string sao")
+		console.log(dadosEmString)
+		let indicePoligono=0;
+		let dadosSeparados = dadosEmString.split(";");
+		let indiceDados = 0;
+		while(indiceDados<dadosSeparados.length)
 		{
-			window.polygons.push(new Polygon());
-			window.polygons[indice].nome = pontos_pre_carregados_em_string[indice_info];
-			indice_info++;
-			polsize = parseInt(pontos_pre_carregados_em_string[indice_info]);
-			indice_info++;
+			polygons.push(new Polygon());
+			polygons[indicePoligono].nome = dadosSeparados[indiceDados];
+			indiceDados++;
+			polsize = Number(dadosSeparados[indiceDados]);
+			indiceDados++;
 			for(pol=0;pol<polsize;pol++)
 			{
-				window.polygons[indice].pontos.push(parseFloat(pontos_pre_carregados_em_string[indice_info]));
-				indice_info++;
+				polygons[indicePoligono].pontos.push(Number(dadosSeparados[indiceDados]));
+				indiceDados++;
 			}
-			indice++;
+			indicePoligono++;
 		}
-		console.log(window.polygons);
-	}
-	else if (window.localStorage.getItem('lastsave')!=undefined)
-	{
-		local_polygons = JSON.parse(window.localStorage.getItem('lastsave'));
-		for (local_polygon of local_polygons)
-		{
-			polygons.push(new Polygon(local_polygon.nome,local_polygon.pontos));
-		}
+		console.log(polygons);
 	}
 	else
 	{
+		window.console.error("A funcao decode foi chamada para uma string indefinida.");
+	}
+}
 
+
+function carregarImportacaoInicial()
+{
+	let informacao = location.href.split("#")[1];
+
+	if (informacao!=undefined)
+	{
+		decode(informacao);
+	}
+	else if (window.localStorage.getItem('lastsave')!=undefined)
+	{
+		decode(window.localStorage.getItem('lastsave'));
+		/*local_polygons = JSON.parse(window.localStorage.getItem('lastsave'));
+		for (local_polygon of local_polygons)
+		{
+			polygons.push(new Polygon(local_polygon.nome,local_polygon.pontos));
+		}*/
+	}
+	else
+	{
 		polygons.push(new Polygon());
 	}
 }

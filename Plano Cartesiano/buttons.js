@@ -1,10 +1,10 @@
 function show_hide(id,idproprio)
 {
     
-    elemento = document.getElementById(id);
-    botao = document.getElementById(idproprio);
-    navbar = document.getElementById("navbar");
-    botoes = document.getElementsByClassName("botoesnav");
+    let elemento = document.getElementById(id);
+    let botao = document.getElementById(idproprio);
+    let navbar = document.getElementById("navbar");
+    let botoes = document.getElementsByClassName("botoesnav");
     if(elemento.style.maxHeight == "100%")
     {
         elemento.style.maxHeight = "0%";

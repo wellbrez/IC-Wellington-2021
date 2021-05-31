@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<link rel="stylesheet" href="style.css"></link>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css"></link>
 <title>Plano Cartesiano</title>
 </head>
 <body>
 	<ul id=navbar>
-		<li id=botao_compartilhar class="botoesnav" onclick=show_hide('compartilhamento','botao_compartilhar')>Exportar</li>
+		<li id=botao_compartilhar class="botoesnav" onclick=show_hide("compartilhamento","botao_compartilhar")>Exportar</li>
 		<li id=botao_limpar class="botoesnav" onclick=limpar_tela()>Limpar</li>
-		<li id="botao_importar" class="botoesnav" onclick=show_hide('importacao','botao_importar')>Importar</li>
+		<li id="botao_importar" class="botoesnav" onclick=show_hide("importacao","botao_importar")>Importar</li>
 	</ul>
 
 <div id="importacao">
@@ -19,17 +21,17 @@
 <div id=compartilhamento>
 	<div class=compartcontainer>
 		<h2>Link</h2>
-		<div id=botao_gerarlink class=botao1 onclick="gerar_link()">Gerar Link</div>
+		<div id=botao_gerarlink class=botao1 onclick="gerarCodigo()">Gerar Link</div>
 		<input id=compartlink value="•Link•" readonly=readonly></input>
 	</div>
 	
 	<div class=compartcontainer><h2>Salvar no navegador</h2>
-	<div id=botao_armazenar class=botao1 onclick="armazenar_navegador()">Salvar</div>
+	<div id=botao_armazenar class=botao1 onclick="armazenarNoNavegador()">Salvar</div>
 		</div>
 	
 	<div class=compartcontainer>
 		<h2>Gerar QR-CODE</h2>
-		<div id=botao_gerarqrcode class=botao1 onclick="gerar_qrcode()">Gerar</div>
+		<div id=botao_gerarqrcode class=botao1 onclick="gerarQRCode()">Gerar</div>
 		<div id="qrcode"></div>
 	</div>
 	<div class=compartcontainer>
@@ -39,25 +41,35 @@
 </div>
 <div id=canvas2 ></div>
 
+<!-- Importando bibliotecas -->
+<script src="bibliotecas/decode.js"></script>
+<script src="bibliotecas/encode.js"></script>
+<script src="bibliotecas/geradorQRCode.min.js"></script>
+<script src="bibliotecas/lucioPaivaConvexHull.mjs"></script>
+<script src="bibliotecas/p5.dom.js"></script>
+<script src="bibliotecas/p5.js"></script>
+<script src="bibliotecas/p5.sound.js"></script>
+<!--<script src="bibliotecas/temul.js"></script> -->
 
-<script src="p5.js" type="text/javascript"></script>
-<script src="qrcode.min.js" type="text/javascript"></script>
-<script src="p5.dom.js" type="text/javascript"></script>
-<script src="p5.sound.js" type="text/javascript"></script>
-<script src="conversoes.js" type="text/javascript"></script>
-<script src="salvar.js" type="text/javascript"></script>
-<script src="grade.js" type="text/javascript"></script>
-<script src="polygon.js" type="text/javascript"></script>
-<script src="decode.js" type="text/javascript"></script>
-<script src="buttons.js" type="text/javascript"></script>
-<script src="Canvas.js" type="text/javascript"></script>
+<script src="conversoes.js"></script>
+<script src="grade.js"></script>
+<script src="polygon.js"></script>
+<script src="decode.js"></script>
+<script src="encode.js"></script>
+<script src="salvar.js"></script>
+<script src="buttons.js"></script>
+<script src="canvas.js"></script>
+<script src="compartilharLink.js"></script>
+<script src="calcularEnvoltoria.js"></script>
+<script src="compartilharQRCode.js"></script>
+<script src="compartilharTexto.js"></script>
+<script src="compartilharWhatsapp.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 	var middledragstart = [0,0];
 	var middledragactive = false;
 	sketch = new p5(sketch);
 </script>
-
 <script src="interacao_mouse.js" type="text/javascript"></script>
 <script src="interacao_dedos.js" type="text/javascript"></script>
 

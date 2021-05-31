@@ -2,8 +2,8 @@
 
 function resizewindow()
 {
-	width = document.getElementById('canvas2').getBoundingClientRect().width;
-	height = document.getElementById('canvas2').getBoundingClientRect().height;
+	let width = document.getElementById('canvas2').getBoundingClientRect().width;
+	let height = document.getElementById('canvas2').getBoundingClientRect().height;
 	window.sketch.resizeCanvas(width,height,true);
 }
 var sketch = function(p)
@@ -30,7 +30,8 @@ var sketch = function(p)
 		origin_pixeldisty = cscreenY*escalay;
 
 		intervalo = 10;
-		decode();
+		carregarImportacaoInicial();
+		let grahamScan;
 		polygons[polygons.length-1].selected = true;
 
 		
@@ -114,6 +115,8 @@ var sketch = function(p)
 			}
 			*/
 			p.pop()
+			envoltoria = calcularEnvoltoria();
+			desenharEnvoltoria(envoltoria);
 		}
 		if(mostrar_area)
 		{

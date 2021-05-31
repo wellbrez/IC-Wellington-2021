@@ -4,6 +4,7 @@ function Polygon(nome,pontos)
     this.pontos = (pontos==null ? [] : pontos);
 	this.objetivos = this.pontos;
 	this.selected = false;
+	this.positivo = true;
 	this.color = sketch.color(sketch.random(0,255),sketch.random(0,255),sketch.random(0,255));
 	this.area = 0;
 	this.transicoes = [];
@@ -17,7 +18,7 @@ function Polygon(nome,pontos)
 	
 	this.add_ponto_por_pixel = function(posx,posy,index)
 	{
-		console.log(this);
+		//console.log(this);
 		if(index==undefined)
 		{
 			this.transicoes.push(new transicao(
@@ -89,7 +90,7 @@ function Polygon(nome,pontos)
 			for(pt=0;pt<pttemp.length-2;pt+=2)
 			{
 				somatorio+=pttemp[pt]*pttemp[pt+3]-pttemp[pt+2]*pttemp[pt+1];
-				console.log(somatorio);
+				//console.log(somatorio);
 			}
 			this.area = Math.abs(0.5*somatorio);
 		}
@@ -180,8 +181,8 @@ function transicao(tempo,pt1,pt2,obj1,obj2,tipo,poligono)
 
 
 
-			console.log(this.incrementox);
-			console.log(this.incrementoy);
+			//console.log(this.incrementox);
+			//console.log(this.incrementoy);
 			for (tsc of this.poligono.transicoes)
 			{
 				if(tsc.pt1>this.pt1)
@@ -202,6 +203,8 @@ function transicao(tempo,pt1,pt2,obj1,obj2,tipo,poligono)
 			this.poligono.pontos[this.pt1]+=this.incrementox;
 			this.poligono.pontos[this.pt2]+=this.incrementoy;
 			polygons[0].atualizar_area();
+			envoltoria = calcularEnvoltoria();
+			desenharEnvoltoria(envoltoria);
 			
 		}
 		else if(this.tempo==0 && this.tipo=="delete")
