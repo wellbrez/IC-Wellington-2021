@@ -83,8 +83,8 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         
         if(qtd_toques==0)
         {
-            let pagexnew1 = evt.originalEvent.changedTouches.pageX
-            let pageynew1 = evt.originalEvent.changedTouches.pageY
+            let pagexnew1 = evt.originalEvent.changedTouches[0].pageX
+            let pageynew1 = evt.originalEvent.changedTouches[0].pageY
             let deltaX = pagexstart1 - pagexnew1;
             let deltaY = pageystart1 - pageynew1;
             let distP1P2 = (deltaX**2 + deltaY**2)**.5;
