@@ -54,7 +54,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     }
     function handleMove(evt) 
     {
-        centerscreen = [cscreenX,cscreenY];
+        //centerscreen = [cscreenX,cscreenY];
         evt.preventDefault();
         qtd_toques = evt.originalEvent.targetTouches.length;
         if(qtd_toques==1)
