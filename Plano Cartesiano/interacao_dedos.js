@@ -76,9 +76,14 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         
         if(qtd_toques==1)
         {
-            pagexnew1 = evt.originalEvent.targetTouches[0].pageX
-            pageynew1 = evt.originalEvent.targetTouches[0].pageY
-            if(((pagexstart1-pagexnew1)**2+(pageystart1 - pageynew1)**2)**.5<=20)
+            let pagexnew1 = evt.originalEvent.targetTouches[0].pageX
+            let pageynew1 = evt.originalEvent.targetTouches[0].pageY
+            let deltaX = pagexstart1 - pagexnew1;
+            let deltaY = pageystart1 - pageynew1;
+            let distP1P2 = (deltaX**2 + deltaY**2)**.5;
+
+
+            if(distP1P2<=20)
             {
                 poligono_selecionado = 0;
                 console.log(evt);
