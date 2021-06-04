@@ -84,7 +84,6 @@ function mouseWheel(event)
 
 function mouse_clicked_canvas(event)
 {
-	poligono_selecionado = 0;
 
 	console.log(event);
 	polygons[poligono_selecionado].add_ponto_por_pixel(sketch.mouseX,sketch.mouseY);

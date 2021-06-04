@@ -1,3 +1,15 @@
+function adicionarPoligono()
+{
+	
+	poligono_selecionado = polygons.length;
+	polygons.push(new Polygon("A",[]));
+	atualizarUI();
+}
+function selecionar(id)
+{
+	poligono_selecionado = id;
+	atualizarUI();
+}
 function Polygon(nome,pontos)
 {
     this.nome = (nome==null ? "" : nome);
