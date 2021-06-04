@@ -40,17 +40,21 @@
 	</div>
 </div>
 <div id=canvas2 ></div>
+<div id="textoPoligonos"></div>
 
 <!-- Importando bibliotecas -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="bibliotecas/decode.js"></script>
 <script src="bibliotecas/encode.js"></script>
 <script src="bibliotecas/geradorQRCode.min.js"></script>
 <script src="bibliotecas/lucioPaivaConvexHull.mjs"></script>
-<script src="bibliotecas/p5.dom.js"></script>
 <script src="bibliotecas/p5.js"></script>
 <script src="bibliotecas/p5.sound.js"></script>
-<!--<script src="bibliotecas/temul.js"></script> 12-->
+<script src="bibliotecas/p5.dom.js"></script>
 
+<!--<script src="bibliotecas/temul.js"></script> 12-->
+<script src="atualizacaoTempoReal.js"></script>
+<script src="menuPoligonos.js"></script>
 <script src="conversoes.js"></script>
 <script src="grade.js"></script>
 <script src="polygon.js"></script>
@@ -64,7 +68,7 @@
 <script src="compartilharQRCode.js"></script>
 <script src="compartilharTexto.js"></script>
 <script src="compartilharWhatsapp.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <script>
 	var middledragstart = [0,0];
 	var middledragactive = false;

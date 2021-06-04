@@ -1,16 +1,18 @@
 let polygons = [];
+let filestring;
 
 function decode(dadosCompactados)
 {
-	dadosCompactados = decodeURI(dadosCompactados);
-	console.log("Decode iniciado")
 	if (dadosCompactados!=undefined)
 	{
-		console.log("os dados sao")
-		console.log(dadosCompactados)
-		let dadosEmString = descomprimir(dadosCompactados);
-		console.log("os dados em string sao")
-		console.log(dadosEmString)
+		dadosCompactados = decodeURI(dadosCompactados);
+		//console.log("Decode iniciado")
+		//console.log("os dados sao")
+		//console.log(dadosCompactados)
+		//let dadosEmString = descomprimir(dadosCompactados);
+		let dadosEmString = dadosCompactados;
+		//console.log("os dados em string sao")
+		//console.log(dadosEmString)
 		let indicePoligono=0;
 		let dadosSeparados = dadosEmString.split(";");
 		let indiceDados = 0;
@@ -28,10 +30,11 @@ function decode(dadosCompactados)
 			}
 			indicePoligono++;
 		}
-		console.log(polygons);
+		//console.log(polygons);
 	}
 	else
 	{
+		window.alert("Selecione um arquivo válido antes de clicar em importar");
 		window.console.error("A funcao decode foi chamada para uma string indefinida.");
 	}
 }

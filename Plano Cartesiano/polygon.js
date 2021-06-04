@@ -202,9 +202,7 @@ function transicao(tempo,pt1,pt2,obj1,obj2,tipo,poligono)
 			this.tempo-=1;
 			this.poligono.pontos[this.pt1]+=this.incrementox;
 			this.poligono.pontos[this.pt2]+=this.incrementoy;
-			polygons[0].atualizar_area();
-			envoltoria = calcularEnvoltoria();
-			desenharEnvoltoria(envoltoria);
+			atualizarUI();
 			
 		}
 		else if(this.tempo==0 && this.tipo=="delete")

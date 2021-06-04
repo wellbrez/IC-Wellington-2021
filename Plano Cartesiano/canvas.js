@@ -118,12 +118,12 @@ var sketch = function(p)
 			envoltoria = calcularEnvoltoria();
 			desenharEnvoltoria(envoltoria);
 		}
-		if(mostrar_area)
+		/*if(mostrar_area)
 		{
 			p.textSize(30);
 			p.fill("green");
 			p.text("Area = "+polygons[0].area.toFixed(2),100,100);
-		}
+		}*/
 		
 		if(mvevent!=null){
 			mvevent.aplicar()};
