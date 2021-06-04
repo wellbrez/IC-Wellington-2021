@@ -78,8 +78,9 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     {
         evt.preventDefault;
         qtd_toques = evt.originalEvent.targetTouches.length;
+        console.log("qtd de toques é ",evt.originalEvent.targetTouches.length)
         
-        if(qtd_toques==1)
+        if(qtd_toques==0)
         {
             let pagexnew1 = evt.originalEvent.targetTouches[0].pageX
             let pageynew1 = evt.originalEvent.targetTouches[0].pageY
