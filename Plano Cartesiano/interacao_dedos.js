@@ -27,7 +27,12 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     {
         evt.preventDefault();
         qtd_toques = evt.originalEvent.targetTouches.length;
-        if(qtd_toques==2)
+        if(qtd_toques==1)
+        {
+            pagexstart1 = evt.originalEvent.targetTouches[0].pageX;
+            pageystart1 = evt.originalEvent.targetTouches[0].pageY;
+        }
+        else if(qtd_toques==2)
         {
             pagexstart1 = pagexstart2 = pageystart1 = pageystart2 = pagexnew1 = pagexnew2 = pageynew1 = pageynew2 = D_em_coord = meio_dos_dedos_inicial_x = meio_dos_dedos_inicial_y= 0;
             pagexstart1 = evt.originalEvent.targetTouches[0].pageX
