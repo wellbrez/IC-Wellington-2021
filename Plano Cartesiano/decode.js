@@ -1,5 +1,6 @@
 let polygons = [];
 let filestring;
+let poligono_selecionado = 0;
 
 function decode(dadosCompactados)
 {
@@ -20,6 +21,7 @@ function decode(dadosCompactados)
 		{
 			polygons.push(new Polygon());
 			polygons[indicePoligono].nome = dadosSeparados[indiceDados];
+			poligono_selecionado = indicePoligono;
 			indiceDados++;
 			polsize = Number(dadosSeparados[indiceDados]);
 			indiceDados++;
