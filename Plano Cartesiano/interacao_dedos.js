@@ -71,6 +71,13 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     }
     function handleEnd(evt) 
     {
+        poligono_selecionado = 0;
+
+        console.log(event);
+        polygons[poligono_selecionado].add_ponto_por_pixel(sketch.mouseX,sketch.mouseY);
+        polygons[poligono_selecionado].definir_inicio_da_animacao_de_ajuste();
+        adjtime=20;
+        atualizarUI();
     }
     function handleCancel(evt) 
     {
