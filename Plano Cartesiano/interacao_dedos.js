@@ -33,6 +33,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             addponto = true;
             pagexstart1 = evt.originalEvent.targetTouches[0].pageX;
             pageystart1 = evt.originalEvent.targetTouches[0].pageY;
+            centerscreen = [cscreenX,cscreenY];
         }
         else if(qtd_toques==2)
         {
