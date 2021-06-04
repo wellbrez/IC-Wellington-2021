@@ -66,6 +66,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             if(distP1P2>20)
             {
                 addponto = false;
+                new moving(1,centerscreen[0],centerscreen[1],deltaX,deltaY);
             }
         }
         if(qtd_toques==2)
