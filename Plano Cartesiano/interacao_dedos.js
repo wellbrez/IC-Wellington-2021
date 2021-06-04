@@ -1,3 +1,4 @@
+let addponto = true;
 $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function(e)
 	{
         
@@ -29,11 +30,13 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         qtd_toques = evt.originalEvent.targetTouches.length;
         if(qtd_toques==1)
         {
+            addponto = true;
             pagexstart1 = evt.originalEvent.targetTouches[0].pageX;
             pageystart1 = evt.originalEvent.targetTouches[0].pageY;
         }
         else if(qtd_toques==2)
         {
+            addponto = false;
             pagexstart1 = pagexstart2 = pageystart1 = pageystart2 = pagexnew1 = pagexnew2 = pageynew1 = pageynew2 = D_em_coord = meio_dos_dedos_inicial_x = meio_dos_dedos_inicial_y= 0;
             pagexstart1 = evt.originalEvent.targetTouches[0].pageX
             pageystart1 = evt.originalEvent.targetTouches[0].pageY
@@ -53,9 +56,21 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     {
         evt.preventDefault();
         qtd_toques = evt.originalEvent.targetTouches.length;
+        if(qtd_toques==1)
+        {
+            let pagexnew1 = evt.originalEvent.changedTouches[0].pageX
+            let pageynew1 = evt.originalEvent.changedTouches[0].pageY
+            let deltaX = pagexstart1 - pagexnew1;
+            let deltaY = pageystart1 - pageynew1;
+            let distP1P2 = (deltaX**2 + deltaY**2)**.5;
+            if(distP1P2>20)
+            {
+                addponto = false;
+            }
+        }
         if(qtd_toques==2)
         {
-            console.log(evt.originalEvent.targetTouches);
+            //console.log(evt.originalEvent.targetTouches);
             pagexnew1 = evt.originalEvent.targetTouches[0].pageX
             pageynew1 = evt.originalEvent.targetTouches[0].pageY
             pagexnew2 = evt.originalEvent.targetTouches[1].pageX
@@ -66,7 +81,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             dy_entre_dedos = pageynew1 - pageynew2
             deslocamento_meio_x = -meio_dos_dedos_x + meio_dos_dedos_inicial_x
             deslocamento_meio_y = -meio_dos_dedos_y + meio_dos_dedos_inicial_y
-            console.log(deslocamento_meio_x,deslocamento_meio_y);
+            //console.log(deslocamento_meio_x,deslocamento_meio_y);
             D_entre_dedos = (dx_entre_dedos**2+dy_entre_dedos**2)**0.5;
             dzoom = D_entre_dedos/D_em_coord;
             
@@ -77,28 +92,14 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     function handleEnd(evt) 
     {
         evt.preventDefault;
-        qtd_toques = evt.originalEvent.targetTouches.length;
-        //console.log("qtd de toques é ",evt.originalEvent.targetTouches.length)
-        //console.log("evento é ",evt.originalEvent)
-        
-        if(qtd_toques==0)
+        if(addponto)
         {
-            let pagexnew1 = evt.originalEvent.changedTouches[0].pageX
-            let pageynew1 = evt.originalEvent.changedTouches[0].pageY
-            let deltaX = pagexstart1 - pagexnew1;
-            let deltaY = pageystart1 - pageynew1;
-            let distP1P2 = (deltaX**2 + deltaY**2)**.5;
-
-
-            if(distP1P2<=20)
-            {
-                poligono_selecionado = 0;
-                console.log(evt);
-                polygons[poligono_selecionado].add_ponto_por_pixel(sketch.mouseX,sketch.mouseY);
-                polygons[poligono_selecionado].definir_inicio_da_animacao_de_ajuste();
-                adjtime=20;
-                atualizarUI();
-            }
+            poligono_selecionado = 0;
+            console.log(evt);
+            polygons[poligono_selecionado].add_ponto_por_pixel(sketch.mouseX,sketch.mouseY);
+            polygons[poligono_selecionado].definir_inicio_da_animacao_de_ajuste();
+            adjtime=20;
+            atualizarUI();
         }
         
     }
