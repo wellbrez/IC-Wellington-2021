@@ -78,13 +78,13 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     {
         evt.preventDefault;
         qtd_toques = evt.originalEvent.targetTouches.length;
-        console.log("qtd de toques é ",evt.originalEvent.targetTouches.length)
-        console.log("evento é ",evt.originalEvent)
+        //console.log("qtd de toques é ",evt.originalEvent.targetTouches.length)
+        //console.log("evento é ",evt.originalEvent)
         
         if(qtd_toques==0)
         {
-            let pagexnew1 = evt.originalEvent.targetTouches.pageX
-            let pageynew1 = evt.originalEvent.targetTouches.pageY
+            let pagexnew1 = evt.originalEvent.changedTouches.pageX
+            let pageynew1 = evt.originalEvent.changedTouches.pageY
             let deltaX = pagexstart1 - pagexnew1;
             let deltaY = pageystart1 - pageynew1;
             let distP1P2 = (deltaX**2 + deltaY**2)**.5;
