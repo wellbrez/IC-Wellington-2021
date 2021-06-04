@@ -79,6 +79,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         evt.preventDefault;
         qtd_toques = evt.originalEvent.targetTouches.length;
         console.log("qtd de toques é ",evt.originalEvent.targetTouches.length)
+        console.log("evento é ",evt.originalEvent)
         
         if(qtd_toques==0)
         {
