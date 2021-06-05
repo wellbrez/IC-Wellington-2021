@@ -1,4 +1,5 @@
 let addponto = true;
+let movimento = true;
 $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function(e)
 	{
         
@@ -32,12 +33,14 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         if(qtd_toques==1)
         {
             addponto = true;
+            movimento = true;
             pagexstart1 = evt.originalEvent.targetTouches[0].pageX;
             pageystart1 = evt.originalEvent.targetTouches[0].pageY;
         }
         else if(qtd_toques==2)
         {
             addponto = false;
+            movimento = false;
             pagexstart1 = pagexstart2 = pageystart1 = pageystart2 = pagexnew1 = pagexnew2 = pageynew1 = pageynew2 = D_em_coord = meio_dos_dedos_inicial_x = meio_dos_dedos_inicial_y= 0;
             pagexstart1 = evt.originalEvent.targetTouches[0].pageX
             pageystart1 = evt.originalEvent.targetTouches[0].pageY
@@ -67,8 +70,10 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             if(distP1P2>20)
             {
                 addponto = false;
-                console.log("mvevent next")
+                if(movimento)
+                {
                 mvevent = new moving(1,centerscreen[0],centerscreen[1],deltaX,deltaY);
+                }
             }
         }
         if(qtd_toques==2)
