@@ -44,14 +44,20 @@
     background-color:rgba(0,0,0,0.2);
     color:white;
     z-index:200;
+    
 }
 p{
     transition:max-height 2s;
-    max-height:infinite;
+    max-height:100%;
 }
 pol{
     font-size:large;
     cursor:pointer;
+    text-decoration-style:solid;
+    text-decoration-color:rgb(91, 146, 121);
+    text-decoration-line:underline overline;
+    font-style:bold;
+    font-weight:200;
 }
 .collapsed
 {
@@ -62,7 +68,7 @@ pol{
 {
     padding:0px;
     margin:0px;
-    color:fuchsia;
+    color:rgb(143, 203, 155);
 }
 .area{
     padding:0px;
@@ -70,15 +76,16 @@ pol{
 
 }
 .pstarea{
-    color:green;
+    color:#5B9279;
 }
 .ngtarea{
     color:red;
 }
 .textoSelecionado
 {
-    color:aqua;
-    font-size: large;
+    color:#E3F2E6;
+    font-weight:bolder;
+    text-decoration-color:#e3f2e6;
 }
 #importacao input
 {

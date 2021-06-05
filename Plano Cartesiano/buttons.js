@@ -33,6 +33,5 @@ function show_hide(id,idproprio)
 function limpar_tela()
 {
     polygons = [new Polygon()];
-    poligono_selecionado = 0;
-    atualizarUI();
+    selecionar(0);
 }

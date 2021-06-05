@@ -1,13 +1,16 @@
 function adicionarPoligono()
 {
-	
-	poligono_selecionado = polygons.length;
-	polygons.push(new Polygon("A",[]));
-	atualizarUI();
+	polygons.push(new Polygon("Pol",[]));
+	selecionar(polygons.length-1);
 }
 function selecionar(id)
 {
 	poligono_selecionado = id;
+	for(pol of polygons)
+	{
+		pol.selected = false;
+	}
+	polygons[id].selected = true;
 	atualizarUI();
 }
 function Polygon(nome,pontos)
@@ -17,7 +20,7 @@ function Polygon(nome,pontos)
 	this.objetivos = this.pontos;
 	this.selected = false;
 	this.positivo = true;
-	this.color = sketch.color(sketch.random(0,255),sketch.random(0,255),sketch.random(0,255));
+	this.color = sketch.corPoligonoNormal;
 	this.area = 0;
 	this.transicoes = [];
     
@@ -42,8 +45,6 @@ function Polygon(nome,pontos)
 				"add",
 				this))
 			this.transicoes[this.transicoes.length-1].setup();
-			//this.objetivos.push(posicao_do_pixel_x(posx));
-			//this.objetivos.push(posicao_do_pixel_y(posy));
 		}
 	}
 	this.add_ponto_por_coordenada = function(posx,posy)
@@ -59,36 +60,8 @@ function Polygon(nome,pontos)
 				"add",
 				this))
 			this.transicoes[this.transicoes.length-1].setup();
-			//this.objetivos.push(posicao_do_pixel_x(posx));
-			//this.objetivos.push(posicao_do_pixel_y(posy));
 		}
-		//this.objetivos.push(posx);
-		//this.objetivos.push(posy);
 	}
-	/*this.adjusting = function()
-	{
-		//console.log('adjusting');
-		for(coordenada of this.pontos)
-		adjtime-=1;
-		sketch.fill(corPoligono)
-		sketch.stroke(corContorno)
-		sketch.strokeWeight(4)
-		sketch.beginShape()
-		for(i=0;i<this.pontos.length-2;i+=2)
-		{
-			sketch.vertex(pixelX(this.pontos[i]),pixelY(this.pontos[i+1]));
-
-		//console.log(i)
-		}
-		vary = sketch.map(adjtime,0,20,pixelY(this.pontos[i+1]),pixelY(this.midpointy))
-		varx = sketch.map(adjtime,0,20,pixelX(this.pontos[i]),pixelX(this.midpointx))
-		sketch.vertex(varx,vary);
-
-
-		//console.log(i)
-
-		sketch.endShape(sketch.CLOSE)
-	}*/
 	this.atualizar_area = function(override)
 	{
 		if(override == null)
@@ -115,6 +88,8 @@ function Polygon(nome,pontos)
 	this.bubbledraw = function()
 	{
 		sketch.push()
+		sketch.stroke(corContorno)
+		sketch.strokeWeight(4)
 		sketch.ellipseMode(sketch.CENTER)
 		sketch.fill(corBolha)
 		for(i=0;i<this.pontos.length;i+=2)
@@ -125,15 +100,18 @@ function Polygon(nome,pontos)
 	}
 	this.draw = function()
 	{
-		sketch.stroke(corContorno)
-		sketch.strokeWeight(4)
+		sketch.push();
 		if(this.selected)
 		{
-			sketch.fill(corPoligono)
+			sketch.stroke(corContornoSelecionado);
+			sketch.strokeWeight(8);
+			sketch.fill(corPoligono);
 		}
 		else
 		{
-			sketch.fill(this.color)
+			sketch.stroke(corContorno)
+			sketch.strokeWeight(4)
+			sketch.fill(corPoligono)
 		}
 		sketch.beginShape()
 		for(i=0;i<this.pontos.length;i+=2)
@@ -142,6 +120,7 @@ function Polygon(nome,pontos)
 		}
 
 		sketch.endShape(sketch.CLOSE)
+		sketch.pop();
 	}
 }
 function transicao(tempo,pt1,pt2,obj1,obj2,tipo,poligono)

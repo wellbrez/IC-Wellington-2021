@@ -26,8 +26,8 @@ function calcularEnvoltoria()
 }
 function desenharEnvoltoria(pontos)
 {
-    sketch.stroke('red');
-	sketch.strokeWeight(4);
+    sketch.stroke(corEnvoltoria);
+	sketch.strokeWeight(3.9);
 	sketch.beginShape();
     sketch.fill(0,0,0,0);
 	for(i=0;i<pontos.length;i+=2)

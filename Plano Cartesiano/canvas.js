@@ -42,13 +42,15 @@ var sketch = function(p)
 		adjintx=0;
 
 		//TABELA DE CORES//
-		corBolha = '#DC0073'
-		corGradePrincipal = '#5E1808'
-		corGradeSecundaria = '#5E1808'
-		corFundo = '#230903'
-		corLinhasPrincipais = "#E8EBE4"
-		corContorno = '#E8EBE4'
-		corPoligono = "white"
+		corBolha = '#12130F'
+		corGradePrincipal = 'rgba(255,255,255,.1)'
+		corGradeSecundaria = 'rgba(255,255,255,.05)'
+		corFundo = '#12130F'
+		corLinhasPrincipais = "rgba(255,255,255,.8"
+		corContorno = 'rgba(35.7%, 57.3%, 47.5%,.9)';
+		corPoligono = "rgba(35.7%, 57.3%, 47.5%,.5)"
+		corContornoSelecionado = "rgba(234,230,229)"
+		corEnvoltoria = 'rgb(143, 203, 155)';
 		
 		resizewindow();
 
@@ -91,7 +93,6 @@ var sketch = function(p)
 		for(let poligono of polygons)
 		{
 			p.push()
-			p.fill('red')
 			for(t=0;t<poligono.transicoes.length;t++)
 			{
 				poligono.transicoes[t].attframe();
@@ -99,31 +100,14 @@ var sketch = function(p)
 				{
 					poligono.transicoes.splice(t,1);
 				}
-
 			}
-			poligono.draw();
-			poligono.bubbledraw();
-			/*if(adjtime==0||poligono.pontos.length<=4 || !poligono.selected)
-			{
-				poligono.draw();
-				poligono.bubbledraw();
-			}
-			else
-				{
-				poligono.adjusting();
-				poligono.bubbledraw();
-			}
-			*/
+			
 			p.pop()
 			envoltoria = calcularEnvoltoria();
 			desenharEnvoltoria(envoltoria);
+			poligono.draw();
+			poligono.bubbledraw();
 		}
-		/*if(mostrar_area)
-		{
-			p.textSize(30);
-			p.fill("green");
-			p.text("Area = "+polygons[0].area.toFixed(2),100,100);
-		}*/
 		
 		if(mvevent!=null){
 			mvevent.aplicar()};
