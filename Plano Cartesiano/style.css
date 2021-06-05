@@ -11,7 +11,7 @@
 #compartilhamento .compartcontainer
 {
     display:flexbox;
-    border-radius:20px;
+    border-radius:5px;
     float:left;
     margin-left:4vw;
     margin-top:10px;
@@ -128,17 +128,17 @@ h2
 }
 .botao1
 {
-    background-color:brown;
+    background-color:rgb(91, 146, 121);
     cursor:pointer;
-    color:white;
+    color:#12130F;
     padding:10px;
-    border-radius:20px;
+    border-radius:5px;
     text-align:center;
     font-weight:bold;
 }
 .botao1:hover
 {
-    background-color:#5E1808;
+    background-color:rgb(143, 203, 155);
 }
 #canvas2
 {
@@ -174,27 +174,29 @@ ul .botoesnav
 {
     left:0;
     padding:20px;
-    background-color:rgb(19, 181, 209);
+    background-color:rgb(91, 146, 121);
     z-index:40;
-    border-radius:20px;
+    border-radius:5px;
+    margin-top:5px;
     cursor:pointer;
     user-select:none;
     transition: padding .5s;
     overflow:hidden;
-    font-weight:bold;
+    font-weight:bolder;
     z-index:203;
 }
 ul .botoesnav:hover
 {
-    background-color:burlywood;
+    background-color:rgb(143, 203, 155);
 }
 #compartlink
 {
     height:auto;
     overflow:auto;
-    background-color:#14342B;
+    background-color:transparent;
     color:white;
     text-align:center;
+    border:none;
     width:95%;
     padding:5px;
 }
