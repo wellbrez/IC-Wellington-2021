@@ -1,6 +1,7 @@
 #compartilhamento
 {
-    background-color:#14342B;
+    background-color:#12130F;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
     position:fixed;
     width:100%;
     max-height:0%;
