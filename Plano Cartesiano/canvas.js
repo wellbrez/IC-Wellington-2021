@@ -14,25 +14,26 @@ var sketch = function(p)
 		toquex=0;
 		toquey=0;
 		p.frameRate(60)
-		screvent = null;
-		mvevent = null;
+		eventoZoom = null;
+		eventoScroll = null;
 		width = (p.windowWidth);
 		height = (p.windowHeight);
 		p.cnv = p.createCanvas(width,height);
 
 		escalax=1;
 		escalay=1;
+		iglobal = 0;
 
-		cscreenX = 0;
-		cscreenY = 0;
+		origemX = 0;
+		origemY = 0;
 
-		origin_pixeldistx = cscreenX*escalax;
-		origin_pixeldisty = cscreenY*escalay;
+		origin_pixeldistx = origemX*escalax;
+		origin_pixeldisty = origemY*escalay;
 
 		intervalo = 10;
 		carregarImportacaoInicial();
 		let grahamScan;
-		polygons[polygons.length-1].selected = true;
+		poligonos[poligonos.length-1].selected = true;
 
 		
 		
@@ -55,7 +56,6 @@ var sketch = function(p)
 		resizewindow();
 
 	}
-	//console.log("mensagem"+str(parametro))
 	p.mouseWheel = function(event)
 	{
 		mouseWheel(event);
@@ -65,8 +65,8 @@ var sketch = function(p)
 		p.clear();
 		resizewindow();
 		//distância, em pixels, da origem do plano cartesiano (atualizacao)
-		origin_pixeldistx = cscreenX*escalax;
-		origin_pixeldisty = cscreenY*escalay;
+		origin_pixeldistx = origemX*escalax;
+		origin_pixeldisty = origemY*escalay;
 		//definindo cor de fundo do canvas
 		p.background(corFundo);
 		//translacção ao meio da tela
@@ -83,14 +83,14 @@ var sketch = function(p)
 		grade(p,intervalo/5);
 
 		linhas_principais(p,corLinhasPrincipais);
-
+		
 		//p.ellipse(0,0,d_circle,d_circle)
 		//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
 		
 		
 
 		
-		for(let poligono of polygons)
+		for(let poligono of poligonos)
 		{
 			p.push()
 			for(t=0;t<poligono.transicoes.length;t++)
@@ -105,18 +105,25 @@ var sketch = function(p)
 			p.pop()
 			envoltoria = calcularEnvoltoria();
 			desenharEnvoltoria(envoltoria);
-			poligono.draw();
-			poligono.bubbledraw();
+			poligono.desenhar();
+			poligono.desenharPontos();
 		}
+
 		
-		if(mvevent!=null){
-			mvevent.aplicar()};
-		if(screvent!=null){
-		screvent.aplicar()}
+		if(eventoScroll!=null){
+			eventoScroll.aplicar()};
+		if(eventoZoom!=null){
+		eventoZoom.aplicar()}
 		//p.stroke('white');
 		//p.strokeWeight(2);
 		//p.line(-origin_pixeldistx,-origin_pixeldisty,0,0);
 		//p.ellipse(toquex-width/2,toquey-height/2,10,10);
+
+		p.push();
+		p.fill('yellow');
+		p.noStroke;
+
+		
 
 
 

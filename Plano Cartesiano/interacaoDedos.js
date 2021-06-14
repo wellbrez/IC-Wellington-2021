@@ -29,7 +29,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     {
         evt.preventDefault();
         qtd_toques = evt.originalEvent.targetTouches.length;
-        centerscreen = [cscreenX,cscreenY];
+        centerscreen = [origemX,origemY];
         if(qtd_toques==1)
         {
             addponto = true;
@@ -57,7 +57,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     }
     function handleMove(evt) 
     {
-        //centerscreen = [cscreenX,cscreenY];
+        //centerscreen = [origemX,origemY];
         evt.preventDefault();
         qtd_toques = evt.originalEvent.targetTouches.length;
         if(qtd_toques==1)
@@ -72,13 +72,12 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
                 addponto = false;
                 if(movimento)
                 {
-                mvevent = new moving(1,centerscreen[0],centerscreen[1],deltaX,deltaY);
+                eventoScroll = new scroll(1,centerscreen[0],centerscreen[1],deltaX,deltaY);
                 }
             }
         }
         if(qtd_toques==2)
         {
-            //console.log(evt.originalEvent.targetTouches);
             pagexnew1 = evt.originalEvent.targetTouches[0].pageX
             pageynew1 = evt.originalEvent.targetTouches[0].pageY
             pagexnew2 = evt.originalEvent.targetTouches[1].pageX
@@ -87,14 +86,11 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             meio_dos_dedos_y = (pageynew1 + pageynew2)/2;
             dx_entre_dedos = pagexnew1 - pagexnew2
             dy_entre_dedos = pageynew1 - pageynew2
-            //deslocamento_meio_x = -meio_dos_dedos_x + meio_dos_dedos_inicial_x
-            //deslocamento_meio_y = -meio_dos_dedos_y + meio_dos_dedos_inicial_y
-            //console.log(deslocamento_meio_x,deslocamento_meio_y);
             D_entre_dedos = (dx_entre_dedos**2+dy_entre_dedos**2)**0.5;
             dzoom = D_entre_dedos/D_em_coord;
             
-            //mvevent = new moving(1,centerscreen[0],centerscreen[1],deslocamento_meio_x,deslocamento_meio_y);
-            screvent = new zooming(1,dzoom/escalax,dzoom/escalay,meio_dos_dedos_x,meio_dos_dedos_y);
+            //eventoScroll = new scroll(1,centerscreen[0],centerscreen[1],deslocamento_meio_x,deslocamento_meio_y);
+            eventoZoom = new zoom(1,dzoom/escalax,dzoom/escalay,meio_dos_dedos_x,meio_dos_dedos_y);
         }
     }
     function handleEnd(evt) 
@@ -102,9 +98,8 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         evt.preventDefault;
         if(addponto)
         {
-            //console.log(evt);
-            polygons[poligono_selecionado].add_ponto_por_pixel(sketch.mouseX,sketch.mouseY);
-            polygons[poligono_selecionado].definir_inicio_da_animacao_de_ajuste();
+            poligonos[poligonoSelecionado].addPontoPorPixel(sketch.mouseX,sketch.mouseY);
+            //poligonos[poligonoSelecionado].definir_inicio_da_animacao_de_ajuste();
             adjtime=20;
             atualizarUI();
         }
@@ -116,3 +111,22 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     function handleLeave(evt) 
     {
     }
+    
+    window.addEventListener("keydown", function (event) {
+        if (event.defaultPrevented) {
+          return; // Do nothing if the event was already processed
+        }
+      
+        switch (event.key) {
+          case "ArrowLeft":
+            // code for "left arrow" key press.
+            iglobal-=2;
+            break;
+          case "ArrowRight":
+            // code for "right arrow" key press.
+            iglobal+=2;
+            break;
+          default:
+            return; // Quit when this doesn't handle the key event.
+        }
+    })

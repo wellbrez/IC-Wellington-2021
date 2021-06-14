@@ -3,14 +3,14 @@ function gerarCodigo(Link)
     let codigoDeCompartilhamento = encode();
     //let codigoEmLink = `file:///F:/Desktop/IC%202021%20RODRIGO/Plano%20Cartesiano/Index.html#${codigoDeCompartilhamento}`;
     let codigoEmLink = `https://wellbrez.github.io/IC-Wellington-2021/Plano%20Cartesiano/Index.html#${codigoDeCompartilhamento}`
-   /* for(i=0;i<polygons.length;i++)
+   /* for(i=0;i<poligonos.length;i++)
     {
-        polygon_sufix+=polygons[i].nome+";"+polygons[i].pontos.length;
-        for(j=0;j<polygons[i].pontos.length;j++)
+        polygon_sufix+=poligonos[i].nome+";"+poligonos[i].pontos.length;
+        for(j=0;j<poligonos[i].pontos.length;j++)
         {
-            polygon_sufix+= ";"+polygons[i].pontos[j]
+            polygon_sufix+= ";"+poligonos[i].pontos[j]
         }
-        if(i<polygons.length-1)
+        if(i<poligonos.length-1)
         {
             polygon_sufix+=";";
         }
@@ -36,7 +36,7 @@ function gerarCodigo(Link)
 }
 function armazenarNoNavegador()
 {
-    //window.localStorage.setItem('lastsave', JSON.stringify(polygons));
+    //window.localStorage.setItem('lastsave', JSON.stringify(poligonos));
     window.localStorage.setItem('lastsave', encode());
     location.href = "https://wellbrez.github.io/IC-Wellington-2021/Plano%20Cartesiano/Index.html";
     //location.href = "file:///F:/Desktop/IC%202021%20RODRIGO/Plano%20Cartesiano/Index.html";
@@ -51,7 +51,7 @@ function gerarQRCode()
 }
 function gerar_arquivo()
 {
-    //string_final = JSON.stringify(polygons).replace(",",",\n")
+    //string_final = JSON.stringify(poligonos).replace(",",",\n")
     let conteudoDoArquivo = encode();
     download("Poligonos",conteudoDoArquivo)
 }

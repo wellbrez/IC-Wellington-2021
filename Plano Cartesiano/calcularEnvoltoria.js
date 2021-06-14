@@ -3,7 +3,7 @@ function calcularEnvoltoria()
 {
     grahamScan = new GrahamScan();
     pontosTotais = [];
-    for (let poligono of polygons)
+    for (let poligono of poligonos)
     {
         if(poligono.positivo)
         {

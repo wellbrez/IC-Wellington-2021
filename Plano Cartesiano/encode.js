@@ -1,15 +1,15 @@
 function encode()
 {
     let dadosEmString = "";
-    for(let i=0;i<polygons.length;i++)
+    for(let i=0;i<poligonos.length;i++)
     {
-        dadosEmString+=`${polygons[i].nome};${polygons[i].pontos.length}`;
+        dadosEmString+=`${poligonos[i].nome};${poligonos[i].pontos.length}`;
         
-        for(let j=0;j<polygons[i].pontos.length;j++)
+        for(let j=0;j<poligonos[i].pontos.length;j++)
         {
-            dadosEmString+= `;${polygons[i].pontos[j]}`
+            dadosEmString+= `;${poligonos[i].pontos[j]}`
         }
-        if(i<polygons.length-1)
+        if(i<poligonos.length-1)
         {
             dadosEmString+=";";
         }

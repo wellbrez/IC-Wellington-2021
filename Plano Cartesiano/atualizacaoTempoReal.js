@@ -1,8 +1,8 @@
 function atualizarUI()
 {
-    for (let poligono of polygons)
+    for (let poligono of poligonos)
     {
-        poligono.atualizar_area();
+        poligono.atualizarArea();
     }
 
 	envoltoria = calcularEnvoltoria();

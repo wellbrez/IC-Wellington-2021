@@ -10,6 +10,6 @@ document.getElementById('inputfile').addEventListener('change', function()
 
 function importar_arquivo()
 {
-    polygons = [];
+    poligonos = [];
     decode(filestring);
 }

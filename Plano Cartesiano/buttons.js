@@ -32,6 +32,6 @@ function show_hide(id,idproprio)
 }
 function limpar_tela()
 {
-    polygons = [new Polygon()];
+    poligonos = [new Polygon()];
     selecionar(0);
 }

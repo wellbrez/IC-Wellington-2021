@@ -3,9 +3,9 @@ function atualizarMenuPoligonos()
     let divPoligonos = document.getElementById("textoPoligonos")
     let polindex = 0;
     let divPoligonosInnerHtml = "";
-    for (let pol of polygons)
+    for (let pol of poligonos)
     {
-        if(polindex == poligono_selecionado)
+        if(polindex == poligonoSelecionado)
         {
             divPoligonosInnerHtml += `<br><pol class=textoSelecionado onclick=selecionar(${polindex})>Poligono ${polindex}:</pol>`;
             if(pol.area>=0)

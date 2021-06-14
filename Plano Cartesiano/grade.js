@@ -24,14 +24,12 @@ function linhas_principais(p,corlp)
 
 function grade(p,intervalo)
 {
-	minrangex = Math.floor((cscreenX-width/2/escalax)/intervalo)*intervalo
-	maxrangex = Math.ceil((cscreenX+width/2/escalax)/intervalo)*intervalo
+	minrangex = Math.floor((origemX-width/2/escalax)/intervalo)*intervalo
+	maxrangex = Math.ceil((origemX+width/2/escalax)/intervalo)*intervalo
 
 
-	minrangey = Math.floor((cscreenY-height/2/escalay)/intervalo)*intervalo
-	maxrangey = Math.ceil((cscreenY+height/2/escalay)/intervalo)*intervalo
-	//console.log('minrangex'+minrangex)
-	//console.log('maxrangex'+maxrangex)
+	minrangey = Math.floor((origemY-height/2/escalay)/intervalo)*intervalo
+	maxrangey = Math.ceil((origemY+height/2/escalay)/intervalo)*intervalo
 
 
 	for(i=minrangex;i<maxrangex;i+=intervalo)
