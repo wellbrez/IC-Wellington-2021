@@ -38,6 +38,10 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             movimento = true;
             pInicialX = evt.originalEvent.targetTouches[0].pageX;
             pInicialY = evt.originalEvent.targetTouches[0].pageY;
+            if(pontoAtivo!=null)
+            {
+                addponto = false;
+            }
             pontoAtivo = tocouNoPonto(pInicialX,pInicialY);
             if(pontoAtivo!=null)
             {
@@ -50,6 +54,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
                 }
                 else
                 {
+                    moverPonto = false;
                     desSelecionarPontos();
                 }
             }
@@ -89,6 +94,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             if(distP1P2>20 && moverPonto == false)
             {
                 addponto = false;
+                selecionouPonto=false;
                 if(movimento)
                 {
                 eventoScroll = new scroll(1,centerscreen[0],centerscreen[1],deltaX,deltaY);
