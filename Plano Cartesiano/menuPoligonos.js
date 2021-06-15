@@ -17,9 +17,9 @@ function atualizarMenuPoligonos()
                 divPoligonosInnerHtml += `<p class="ngtarea area" >Area: ${pol.area.toFixed(2)}</p>`
             }
             
-            for(let i=0;i<pol.pontos.length;i+=2)
+            for(let i=0;i<pol.pontos.length;i++)
             {
-                divPoligonosInnerHtml += `<p class="pontos">P${i/2} x=${pol.pontos[i].toFixed(2)} , y=${-pol.pontos[i+1].toFixed(2)}</p>`;
+                divPoligonosInnerHtml += `<p class="pontos">P${i} x=${pol.pontos[i].x.toFixed(2)} , y=${-pol.pontos[i].y.toFixed(2)}</p>`;
             }
         }
         else
@@ -34,9 +34,9 @@ function atualizarMenuPoligonos()
                 divPoligonosInnerHtml += `<p class="ngtarea area collapsed" >Area: ${pol.area.toFixed(2)}</p>`
             }
             
-            for(let i=0;i<pol.pontos.length;i+=2)
+            for(let i=0;i<pol.pontos.length;i++)
             {
-                divPoligonosInnerHtml += `<p class="pontos collapsed">P${i/2} x=${pol.pontos[i].toFixed(2)} , y=${-pol.pontos[i+1].toFixed(2)}</p>`;
+                divPoligonosInnerHtml += `<p class="pontos collapsed">P${i} x=${pol.pontos[i].x.toFixed(2)} , y=${-pol.pontos[i].y.toFixed(2)}</p>`;
             }
         }
         

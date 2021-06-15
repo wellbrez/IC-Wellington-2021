@@ -24,3 +24,11 @@ function posicao_do_pixel_y(posy)
 {
 	return  (posy-height/2)/escalay +origemY;
 }
+function correcaoPixelX(pixelx)
+{
+	return pixelX(posicao_do_pixel_x(pixelx))
+}
+function correcaoPixelY(pixely)
+{
+	return pixelY(posicao_do_pixel_y(pixely))
+}

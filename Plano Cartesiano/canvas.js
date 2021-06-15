@@ -93,15 +93,10 @@ var sketch = function(p)
 		for(let poligono of poligonos)
 		{
 			p.push()
-			for(t=0;t<poligono.transicoes.length;t++)
+			for(let ponto of poligono.pontos)
 			{
-				poligono.transicoes[t].attframe();
-				if(poligono.transicoes[t].ended)
-				{
-					poligono.transicoes.splice(t,1);
-				}
+				ponto.animar();
 			}
-			
 			p.pop()
 			envoltoria = calcularEnvoltoria();
 			desenharEnvoltoria(envoltoria);

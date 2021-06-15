@@ -83,19 +83,45 @@ function mouseWheel(event)
 
 function mouse_clicked_canvas(event)
 {
-	poligonos[poligonoSelecionado].addPontoPorPixel(sketch.mouseX,sketch.mouseY);
+	
+	console.log(pontoMovimentado);
+	if(pontoMovimentado==null)
+	{
+		poligonos[poligonoSelecionado].addPontoPorPixel(sketch.mouseX,sketch.mouseY);
+	}
+	
 	//poligonos[poligonoSelecionado].definir_inicio_da_animacao_de_ajuste();
-	adjtime=20;
+	//adjtime=20;
 	atualizarUI();
 	//adjintx = (coord_mx() - midpointx)
 	//adjinty = (coord_my() - midpointy)
 
 	
 }
+let pontoMovimentado;
 $("#canvas2").on("mousedown mousemove mouseup",function(e)
 	{
 		if(e.type=="mousedown")
 		{
+			if(e.which==1)
+			{
+				e.preventDefault();
+				pontoMovimentado = null;
+				radius = 20;
+				for(poligono of poligonos)
+				{
+					for(pt of poligono.pontos)
+					{
+						dx = pixelX(pt.x)-correcaoPixelX(sketch.mouseX);
+						dy = pixelY(pt.y)-correcaoPixelY(sketch.mouseY);
+						d2 = dx**2+dy**2
+						if(d2 < radius**2)
+						{
+							pontoMovimentado = pt;
+						}             
+					}
+				}
+			}
 			if(e.which==2)
 			{
 				e.preventDefault();
@@ -106,24 +132,33 @@ $("#canvas2").on("mousedown mousemove mouseup",function(e)
 		}
 		else if(e.type=="mousemove")
 		{
+			e.preventDefault();
+			if(pontoMovimentado!=null)
+			{
+				pontoMovimentado.mover(posicao_do_pixel_x(sketch.mouseX),posicao_do_pixel_y(sketch.mouseY));
+				atualizarUI();
+			}
 			if(middledragactive)
 			{
-				e.preventDefault();
+				
 				eventoScroll = new scroll(1,centerscreen[0],centerscreen[1],-e.pageX+middledragstart[0],-e.pageY+middledragstart[1]);
+				
 			}
 		}
 		else if(e.type=="mouseup")
 		{
+			e.preventDefault();
+			if(e.which==1)
+			{
+				mouse_clicked_canvas(e);
+				pontoMovimentado=null;
+			}
 			if(e.which==2)
 			{
-				e.preventDefault();
+				
 				middledragstart = [0,0]
 				middledragactive = false;
 			}
 		}
 	
-	});
-	$("#canvas2").on("click",function(e)
-	{
-		mouse_clicked_canvas(e);
 	});

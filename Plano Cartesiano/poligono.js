@@ -37,8 +37,6 @@ function Polygon(nome,pontos)
 		{
 			this.transicoes.push(new transicaoPoligono(
 				60,
-				this.pontos.length,
-				this.pontos.length+1,
 				posicao_do_pixel_x(posx),
 				posicao_do_pixel_y(posy),
 				"add",
@@ -53,8 +51,6 @@ function Polygon(nome,pontos)
 		{
 			this.transicoes.push(new transicaoPoligono(
 				60,
-				this.pontos.length,
-				this.pontos.length+1,
 				posx,
 				posy,
 				"add",
@@ -71,11 +67,10 @@ function Polygon(nome,pontos)
 			let copiaDosPontos = JSON.parse(JSON.stringify(this.pontos));
 			
 			copiaDosPontos.push(copiaDosPontos[0]);
-			copiaDosPontos.push(copiaDosPontos[1]);
 
 			for(pt=0;pt<copiaDosPontos.length-2;pt+=2)
 			{
-				somatorio+=copiaDosPontos[pt]*copiaDosPontos[pt+3]-copiaDosPontos[pt+2]*copiaDosPontos[pt+1];
+				somatorio+=copiaDosPontos[pt].x*copiaDosPontos[pt+1].y-copiaDosPontos[pt+1].x*copiaDosPontos[pt].y;
 			}
 			this.area = Math.abs(0.5*somatorio);
 		}
@@ -87,16 +82,10 @@ function Polygon(nome,pontos)
 	}
 	this.desenharPontos = function()
 	{
-		sketch.push()
-		sketch.stroke(corContorno)
-		sketch.strokeWeight(4)
-		sketch.ellipseMode(sketch.CENTER)
-		sketch.fill(corBolha)
-		for(i=0;i<this.pontos.length;i+=2)
+		for(let ponto of this.pontos)
 		{
-			sketch.ellipse(pixelX(this.pontos[i]),pixelY(this.pontos[i+1]),10,10)
+			ponto.desenhar();
 		}
-		sketch.pop()
 	}
 	this.desenhar = function()
 	{
@@ -114,9 +103,9 @@ function Polygon(nome,pontos)
 			sketch.fill(corPoligono)
 		}
 		sketch.beginShape()
-		for(i=0;i<this.pontos.length;i+=2)
+		for(i=0;i<this.pontos.length;i++)
 		{
-			sketch.vertex(pixelX(this.pontos[i]),pixelY(this.pontos[i+1]));
+			sketch.vertex(pixelX(this.pontos[i].x),pixelY(this.pontos[i].y));
 		}
 
 		sketch.endShape(sketch.CLOSE)
