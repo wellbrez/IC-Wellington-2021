@@ -33,11 +33,12 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         centerscreen = [origemX,origemY];
         if(qtd_toques==1)
         {
+            
             addponto = true;
             movimento = true;
-            pagexstart1 = evt.originalEvent.targetTouches[0].pageX;
-            pageystart1 = evt.originalEvent.targetTouches[0].pageY;
-            pontoAtivo = tocouNoPonto(pagexstart1,pageystart1);
+            pInicialX = evt.originalEvent.targetTouches[0].pageX;
+            pInicialY = evt.originalEvent.targetTouches[0].pageY;
+            pontoAtivo = tocouNoPonto(pInicialX,pInicialY);
             if(pontoAtivo!=null)
             {
                 selecionouPonto = true;
@@ -47,21 +48,11 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
                     moverPonto = true;
                     movimento = false;
                 }
+                else
+                {
+                    desSelecionarPontos();
+                }
             }
-            /*radius = 20;
-				for(poligono of poligonos)
-				{
-					for(pt of poligono.pontos)
-					{
-						dx = pixelX(pt.x)-correcaoPixelX(pagexstart1);
-						dy = pixelY(pt.y)-correcaoPixelY(pageystart1);
-						d2 = dx**2+dy**2
-						if(d2 < radius**2)
-						{
-							pontoAtivo = pt;
-						}             
-					}
-				}*/
         }
         else if(qtd_toques==2)
         {
@@ -69,15 +60,15 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             moverPonto= false;
             addponto = false;
             movimento = false;
-            pagexstart1 = pagexstart2 = pageystart1 = pageystart2 = pagexnew1 = pagexnew2 = pageynew1 = pageynew2 = D_em_coord = meio_dos_dedos_inicial_x = meio_dos_dedos_inicial_y= 0;
-            pagexstart1 = evt.originalEvent.targetTouches[0].pageX
-            pageystart1 = evt.originalEvent.targetTouches[0].pageY
+            pInicialX = pagexstart2 = pInicialY = pageystart2 = pagexnew1 = pagexnew2 = pageynew1 = pageynew2 = D_em_coord = meio_dos_dedos_inicial_x = meio_dos_dedos_inicial_y= 0;
+            pInicialX = evt.originalEvent.targetTouches[0].pageX
+            pInicialY = evt.originalEvent.targetTouches[0].pageY
             pagexstart2 = evt.originalEvent.targetTouches[1].pageX
             pageystart2 = evt.originalEvent.targetTouches[1].pageY
-            //meio_dos_dedos_inicial_x = (pagexstart1 + pagexstart2)/2
-            //meio_dos_dedos_inicial_y = (pageystart1 + pageystart2)/2
-            dx_entre_dedos_inicial = pagexstart1 - pagexstart2
-            dy_entre_dedos_inicial = pageystart1 - pageystart2
+            //meio_dos_dedos_inicial_x = (pInicialX + pagexstart2)/2
+            //meio_dos_dedos_inicial_y = (pInicialY + pageystart2)/2
+            dx_entre_dedos_inicial = pInicialX - pagexstart2
+            dy_entre_dedos_inicial = pInicialY - pageystart2
             D_entre_dedos_inicial = Math.sqrt(dx_entre_dedos_inicial**2+dy_entre_dedos_inicial**2);
             D_em_coord = ((dx_entre_dedos_inicial/escalax)**2+(dy_entre_dedos_inicial/escalay)**2)**0.5;
         }
@@ -92,8 +83,8 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         {
             let pagexnew1 = evt.originalEvent.changedTouches[0].pageX
             let pageynew1 = evt.originalEvent.changedTouches[0].pageY
-            let deltaX = pagexstart1 - pagexnew1;
-            let deltaY = pageystart1 - pageynew1;
+            let deltaX = pInicialX - pagexnew1;
+            let deltaY = pInicialY - pageynew1;
             let distP1P2 = (deltaX**2 + deltaY**2)**.5;
             if(distP1P2>20 && moverPonto == false)
             {
@@ -139,11 +130,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         }
         if(pontoAtivo!=null)
         {
-            if(pontoAtivo.ativo)
-            {
-                pontoAtivo.desSelecionar();
-            }
-            else if(selecionouPonto)
+            if(selecionouPonto)
             {
                 pontoAtivo.selecionar();
             }
