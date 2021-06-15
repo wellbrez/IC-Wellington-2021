@@ -58,6 +58,10 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
                     desSelecionarPontos();
                 }
             }
+            else
+            {
+                desSelecionarPontos();
+            }
         }
         else if(qtd_toques==2)
         {
