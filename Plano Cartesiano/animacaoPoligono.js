@@ -18,10 +18,17 @@ function transicaoPoligono(tempo,objx,objy,tipo,poligono)
                 let indicePonto=0;
                 let indiceRetaMaisProxima=0;
                 let distanciaRetaMaisProxima;
+				let menorDistanciaAoMeioDaReta;
                 while(indicePonto<qtdPontos)
                 {
+					
                     let i1 = ajustarIndiceAoIntervalo(indicePonto,this.poligono.pontos)
                     let i2 = ajustarIndiceAoIntervalo(indicePonto+1,this.poligono.pontos)
+
+					let meiodaretax = (this.poligono.pontos[i1].x + this.poligono.pontos[i2].x)/2;
+					let meiodaretay = (this.poligono.pontos[i1].y + this.poligono.pontos[i2].y)/2;
+					let distanciaPontoAoMeioDaReta = Math.sqrt((this.objetivox - meiodaretax)**2 + (this.objetivoy - meiodaretay)**2)
+
                     ux = -this.poligono.pontos[i1].x + this.poligono.pontos[i2].x;
 			        uy = -this.poligono.pontos[i1].y + this.poligono.pontos[i2].y;
 			        vx = this.objetivox - this.poligono.pontos[i1].x;
@@ -39,10 +46,25 @@ function transicaoPoligono(tempo,objx,objy,tipo,poligono)
                     //console.log(`reta ${indicePonto} com distanciapontoareta ${distanciaPontoAReta}`)
                     if(indicePonto==0 || distanciaPontoAReta<=distanciaRetaMaisProxima)
                     {
-                        distanciaRetaMaisProxima=distanciaPontoAReta;
-                        indiceRetaMaisProxima = indicePonto;
-                        this.pontoInicialX = pix;
-			            this.pontoInicialY = piy;
+						if(distanciaPontoAReta==distanciaRetaMaisProxima)
+						{
+							if(distanciaPontoAoMeioDaReta<menorDistanciaAoMeioDaReta)
+							{
+								menorDistanciaAoMeioDaReta = distanciaPontoAReta;
+								indiceRetaMaisProxima = indicePonto;
+                        		this.pontoInicialX = pix;
+			            		this.pontoInicialY = piy;
+							}
+						}
+						else
+						{
+                        	distanciaRetaMaisProxima=distanciaPontoAReta;
+                        	indiceRetaMaisProxima = indicePonto;
+                        	this.pontoInicialX = pix;
+			            	this.pontoInicialY = piy;
+							menorDistanciaAoMeioDaReta = distanciaPontoAoMeioDaReta;
+						}
+
                         //console.log(pix);
                         //console.log(piy)
                     }

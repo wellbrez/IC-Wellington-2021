@@ -84,8 +84,8 @@ function mouseWheel(event)
 function mouse_clicked_canvas(event)
 {
 	
-	console.log(pontoMovimentado);
-	if(pontoMovimentado==null)
+	console.log(pontoAtivo);
+	if(adicionarPonto)
 	{
 		poligonos[poligonoSelecionado].addPontoPorPixel(sketch.mouseX,sketch.mouseY);
 	}
@@ -98,7 +98,9 @@ function mouse_clicked_canvas(event)
 
 	
 }
-let pontoMovimentado;
+let pontoAtivo = null;
+let permissaoParaMover = false;
+let adicionarPonto = true;
 $("#canvas2").on("mousedown mousemove mouseup",function(e)
 	{
 		if(e.type=="mousedown")
@@ -106,21 +108,40 @@ $("#canvas2").on("mousedown mousemove mouseup",function(e)
 			if(e.which==1)
 			{
 				e.preventDefault();
-				pontoMovimentado = null;
-				radius = 20;
-				for(poligono of poligonos)
+				adicionarPonto = true;
+				if(pontoAtivo!=null)
 				{
-					for(pt of poligono.pontos)
+					if(tocouNoPonto(e.pageX,e.pageY)==null && pontoAtivo.ativo == true)
 					{
-						dx = pixelX(pt.x)-correcaoPixelX(sketch.mouseX);
-						dy = pixelY(pt.y)-correcaoPixelY(sketch.mouseY);
-						d2 = dx**2+dy**2
-						if(d2 < radius**2)
-						{
-							pontoMovimentado = pt;
-						}             
+						pontoAtivo.desSelecionar();
+						adicionarPonto=false;
+						pontoAtivo = null;
 					}
 				}
+				
+				pontoAtivo = tocouNoPonto(e.pageX,e.pageY);
+				if(pontoAtivo!=null)
+				{
+					adicionarPonto = false;
+					if(!pontoAtivo.ativo)
+					{
+						desSelecionarPontos();
+						pontoAtivo.selecionar();
+					}
+					else if (pontoAtivo.ativo)
+					{
+						permissaoParaMover = true;
+					}
+					else 
+					{
+						desSelecionarPontos();
+					}
+				}
+				else
+				{
+					desSelecionarPontos();
+				}
+				
 			}
 			if(e.which==2)
 			{
@@ -133,9 +154,9 @@ $("#canvas2").on("mousedown mousemove mouseup",function(e)
 		else if(e.type=="mousemove")
 		{
 			e.preventDefault();
-			if(pontoMovimentado!=null)
+			if(permissaoParaMover && pontoAtivo!=null)
 			{
-				pontoMovimentado.mover(posicao_do_pixel_x(sketch.mouseX),posicao_do_pixel_y(sketch.mouseY));
+				pontoAtivo.mover(posicao_do_pixel_x(sketch.mouseX),posicao_do_pixel_y(sketch.mouseY));
 				atualizarUI();
 			}
 			if(middledragactive)
@@ -150,8 +171,8 @@ $("#canvas2").on("mousedown mousemove mouseup",function(e)
 			e.preventDefault();
 			if(e.which==1)
 			{
+				permissaoParaMover=false;
 				mouse_clicked_canvas(e);
-				pontoMovimentado=null;
 			}
 			if(e.which==2)
 			{

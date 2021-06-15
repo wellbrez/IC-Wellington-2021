@@ -8,6 +8,7 @@ function ponto(x,y,objetivox,objetivoy,tempo)
     this.tempo = tempo;
     this.incrementox = (this.objetivox - this.x)/this.tempo;
     this.incrementoy = (this.objetivoy - this.y)/this.tempo;
+    this.ativo = false;
     //console.log(`x=${x}, y=${y}, objetivox = ${objetivox}, objetivoy = ${objetivoy}, incrementox = ${this.incrementox}`)
     this.desenhar = function()
     {
@@ -36,6 +37,45 @@ function ponto(x,y,objetivox,objetivoy,tempo)
         this.tempo = 0;
         this.incrementox = 0;
         this.incrementoy = 0;
-        
+    }
+    this.selecionar = function()
+    {
+        this.ativo = true;
+        this.cor = 'red';
+    }
+    this.desSelecionar = function()
+    {
+        this.ativo = false;
+        this.cor = corBolha;
+    }
+}
+
+function tocouNoPonto(pixelx,pixely)
+{
+    let pontoTemporario= null;
+    let proximidade = 20;
+    for(poligono of poligonos)
+    {
+        for(pt of poligono.pontos)
+        {
+            dx = pixelX(pt.x)-correcaoPixelX(pixelx);
+            dy = pixelY(pt.y)-correcaoPixelY(pixely);
+            d2 = dx**2+dy**2
+            if(d2 < proximidade**2)
+            {
+                pontoTemporario = pt;
+            }             
+        }
+    }
+    return pontoTemporario;
+}
+function desSelecionarPontos()
+{
+    for(let poligono of poligonos)
+    {
+        for(let ponto of poligono.pontos)
+        {
+            ponto.desSelecionar();
+        }
     }
 }

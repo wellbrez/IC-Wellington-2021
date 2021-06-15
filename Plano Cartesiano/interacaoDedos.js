@@ -1,5 +1,6 @@
 let addponto = true;
 let movimento = true;
+let moverPonto = false;
 $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function(e)
 	{
         
@@ -36,9 +37,36 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             movimento = true;
             pagexstart1 = evt.originalEvent.targetTouches[0].pageX;
             pageystart1 = evt.originalEvent.targetTouches[0].pageY;
+            pontoAtivo = tocouNoPonto(pagexstart1,pageystart1);
+            if(pontoAtivo!=null)
+            {
+                selecionouPonto = true;
+                addponto = false;
+                if(pontoAtivo.ativo)
+                {
+                    moverPonto = true;
+                    movimento = false;
+                }
+            }
+            /*radius = 20;
+				for(poligono of poligonos)
+				{
+					for(pt of poligono.pontos)
+					{
+						dx = pixelX(pt.x)-correcaoPixelX(pagexstart1);
+						dy = pixelY(pt.y)-correcaoPixelY(pageystart1);
+						d2 = dx**2+dy**2
+						if(d2 < radius**2)
+						{
+							pontoAtivo = pt;
+						}             
+					}
+				}*/
         }
         else if(qtd_toques==2)
         {
+            selecionouPonto = false;
+            moverPonto= false;
             addponto = false;
             movimento = false;
             pagexstart1 = pagexstart2 = pageystart1 = pageystart2 = pagexnew1 = pagexnew2 = pageynew1 = pageynew2 = D_em_coord = meio_dos_dedos_inicial_x = meio_dos_dedos_inicial_y= 0;
@@ -67,13 +95,19 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             let deltaX = pagexstart1 - pagexnew1;
             let deltaY = pageystart1 - pageynew1;
             let distP1P2 = (deltaX**2 + deltaY**2)**.5;
-            if(distP1P2>20)
+            if(distP1P2>20 && moverPonto == false)
             {
                 addponto = false;
                 if(movimento)
                 {
                 eventoScroll = new scroll(1,centerscreen[0],centerscreen[1],deltaX,deltaY);
                 }
+            }
+            else if(distP1P2>20 && moverPonto == true)
+            {
+                addponto = false;
+                selecionouPonto = false;
+                pontoAtivo.mover(posicao_do_pixel_x(pagexnew1),posicao_do_pixel_y(pageynew1));
             }
         }
         if(qtd_toques==2)
@@ -102,6 +136,17 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             //poligonos[poligonoSelecionado].definir_inicio_da_animacao_de_ajuste();
             adjtime=20;
             atualizarUI();
+        }
+        if(pontoAtivo!=null)
+        {
+            if(pontoAtivo.ativo)
+            {
+                pontoAtivo.desSelecionar();
+            }
+            else if(selecionouPonto)
+            {
+                pontoAtivo.selecionar();
+            }
         }
         
     }
