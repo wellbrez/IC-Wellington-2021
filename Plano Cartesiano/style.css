@@ -1,3 +1,21 @@
+p input
+{
+    border:none;
+    background-color:transparent;
+    color:white;
+    overflow:auto;
+    width:auto;
+    cursor:pointer;
+
+}
+p input:focus
+{
+    border:none;
+    outline:none;
+    color:rgb(143, 203, 155);
+    background-color:rgba(255,255,255,0.2);
+}
+
 #compartilhamento
 {
     background-color:#12130F;
@@ -47,6 +65,12 @@
     z-index:200;
     
 }
+.dadosPoligono
+{
+    max-height:50vh;
+    overflow:auto;
+    z-index:200;
+}
 p{
     transition:max-height 2s;
     max-height:100%;
@@ -67,9 +91,15 @@ pol{
 }
 .pontos
 {
+    cursor:default;
     padding:0px;
     margin:0px;
     color:rgb(143, 203, 155);
+    
+}
+.pontos:hover
+{
+    background-color:rgba(255,255,255,0.2);
 }
 .area{
     padding:0px;

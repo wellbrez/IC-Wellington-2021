@@ -9,6 +9,7 @@ function ponto(x,y,objetivox,objetivoy,tempo)
     this.incrementox = (this.objetivox - this.x)/this.tempo;
     this.incrementoy = (this.objetivoy - this.y)/this.tempo;
     this.ativo = false;
+    this.size = 10;
     //console.log(`x=${x}, y=${y}, objetivox = ${objetivox}, objetivoy = ${objetivoy}, incrementox = ${this.incrementox}`)
     this.desenhar = function()
     {
@@ -17,7 +18,7 @@ function ponto(x,y,objetivox,objetivoy,tempo)
 		sketch.strokeWeight(4)
 		sketch.ellipseMode(sketch.CENTER)
 		sketch.fill(this.cor)
-        sketch.ellipse(pixelX(this.x),pixelY(this.y),10,10)
+        sketch.ellipse(pixelX(this.x),pixelY(this.y),this.size,this.size)
         sketch.pop()
     }
     this.animar = function()
@@ -27,8 +28,10 @@ function ponto(x,y,objetivox,objetivoy,tempo)
             this.x+=this.incrementox;
             this.y+=this.incrementoy;
             this.tempo-=1;
+            atualizarUI();
             //console.log(`movi com incremento ${this.incrementox}`);
         }
+        
     }
     this.mover = function(objx,objy)
     {
@@ -40,13 +43,26 @@ function ponto(x,y,objetivox,objetivoy,tempo)
     }
     this.selecionar = function()
     {
+        desSelecionarPontos();
         this.ativo = true;
-        this.cor = 'red';
+        this.cor = 'white';
+        this.size=20;
+        pontoAtivo = this;
+        
     }
     this.desSelecionar = function()
     {
         this.ativo = false;
         this.cor = corBolha;
+        this.size=10;
+    }
+    this.criarAnimacao = function(objx,objy,tempo)
+    {
+        this.objetivox = objx;
+        this.objetivoy = objy;
+        this.tempo = tempo;
+        this.incrementox = (this.objetivox - this.x)/this.tempo
+        this.incrementoy = (this.objetivoy - this.y)/this.tempo
     }
 }
 
@@ -54,19 +70,18 @@ function tocouNoPonto(pixelx,pixely)
 {
     let pontoTemporario= null;
     let proximidade = 20;
-    for(poligono of poligonos)
+    
+    for(pt of poligonos[poligonoSelecionado].pontos)
     {
-        for(pt of poligono.pontos)
+        dx = pixelX(pt.x)-correcaoPixelX(pixelx);
+        dy = pixelY(pt.y)-correcaoPixelY(pixely);
+        d2 = dx**2+dy**2
+        if(d2 < proximidade**2)
         {
-            dx = pixelX(pt.x)-correcaoPixelX(pixelx);
-            dy = pixelY(pt.y)-correcaoPixelY(pixely);
-            d2 = dx**2+dy**2
-            if(d2 < proximidade**2)
-            {
-                pontoTemporario = pt;
-            }             
-        }
+            pontoTemporario = pt;
+        }             
     }
+
     return pontoTemporario;
 }
 function desSelecionarPontos()

@@ -2,15 +2,25 @@ function adicionarPoligono()
 {
 	poligonos.push(new Polygon("Pol",[]));
 	selecionar(poligonos.length-1);
+	
 }
 function selecionar(id)
 {
-	poligonoSelecionado = id;
+	desSelecionarPontos();
 	for(pol of poligonos)
 	{
 		pol.selected = false;
 	}
-	poligonos[id].selected = true;
+	if(poligonoSelecionado==id)
+	{
+		poligonoSelecionado = null;
+	}
+	else
+	{
+		poligonoSelecionado = id;
+		poligonos[id].selected = true;
+	}
+	
 	atualizarUI();
 }
 function Polygon(nome,pontos)
@@ -43,6 +53,7 @@ function Polygon(nome,pontos)
 				this))
 			this.transicoes[this.transicoes.length-1].setup();
 			this.definir_inicio_da_animacao_de_ajuste()
+			this.transicoes[this.transicoes.length-1].pontoAssociado.selecionar();
 		}
 	}
 	this.addPontoPorCoordenada = function(posx,posy)

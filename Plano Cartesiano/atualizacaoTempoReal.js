@@ -9,5 +9,6 @@ function atualizarUI()
 	desenharEnvoltoria(envoltoria);
 
     atualizarMenuPoligonos();
+     
 
 }
