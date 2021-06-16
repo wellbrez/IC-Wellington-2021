@@ -7,9 +7,9 @@ function calcularEnvoltoria()
     {
         if(poligono.positivo)
         {
-            for(let i=0;i<poligono.pontos.length;i+=2)
+            for(let i=0;i<poligono.pontos.length;i++)
             {
-                pontosTotais.push(poligono.pontos.slice(i,i+2));
+                pontosTotais.push([poligono.pontos[i].x,poligono.pontos[i].y]);
             }
         }
     }
