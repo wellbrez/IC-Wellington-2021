@@ -23,7 +23,7 @@ function atualizarMenuPoligonos()
                 let p = polindex;
                 let pp = i;
                 let px = pol.pontos[i].x.toFixed(2);
-                let py = pol.pontos[i].y.toFixed(2);
+                let py = -pol.pontos[i].y.toFixed(2);
                 divPoligonosInnerHtml += `<p class="pontos" onmouseover='poligonos[${p}].pontos[${pp}].selecionar()'>
                 P${pp} <br>
                 x=<input id=P${p}P${pp}x value=${px} onchange="pegarValorDaCaixaDeTexto('P${p}P${pp}x')"></input><br>
@@ -50,7 +50,7 @@ function atualizarMenuPoligonos()
                 let p = polindex;
                 let pp = i;
                 let px = pol.pontos[i].x.toFixed(2);
-                let py = pol.pontos[i].y.toFixed(2);
+                let py = -pol.pontos[i].y.toFixed(2);
                 divPoligonosInnerHtml += `<p class="pontos collapsed" onmouseover='poligonos[${p}].pontos[${pp}].selecionar()'>
                 P${pp} <br>
                 x=<input id=P${p}P${pp}x value=${px} onchange="pegarValorDaCaixaDeTexto('P${p}P${pp}x')"></input><br>
@@ -74,8 +74,8 @@ function pegarValorDaCaixaDeTexto(nome)
     
     
     console.log('id sliced is '+nome)
-    let valorx = document.getElementById(`${nome}x`).value;
-    let valory = document.getElementById(`${nome}y`).value;
+    let valorx = Number(document.getElementById(`${nome}x`).value);
+    let valory = -Number(document.getElementById(`${nome}y`).value);
 
     if (Number.isNaN(valorx)||Number.isNaN(valory))
     {
