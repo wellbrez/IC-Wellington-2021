@@ -40,6 +40,7 @@ function ponto(x,y,objetivox,objetivoy,tempo)
         this.tempo = 0;
         this.incrementox = 0;
         this.incrementoy = 0;
+        atualizarUI();
     }
     this.selecionar = function()
     {
