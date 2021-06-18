@@ -32,3 +32,15 @@ function correcaoPixelY(pixely)
 {
 	return pixelY(posicao_do_pixel_y(pixely))
 }
+function ajustarIndiceAoIntervalo(i,lista)
+{
+	while(i>=lista.length)
+	{
+		i-=lista.length;
+	}
+	while(i<0)
+	{
+		i+=lista.length;
+	}
+	return i;
+}

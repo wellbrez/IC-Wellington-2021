@@ -1,74 +1,34 @@
-function adicionarPoligono()
-{
-	poligonos.push(new Polygon("Pol",[]));
-	selecionar(poligonos.length-1);
-	
-}
-function selecionar(id)
-{
-	desSelecionarPontos();
-	for(pol of poligonos)
-	{
-		pol.selected = false;
-	}
-	if(poligonoSelecionado==id)
-	{
-		poligonoSelecionado = null;
-	}
-	else
-	{
-		poligonoSelecionado = id;
-		poligonos[id].selected = true;
-	}
-	
-	atualizarUI();
-}
-function Polygon(nome,pontos)
+function Polygon(nome)
 {
     this.nome = (nome==null ? "" : nome);
-    this.pontos = (pontos==null ? [] : pontos);
-	this.objetivos = this.pontos;
+    this.pontos = (nome==null ? [] : pontos);
 	this.selected = false;
 	this.positivo = true;
 	this.color = sketch.corPoligonoNormal;
 	this.area = 0;
-	this.transicoes = [];
-    
-
-	this.definir_inicio_da_animacao_de_ajuste = function()
-	{
-		//this.midpointx = (this.objetivos[0]+this.objetivos[this.objetivos.length-4])/2
-		//this.midpointy = (this.objetivos[0]+this.objetivos[this.objetivos.length-3])/2
-	}
 	
-	this.addPontoPorPixel = function(posx,posy,index)
+	this.addPontoPorPixel = function(posx,posy)
 	{
-		if(index==undefined)
+		if(Number.isNaN(posx)||Number.isNaN(posy))
 		{
-			this.transicoes.push(new transicaoPoligono(
-				60,
-				posicao_do_pixel_x(posx),
-				posicao_do_pixel_y(posy),
-				"add",
-				this))
-			this.transicoes[this.transicoes.length-1].setup();
-			this.definir_inicio_da_animacao_de_ajuste()
-			this.transicoes[this.transicoes.length-1].pontoAssociado.selecionar();
+			console.error("Entrou com ponto invalido");
 		}
+		criarPonto(60,
+			posicao_do_pixel_x(posx),
+			posicao_do_pixel_y(posy),
+			this)
 	}
 	this.addPontoPorCoordenada = function(posx,posy)
 	{
-		if(index==undefined)
+		if(Number.isNaN(posx)||Number.isNaN(posy))
 		{
-			this.transicoes.push(new transicaoPoligono(
-				60,
-				posx,
-				posy,
-				"add",
-				this))
-			this.transicoes[this.transicoes.length-1].setup();
-			this.definir_inicio_da_animacao_de_ajuste()
+			console.error("Entrou com ponto invalido");
 		}
+		console.log(`x=${posx}, y=${posy}`);
+		criarPonto(60,
+			posx,
+			posy,
+			this);
 	}
 	this.atualizarArea = function(override)
 	{
@@ -114,7 +74,7 @@ function Polygon(nome,pontos)
 			sketch.fill(corPoligono)
 		}
 		sketch.beginShape()
-		for(i=0;i<this.pontos.length;i++)
+		for(let i=0;i<this.pontos.length;i++)
 		{
 			sketch.vertex(pixelX(this.pontos[i].x),pixelY(this.pontos[i].y));
 		}
@@ -124,16 +84,3 @@ function Polygon(nome,pontos)
 	}
 }
 
-
-function ajustarIndiceAoIntervalo(i,lista)
-{
-	while(i>=lista.length)
-	{
-		i-=lista.length;
-	}
-	while(i<0)
-	{
-		i+=lista.length;
-	}
-	return i;
-}

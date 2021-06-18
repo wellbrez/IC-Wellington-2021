@@ -37,6 +37,8 @@ function ponto(x,y,objetivox,objetivoy,tempo)
     {
         this.x = objx;
         this.y = objy;
+        this.objetivox = objx;
+        this.objetivoy = objy;
         this.tempo = 0;
         this.incrementox = 0;
         this.incrementoy = 0;
@@ -72,7 +74,7 @@ function tocouNoPonto(pixelx,pixely)
     let pontoTemporario= null;
     let proximidade = 20;
     
-    for(pt of poligonos[poligonoSelecionado].pontos)
+    for(let pt of poligonos[poligonoSelecionado].pontos)
     {
         dx = pixelX(pt.x)-correcaoPixelX(pixelx);
         dy = pixelY(pt.y)-correcaoPixelY(pixely);

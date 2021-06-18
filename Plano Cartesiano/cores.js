@@ -1,0 +1,9 @@
+corBolha = '#12130F'
+corGradePrincipal = 'rgba(255,255,255,.1)'
+corGradeSecundaria = 'rgba(255,255,255,.05)'
+corFundo = '#12130F'
+corLinhasPrincipais = "rgba(255,255,255,.8"
+corContorno = 'rgba(35.7%, 57.3%, 47.5%,.9)';
+corPoligono = "rgba(35.7%, 57.3%, 47.5%,.5)"
+corContornoSelecionado = "rgba(234,230,229)"
+corEnvoltoria = 'rgb(143, 203, 155)';

@@ -8,21 +8,27 @@ function decode(dadosCompactados)
 	{
 		dadosCompactados = decodeURI(dadosCompactados);
 		let dadosEmString = dadosCompactados;
-		let indicePoligono=0;
 		let dadosSeparados = dadosEmString.split(";");
+
+		let indicePoligono=0;
 		let indiceDados = 0;
 		while(indiceDados<dadosSeparados.length)
 		{
 			poligonos.push(new Polygon());
 			poligonos[indicePoligono].nome = dadosSeparados[indiceDados];
-			poligonoSelecionado = indicePoligono;
+			selecionar(indicePoligono);
 			indiceDados++;
-			polsize = Number(dadosSeparados[indiceDados]);
+			let qtdPontos = Number(dadosSeparados[indiceDados]);
 			indiceDados++;
-			for(pol=0;pol<polsize;pol++)
+			for(let ipt=0;ipt<qtdPontos;ipt++)
 			{
-				poligonos[indicePoligono].pontos.push(Number(dadosSeparados[indiceDados]));
-				indiceDados++;
+				let x=Number(dadosSeparados[indiceDados])
+				let y=Number(dadosSeparados[indiceDados+1])
+				
+				let ptTemporario = new ponto(x,y,x,y,1);
+				poligonos[indicePoligono].pontos.push(ptTemporario);
+				indiceDados+=2;
+				
 			}
 			indicePoligono++;
 		}

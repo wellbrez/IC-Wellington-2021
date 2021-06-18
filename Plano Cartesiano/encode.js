@@ -7,7 +7,8 @@ function encode()
         
         for(let j=0;j<poligonos[i].pontos.length;j++)
         {
-            dadosEmString+= `;${poligonos[i].pontos[j]}`
+            dadosEmString+= `;${poligonos[i].pontos[j].objetivox}`
+            dadosEmString+= `;${poligonos[i].pontos[j].objetivoy}`
         }
         if(i<poligonos.length-1)
         {

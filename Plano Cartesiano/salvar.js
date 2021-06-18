@@ -3,18 +3,7 @@ function gerarCodigo(Link)
     let codigoDeCompartilhamento = encode();
     //let codigoEmLink = `file:///F:/Desktop/IC%202021%20RODRIGO/Plano%20Cartesiano/Index.html#${codigoDeCompartilhamento}`;
     let codigoEmLink = `https://wellbrez.github.io/IC-Wellington-2021/Plano%20Cartesiano/Index.html#${codigoDeCompartilhamento}`
-   /* for(i=0;i<poligonos.length;i++)
-    {
-        polygon_sufix+=poligonos[i].nome+";"+poligonos[i].pontos.length;
-        for(j=0;j<poligonos[i].pontos.length;j++)
-        {
-            polygon_sufix+= ";"+poligonos[i].pontos[j]
-        }
-        if(i<poligonos.length-1)
-        {
-            polygon_sufix+=";";
-        }
-    }*/
+  
     
     if(Link == undefined)
     {
