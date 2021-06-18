@@ -1,7 +1,7 @@
 let addponto = true;
 let movimento = true;
 let moverPonto = false;
-$("html").on("touchstart touchmove touchend touchcancel touchleave"),function(e)
+document.on("touchstart touchmove touchend touchcancel touchleave"),function(e)
 {
     e.preventDefault();
 }
