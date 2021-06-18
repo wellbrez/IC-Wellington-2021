@@ -51,6 +51,8 @@ function ponto(x,y,objetivox,objetivoy,tempo)
         this.cor = 'white';
         this.size=20;
         pontoAtivo = this;
+        atualizarUI();
+        
         
     }
     this.desSelecionar = function()

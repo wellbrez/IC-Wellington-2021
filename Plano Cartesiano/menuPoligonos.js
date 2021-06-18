@@ -1,9 +1,98 @@
 function atualizarMenuPoligonos()
 {
     let divPoligonos = document.getElementById("textoPoligonos")
-    let polindex = 0;
-    let divPoligonosInnerHtml = "";
-    for (let pol of poligonos)
+
+    for(let iPoligono=0;iPoligono<poligonos.length;iPoligono++)
+    {
+        let divPol = document.getElementById(`Pol${iPoligono}`)
+        let divPontos = document.getElementById(`Pol${iPoligono}Pontos`)
+        {
+            if(divPol==null)
+            {
+                divPol = document.createElement('div');
+                divPol.id = `Pol${iPoligono}`;
+                divPol.classList.add('nomePoligono');
+                let texto = document.createTextNode(`Poligono ${iPoligono} : ${poligonos[iPoligono].nome}`);
+                divPol.appendChild(texto);
+                texto.onclick = function()
+                {
+                    selecionar(iPoligono);
+                }
+                console.log(divPoligonos)
+                divPoligonos.appendChild(divPol);
+                divPontos = document.createElement(`div`);
+                divPontos.id = `Pol${iPoligono}Pontos`;
+                divPol.appendChild(divPontos);
+            }
+        }
+        for(let iPonto=0;iPonto<poligonos[iPoligono].pontos.length;iPonto++)
+        {
+            let divPt = document.getElementById(`P${iPoligono}P${iPonto}`)
+            if(divPt==null)
+            {
+                divPt = document.createElement('div');
+                divPt.id = `P${iPoligono}P${iPonto}`;
+                divPt.classList.add('pontos');
+                divPontos.appendChild(divPt);
+                let pontoNome = document.createTextNode(`Ponto ${iPonto}`);
+                let x = document.createTextNode("x: ");
+                let y = document.createTextNode("y: ");
+                let xInput = document.createElement("input")
+                let yInput = document.createElement("input")
+                xInput.classList.add('inputPontos');
+                yInput.classList.add('inputPontos');
+                xInput.id = `P${iPoligono}P${iPonto}x`;
+                yInput.id = `P${iPoligono}P${iPonto}y`;
+                divPt.appendChild(pontoNome);
+                divPt.appendChild(document.createElement("br"));
+                divPt.appendChild(x);
+                divPt.appendChild(xInput);
+                divPt.appendChild(document.createElement("br"));
+                divPt.appendChild(y);
+                divPt.appendChild(yInput);
+                xInput.onchange = function()
+                {
+                    pegarValorDaCaixaDeTexto(iPoligono,iPonto);
+                }
+                yInput.onchange = function()
+                {
+                    pegarValorDaCaixaDeTexto(iPoligono,iPonto);
+                }
+                divPt.onclick = function()
+                {
+                    poligonos[iPoligono].pontos[iPonto].selecionar();
+                }
+            }
+            let xInput = document.getElementById(`P${iPoligono}P${iPonto}x`)
+            let yInput = document.getElementById(`P${iPoligono}P${iPonto}y`)
+            xInput.value = poligonos[iPoligono].pontos[iPonto].x.toFixed(2);
+            yInput.value = -poligonos[iPoligono].pontos[iPonto].y.toFixed(2);
+            if(poligonos[iPoligono].pontos[iPonto].ativo)
+            {
+                divPt.classList.add('pontoSelecionado');
+                divPt.scrollIntoView();
+            }
+            else
+            {
+                divPt.classList.remove("pontoSelecionado");
+            }
+        }
+        if(poligonoSelecionado==iPoligono)
+        {
+            divPol.classList.add('textoSelecionado');
+            divPontos.classList.remove('collapsed');
+        }
+        else
+        {
+            divPol.classList.remove('textoSelecionado');
+            divPontos.classList.add('collapsed')
+        }
+
+    }
+
+
+
+    /*for (let pol of poligonos)
     {
         if(polindex == poligonoSelecionado)
         {
@@ -64,18 +153,22 @@ function atualizarMenuPoligonos()
     }
     divPoligonosInnerHtml+="<br><pol onclick='adicionarPoligono()'>Adicionar Poligono</pol>"
     divPoligonos.innerHTML = divPoligonosInnerHtml;
+    
+    */
+    
+ 
+    
+    
+    
+    
+
 }
-function pegarValorDaCaixaDeTexto(nome)
+function pegarValorDaCaixaDeTexto(iPoligono,iPonto)
 {
-    nome = nome.slice(0,-1);
-    let dadosSeparados = nome.split('P');
-    let iPoligono = Number(dadosSeparados[1]);
-    let iPonto = Number(dadosSeparados[2]);
-    
-    
-    console.log('id sliced is '+nome)
-    let valorx = Number(document.getElementById(`${nome}x`).value);
-    let valory = -Number(document.getElementById(`${nome}y`).value);
+    let divId = `P${iPoligono}P${iPonto}`;
+
+    let valorx = Number(document.getElementById(`${divId}x`).value);
+    let valory = -Number(document.getElementById(`${divId}y`).value);
 
     if (Number.isNaN(valorx)||Number.isNaN(valory))
     {

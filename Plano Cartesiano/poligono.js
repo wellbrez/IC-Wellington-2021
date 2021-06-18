@@ -1,7 +1,7 @@
 function Polygon(nome)
 {
     this.nome = (nome==null ? "" : nome);
-    this.pontos = (nome==null ? [] : pontos);
+    this.pontos = [];
 	this.selected = false;
 	this.positivo = true;
 	this.color = sketch.corPoligonoNormal;

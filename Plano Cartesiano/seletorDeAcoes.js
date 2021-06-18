@@ -100,7 +100,7 @@ function criarPonto(tempo,objx,objy,poligono)
 
 function adicionarPoligono()
 {
-	poligonos.push(new Polygon("Pol",[]));
+	poligonos.push(new Polygon("Pol"));
 	selecionar(poligonos.length-1);
 	
 }
