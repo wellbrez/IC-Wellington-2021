@@ -54,19 +54,42 @@
     max-height:0%;
     color:white;
 }
+#mostrarPoligonos
+{
+    background-color:rgba(255,255,255,.5);
+    width:30px;
+    height:30px;
+    position:fixed;
+    margin-left:0px;
+    z-index:200;
+    transition: margin-left .5s;
+    text-align:center;
+    font-weight:bolder;
+    font-size: 22px;
+    overflow:hidden;
+    border-radius:5px;
+
+    cursor:pointer;
+}
+#mostrarPoligonos:hover
+{
+    background-color:rgba(255,255,255,.8);
+}
 #textoPoligonos
 {
     text-align:left;
-    padding:10px;
+    padding:0;
     position:absolute;
-    width:auto;
+    width:100%;
     margin: 0 auto;
-    background-color:rgba(0,0,0,0.2);
+    background-color:rgba(0,0,0,0.1);
     color:white;
     z-index:200;
-    
+    max-width:0px;
     max-height:60vh;
     overflow:auto;
+    transition: max-width .5s;
+    border-radius:5px;
     
 }
 .dadosPoligono

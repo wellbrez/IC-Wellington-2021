@@ -1,3 +1,19 @@
+$("#mostrarPoligonos").on("click",function(e)
+{
+    let textoPoligonos = document.getElementById("textoPoligonos");
+    let botaoMostrarPoligonos = document.getElementById("mostrarPoligonos");
+    if(textoPoligonos.style.maxWidth!='40vw')
+    {
+        textoPoligonos.style.maxWidth="40vw";
+        botaoMostrarPoligonos.innerText = "<<"
+    }
+    else
+    {
+        textoPoligonos.style.maxWidth='0px';
+        botaoMostrarPoligonos.innerText = ">>"
+    }
+    botaoMostrarPoligonos.style.marginLeft = textoPoligonos.style.maxWidth;
+})
 function atualizarMenuPoligonos()
 {
     let divPoligonos = document.getElementById("textoPoligonos")
