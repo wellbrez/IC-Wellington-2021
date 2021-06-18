@@ -4,6 +4,7 @@ let moverPonto = false;
 $(document).on("touchstart touchmove touchend touchcancel touchleave"),function(e)
 {
     e.preventDefault();
+    console.log("V19h")
 }
 /*$("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function(e)
 	{
