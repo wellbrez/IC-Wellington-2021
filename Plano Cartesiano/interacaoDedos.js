@@ -66,7 +66,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             else
             {
                 desSelecionarPontos();
-                moverPonto = true;
+                movimento = true;
             }
         }
         else if(qtd_toques==2)
