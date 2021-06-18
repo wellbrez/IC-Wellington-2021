@@ -28,7 +28,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
 
     function handleStart(evt) 
     {
-        evt.preventDefault();
+        //evt.preventDefault();
         qtd_toques = evt.originalEvent.targetTouches.length;
         centerscreen = [origemX,origemY];
         if(qtd_toques==1)
@@ -86,7 +86,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     function handleMove(evt) 
     {
         //centerscreen = [origemX,origemY];
-        evt.preventDefault();
+        //evt.preventDefault();
         qtd_toques = evt.originalEvent.targetTouches.length;
         if(qtd_toques==1)
         {
@@ -130,7 +130,7 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
     }
     function handleEnd(evt) 
     {
-        evt.preventDefault;
+        //evt.preventDefault;
         if(addponto)
         {
             poligonos[poligonoSelecionado].addPontoPorPixel(sketch.mouseX,sketch.mouseY);
