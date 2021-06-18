@@ -1,32 +1,32 @@
 let addponto = true;
 let movimento = true;
 let moverPonto = false;
-$(document).on("touchstart touchmove touchend touchcancel touchleave"),function(e)
-{
-    e.preventDefault();
-    console.log("V19h")
-}
-/*$("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function(e)
+$("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function(e)
 	{
         
 		if(e.type=="touchstart")
         {
+            e.preventDefault();
             handleStart(e);
         }
         else if(e.type=="touchmove")
         {
+            e.preventDefault();
             handleMove(e);
         }
         else if(e.type=="touchend")
         {
+            e.preventDefault();
             handleEnd(e);
         }
         else if(e.type=="touchcancel")
         {
+            e.preventDefault();
             handleCancel(e);
         }
         else if(e.type=="touchleave")
         {
+            e.preventDefault();
             handleLeave(e);
         }
 	});
@@ -176,4 +176,4 @@ $(document).on("touchstart touchmove touchend touchcancel touchleave"),function(
           default:
             return; // Quit when this doesn't handle the key event.
         }
-    })*/
+    })

@@ -101,7 +101,7 @@ function mouse_clicked_canvas(event)
 let pontoAtivo = null;
 let permissaoParaMover = false;
 let adicionarPonto = true;
-/*$("#canvas2").on("mousedown mousemove mouseup",function(e)
+$("#canvas2").on("mousedown mousemove mouseup",function(e)
 	{
 		if(e.type=="mousedown")
 		{
@@ -182,4 +182,4 @@ let adicionarPonto = true;
 			}
 		}
 	
-	});*/
+	});
