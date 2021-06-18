@@ -70,7 +70,10 @@ function atualizarMenuPoligonos()
             if(poligonos[iPoligono].pontos[iPonto].ativo)
             {
                 divPt.classList.add('pontoSelecionado');
-                divPt.scrollIntoView();
+                if(!isMobile)
+                {
+                    divPt.scrollIntoView();
+                }
             }
             else
             {

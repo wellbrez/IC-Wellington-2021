@@ -2,9 +2,9 @@
 
 function resizewindow()
 {
-	let width = document.getElementById('canvas2').getBoundingClientRect().width;
+	width = document.body.getBoundingClientRect().width;
 	//let width = screen.width;
-	let height = document.getElementById('canvas2').getBoundingClientRect().height;
+	height = document.body.getBoundingClientRect().height;
 	//let height = screen.height;
 	window.sketch.resizeCanvas(width,height,true);
 }
@@ -20,8 +20,8 @@ var sketch = function(p)
 		eventoScroll = null;
 		//width = (p.windowWidth);
 		//height = (p.windowHeight);
-		width = document.getElementById('canvas2').getBoundingClientRect().width;
-		height = document.getElementById('canvas2').getBoundingClientRect().height;
+		width = document.body.getBoundingClientRect().width;
+		height = document.body.getBoundingClientRect().height;
 		p.cnv = p.createCanvas(width,height);
 
 		escalax=1;

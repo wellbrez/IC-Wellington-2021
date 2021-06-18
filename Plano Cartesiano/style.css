@@ -1,6 +1,4 @@
-html{
-    overflow:hidden;
-}
+
 .inputPontos
 {
     border:none;
@@ -161,7 +159,8 @@ body
     margin: 0 auto;
     padding:0;
     overflow:hidden;
-    max-height:100vh;
+    height:100%;
+    width:100%;
 }
 h2
 {
