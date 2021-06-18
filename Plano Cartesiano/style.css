@@ -155,7 +155,7 @@ p{
 body
 {
     font-family:consolas;
-    position:fixed
+    position:fixed;
     margin: 0 auto;
     padding:0;
     overflow:hidden;
