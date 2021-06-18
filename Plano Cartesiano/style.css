@@ -158,7 +158,7 @@ body
     position:absolute;
     margin: 0 auto;
     padding:0;
-    overflow:hidden;
+    overflow:-moz-hidden-unscrollable;
     height:100%;
     width:100%;
 }
@@ -184,10 +184,10 @@ h2
 }
 #canvas2
 {
-    position:absolute;
+    position:relative;
     margin: 0 auto;
-    width:100vw;
-    height:100vh;
+    width:100%;
+    height:100%;
     background-color:rgba(0,0,0,0.2);
     overflow:hidden;
     z-index:10;
