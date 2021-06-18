@@ -5,7 +5,7 @@ $(document).on("touchstart touchmove touchend touchcancel touchleave"),function(
 {
     e.preventDefault();
 }
-$("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function(e)
+/*$("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function(e)
 	{
         
 		if(e.type=="touchstart")
@@ -175,4 +175,4 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
           default:
             return; // Quit when this doesn't handle the key event.
         }
-    })
+    })*/
