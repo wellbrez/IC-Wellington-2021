@@ -22,25 +22,29 @@ function atualizarMenuPoligonos()
     {
         let divPol = document.getElementById(`Pol${iPoligono}`)
         let divPontos = document.getElementById(`Pol${iPoligono}Pontos`)
+        //Se nao existir o mostrador do poligono, cria um novo.
+        if(divPol==null)
         {
-            if(divPol==null)
+            divPol = document.createElement('div');
+            divPol.id = `Pol${iPoligono}`;
+            divPol.classList.add('nomePoligono');
+            let span = document.createElement('span');
+            let texto = document.createTextNode(`Poligono ${iPoligono} : ${poligonos[iPoligono].nome}`);
+            span.appendChild(texto);
+            divPol.appendChild(span);
+            span.onclick = function()
             {
-                divPol = document.createElement('div');
-                divPol.id = `Pol${iPoligono}`;
-                divPol.classList.add('nomePoligono');
-                let texto = document.createTextNode(`Poligono ${iPoligono} : ${poligonos[iPoligono].nome}`);
-                divPol.appendChild(texto);
-                texto.onclick = function()
-                {
-                    selecionar(iPoligono);
-                }
-                console.log(divPoligonos)
-                divPoligonos.appendChild(divPol);
-                divPontos = document.createElement(`div`);
-                divPontos.id = `Pol${iPoligono}Pontos`;
-                divPol.appendChild(divPontos);
+                console.log("test");
+                selecionar(iPoligono);
             }
+            console.log(divPoligonos)
+            divPoligonos.appendChild(divPol);
+            divPontos = document.createElement(`div`);
+            divPontos.id = `Pol${iPoligono}Pontos`;
+            divPontos.classList.add("pontosContainer");
+            divPol.appendChild(divPontos);
         }
+
         for(let iPonto=0;iPonto<poligonos[iPoligono].pontos.length;iPonto++)
         {
             let divPt = document.getElementById(`P${iPoligono}P${iPonto}`)

@@ -7,14 +7,18 @@
     overflow:auto;
     width:auto;
     cursor:pointer;
+    border-radius:20px;
 
 }
 .inputPontos:focus
 {
     border:none;
     outline:none;
-    color:rgb(143, 203, 155);
+    color:white;
+    font-size:20px;
+    font-weight: bolder;
     background-color:rgba(255,255,255,0.2);
+    
 }
 
 #compartilhamento
@@ -77,6 +81,7 @@
 }
 #textoPoligonos
 {
+    text-decoration:none;
     text-align:left;
     padding:0;
     position:absolute;
@@ -92,11 +97,25 @@
     border-radius:5px;
     
 }
-.dadosPoligono
+.pontosContainer
 {
-    max-height:50vh;
+    text-decoration:none;
+    margin-top:2px;
+    margin-left:2vw;
+    margin-right:4vw;
+    max-height:40vh;
     overflow:auto;
     z-index:200;
+    transition:max-height 0.5s;
+}
+.dadosPoligono
+{
+    text-decoration:none;
+    max-height:40vh;
+    overflow:auto;
+    z-index:200;
+    
+    transition:max-height 0.5s;
 }
 p{
     transition:max-height 2s;
@@ -106,9 +125,12 @@ p{
     font-size:large;
     cursor:pointer;
     text-decoration-style:solid;
+    margin-left:2vw;
+    margin-top:10px;
     text-decoration-color:rgb(91, 146, 121);
     font-style:bold;
     font-weight:200;
+    transition:max-height 0.5s;
 }
 .collapsed
 {
@@ -119,9 +141,11 @@ p{
 {
     text-decoration:none;
     cursor:default;
-    padding:0px;
     margin:0px;
+    margin-top:4px;
     color:rgb(143, 203, 155);
+    border-radius:5px;
+    transition:max-height 0.5s;
     
 }
 .pontos:hover

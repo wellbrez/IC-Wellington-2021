@@ -34,4 +34,6 @@ function limpar_tela()
 {
     poligonos = [new Polygon()];
     selecionar(0);
+    document.getElementById("textoPoligonos").innerHTML = "";
+    atualizarUI();
 }
