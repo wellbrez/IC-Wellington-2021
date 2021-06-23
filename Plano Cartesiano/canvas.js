@@ -95,6 +95,16 @@ var sketch = function(p)
 			poligono.desenharPontos();
 			poligono.desenharCentroide();
 		}
+		p.push();
+		p.beginShape()
+		for(let ponto of pontosDoNucleoCentral)
+		{
+			let x = pixelX(ponto.x);
+			let y = pixelY(ponto.y);
+			p.vertex(x,y);
+		}
+		p.endShape(p.CLOSE)
+		p.pop();
 
 		
 		if(eventoScroll!=null){

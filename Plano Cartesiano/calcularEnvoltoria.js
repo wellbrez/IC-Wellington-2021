@@ -1,7 +1,8 @@
 //iniciando método
+let pontosDaEnvoltoria = [];
 function calcularEnvoltoria()
 {
-    grahamScan = new GrahamScan();
+    let grahamScan = new GrahamScan();
     pontosTotais = [];
     for (let poligono of poligonos)
     {
@@ -16,13 +17,13 @@ function calcularEnvoltoria()
     
     grahamScan.setPoints(pontosTotais);
     envoltoriaCrua = grahamScan.getHull();  // [1,0], [2,1], [0,1]
-    envoltoriaPadronizada = [];
+    pontosDaEnvoltoria = [];
     for (let point of envoltoriaCrua)
     {
-        envoltoriaPadronizada.push(point[0]);
-        envoltoriaPadronizada.push(point[1]);
+        pontosDaEnvoltoria.push(point[0]);
+        pontosDaEnvoltoria.push(point[1]);
     }
-    return envoltoriaPadronizada;
+    return pontosDaEnvoltoria;
 }
 function desenharEnvoltoria(pontos)
 {
