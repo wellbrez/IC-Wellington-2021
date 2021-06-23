@@ -13,6 +13,7 @@
 		<li id=botao_limpar class="botoesnav" onclick='limpar_tela()'>Limpar</li>
 		<li id="botao_importar" class="botoesnav" onclick='show_hide("importacao","botao_importar")'>Importar</li>
 		<li id="botao_addpoligono" class="botoesnav" onclick='adicionarPoligono()'>Add Poligono</li>
+		<li id="botao_excluirpoligono" class="botoesnav" onclick='excluirPoligono()'>Excluir Poligono</li>
 	</ul>
 
 <div id="importacao">
@@ -45,17 +46,18 @@
 <div id="mostrarPoligonos">>></div>
 
 <!-- Importando bibliotecas -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="bibliotecas/jquery.min.js"></script>
 <script src="bibliotecas/decode.js"></script>
 <script src="bibliotecas/encode.js"></script>
 <script src="bibliotecas/geradorQRCode.min.js"></script>
 <script src="bibliotecas/lucioPaivaConvexHull.mjs"></script>
 <script src="bibliotecas/p5.js"></script>
-<script src="bibliotecas/p5.sound.js"></script>
+<!-- <script src="bibliotecas/p5.sound.js"></script> -->
 <script src="bibliotecas/p5.dom.js"></script>
 
 <!--<script src="bibliotecas/temul.js"></script> 12-->
 <script src="cores.js"></script>
+<script src="funcoesMatematicas.js"></script>
 <script src="seletorDeAcoes.js"></script>
 <script src="ponto.js"></script>
 <script src="atualizacaoTempoReal.js"></script>

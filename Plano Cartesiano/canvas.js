@@ -93,6 +93,7 @@ var sketch = function(p)
 			desenharEnvoltoria(envoltoria);
 			poligono.desenhar();
 			poligono.desenharPontos();
+			poligono.desenharCentroide();
 		}
 
 		

@@ -6,6 +6,11 @@ function Polygon(nome)
 	this.positivo = true;
 	this.color = sketch.corPoligonoNormal;
 	this.area = 0;
+	this.centroideX = 0;
+	this.centroideY = 0;
+	this.IxCanvas = 0;
+	this.IyCanvas = 0;
+	this.IxyCanvas = 0;
 	
 	this.addPontoPorPixel = function(posx,posy)
 	{
@@ -24,28 +29,15 @@ function Polygon(nome)
 		{
 			console.error("Entrou com ponto invalido");
 		}
-		console.log(`x=${posx}, y=${posy}`);
 		criarPonto(60,
 			posx,
 			posy,
 			this);
 	}
-	this.atualizarArea = function(override)
+	this.atualizarPropriedades = function(override)
 	{
-		if(override == null)
-		{
-			somatorio = 0;
-			let copiaDosPontos = JSON.parse(JSON.stringify(this.pontos));
-			
-			copiaDosPontos.push(copiaDosPontos[0]);
-
-			for(pt=0;pt<copiaDosPontos.length-2;pt+=2)
-			{
-				somatorio+=copiaDosPontos[pt].x*copiaDosPontos[pt+1].y-copiaDosPontos[pt+1].x*copiaDosPontos[pt].y;
-			}
-			this.area = Math.abs(0.5*somatorio);
-		}
-		else
+		calcular_propriedades(this);
+		if(override != null)
 		{
 			this.area = override;
 		}
@@ -57,6 +49,16 @@ function Polygon(nome)
 		{
 			ponto.desenhar();
 		}
+	}
+	this.desenharCentroide = function()
+	{
+		sketch.push()
+		sketch.fill('white')
+		sketch.noStroke;
+		let cPixelX = pixelX(this.centroideX);
+		let cPixelY = pixelY(this.centroideY);
+		sketch.ellipse(cPixelX,cPixelY,10,10)
+		sketch.pop()
 	}
 	this.desenhar = function()
 	{

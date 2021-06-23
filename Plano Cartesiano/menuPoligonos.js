@@ -30,7 +30,13 @@ function atualizarMenuPoligonos()
             divPol.classList.add('nomePoligono');
             let span = document.createElement('span');
             let texto = document.createTextNode(`Poligono ${iPoligono} : ${poligonos[iPoligono].nome}`);
+            let area = document.createTextNode(`Area :`);
+            let areaSpan = document.createElement('span');
+            areaSpan.id = `Pol${iPoligono}Area`;
             span.appendChild(texto);
+            span.appendChild(document.createElement("br"));
+            span.appendChild(area);
+            span.appendChild(areaSpan);
             divPol.appendChild(span);
             span.onclick = function()
             {
@@ -100,6 +106,7 @@ function atualizarMenuPoligonos()
                 divPt.classList.remove("pontoSelecionado");
             }
         }
+        document.getElementById(`Pol${iPoligono}Area`).innerText = poligonos[iPoligono].area.toFixed(2);
         if(poligonoSelecionado==iPoligono)
         {
             divPol.classList.add('textoSelecionado');

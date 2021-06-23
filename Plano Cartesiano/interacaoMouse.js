@@ -125,7 +125,6 @@ $("#canvas2").on("mousedown mousemove mouseup",function(e)
 					adicionarPonto = false;
 					if(!pontoAtivo.ativo)
 					{
-						desSelecionarPontos();
 						pontoAtivo.selecionar();
 					}
 					else if (pontoAtivo.ativo)

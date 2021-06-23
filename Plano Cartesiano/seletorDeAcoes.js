@@ -104,7 +104,23 @@ function adicionarPoligono()
     nome.replace(";",",")
 	poligonos.push(new Polygon(nome));
 	selecionar(poligonos.length-1);
+    atualizarUI();
 	
+}
+function excluirPoligono()
+{
+    let id = poligonoSelecionado;
+    let certeza = confirm(`Tem certeza de que deseja excluir o Polígono ${id} ?`)
+    if(certeza)
+    {
+        poligonos.splice(id,1);
+        document.getElementById(`Pol${id}`).remove();
+    }
+    if(poligonoSelecionado==id)
+    {
+        selecionar(poligonoSelecionado-1);
+    }
+    atualizarUI();
 }
 function selecionar(id)
 {
