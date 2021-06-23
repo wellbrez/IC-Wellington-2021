@@ -54,7 +54,7 @@ function Polygon(nome)
 	{
 		sketch.push()
 		sketch.fill('white')
-		sketch.noStroke;
+		sketch.strokeWeight(0);
 		let cPixelX = pixelX(this.centroideX);
 		let cPixelY = pixelY(this.centroideY);
 		sketch.ellipse(cPixelX,cPixelY,10,10)
