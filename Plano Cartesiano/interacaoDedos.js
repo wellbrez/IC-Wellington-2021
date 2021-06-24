@@ -101,14 +101,16 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
             let deltaX = pInicialX - pagexnew1;
             let deltaY = pInicialY - pageynew1;
             let distP1P2 = (deltaX**2 + deltaY**2)**.5;
+            
             if(distP1P2>20 && moverPonto == false)
             {
                 addponto = false;
                 selecionouPonto=false;
-                if(movimento)
-                {
+                
+            }
+            if(movimento && !addponto && !selecionouPonto)
+            {
                 eventoScroll = new scroll(1,centerscreen[0],centerscreen[1],deltaX,deltaY);
-                }
             }
             else if(distP1P2>20 && moverPonto == true)
             {
