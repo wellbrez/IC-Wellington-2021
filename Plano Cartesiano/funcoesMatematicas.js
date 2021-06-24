@@ -54,9 +54,17 @@ function calcular_propriedades(poligono)
     let Iy = somatorioIy/12;
     let Ixy = somatorioIxy/24;
 
+    if(area>0)
+    {
+        Ixy=-Ixy;
+    }
     area = Math.abs(area);
     Ix = Math.abs(Ix);
     Iy = Math.abs(Iy);
+    console.log("Ix=",Ix)
+    console.log("Iy=",Iy);
+    console.log("Ixy=",Ixy);
+    
 
     poligono.area = area;
     poligono.centroideX = Cx;
@@ -113,7 +121,6 @@ function calcularInerciaGlobal()
 		if (Ix>Iy)
 		{
 			anguloParaDirecoesPrincipais = Math.atan(-2*Ixy/(Iy-Ix))/2;
-            console.log(anguloParaDirecoesPrincipais);
 			Ixnew = Imax;
 			Iynew = Imin;
 		}

@@ -40,10 +40,10 @@ function atualizarMenuPoligonos()
             divPol.appendChild(span);
             span.onclick = function()
             {
-                console.log("test");
+                //console.log("test");
                 selecionar(iPoligono);
             }
-            console.log(divPoligonos)
+            //console.log(divPoligonos)
             divPoligonos.appendChild(divPol);
             divPontos = document.createElement(`div`);
             divPontos.id = `Pol${iPoligono}Pontos`;
