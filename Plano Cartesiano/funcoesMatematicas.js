@@ -53,12 +53,11 @@ function calcular_propriedades(poligono)
     let Ix = somatorioIx/12;
     let Iy = somatorioIy/12;
     let Ixy = somatorioIxy/24;
-    if(area<0)
-    {
-        area = -area;
-        Ix = -Ix;
-        Iy = -Iy;
-    }
+
+    area = Math.abs(area);
+    Ix = Math.abs(Ix);
+    Iy = Math.abs(Iy);
+    
     poligono.area = area;
     poligono.centroideX = Cx;
     poligono.centroideY = Cy;
