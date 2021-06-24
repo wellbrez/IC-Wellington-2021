@@ -57,7 +57,7 @@ function calcular_propriedades(poligono)
     area = Math.abs(area);
     Ix = Math.abs(Ix);
     Iy = Math.abs(Iy);
-    
+
     poligono.area = area;
     poligono.centroideX = Cx;
     poligono.centroideY = Cy;
@@ -152,6 +152,8 @@ function PVector(x,y)
 {
     this.x = x;
     this.y = y;
+    this.xOriginal = x;
+    this.yOriginal = y;
     this.rotacionar = function(ang)
     {
         let xAnterior = this.x;
