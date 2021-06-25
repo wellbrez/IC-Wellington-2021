@@ -20,6 +20,7 @@ function calcular_propriedades(poligono)
     let somatorioIx=0;
     let somatorioIy=0;
     let somatorioIxy=0;
+    let anguloExternoTotal=0;
     for(let i=0;i<pontosOrganizados.length-1;i++)
     {
         let xi = pontosOrganizados[i].x;
@@ -29,11 +30,50 @@ function calcular_propriedades(poligono)
         somatorioArea += (xi*yi1 - xi1*yi);
         somatorioCx += (xi+xi1)*(xi*yi1-xi1*yi);
         somatorioCy += (yi+yi1)*(xi*yi1-xi1*yi);
-        let ai = xi*yi1 - xi1*yi;
+        let x0;
+        let y0;
+        if(i==0)
+        {
+            x0 = pontosOrganizados[pontosOrganizados.length-2].x
+            y0 = pontosOrganizados[pontosOrganizados.length-2].y
+        }
+        else
+        {
+            x0 = pontosOrganizados[i-1].x;
+            y0 = pontosOrganizados[i-1].y;
+        }
+        
+        //let signedArea =(x0*yi - xi*y0);
+        let v1x = xi - x0;
+        let v1y = yi - y0;
+        let v2x = xi1 - xi;
+        let v2y = yi1 - yi;
+        let signedArea = v1x*v2y-v2x*v1y;
+        let anguloExterno = (v1x*v2x + v1y*v2y)*isqrt(v1x**2+v1y**2)*isqrt(v2x**2+v2y**2);
+        anguloExterno = Math.acos(anguloExterno);
+        //console.log(anguloExterno*180/Math.PI)
+        if(signedArea<0)
+        {
+            anguloExternoTotal+=anguloExterno;
+        }
+        else
+        {
+            anguloExternoTotal-=anguloExterno;
+        }
+
+
         //somatorioIx += (yi*yi + yi*yi1 + yi1*yi1)*ai;
         //somatorioIy += (xi*xi + xi*xi1 + xi1*xi1)*ai;
         //somatorioIxy += (xi*yi1 + 2*xi*yi + 2*xi1*yi1 + xi1*yi)*ai
     }
+    //console.log(anguloExternoTotal*180/Math.PI)
+    let somaAngulosExternos = Math.round(Math.abs(anguloExternoTotal*180/Math.PI))
+    if(somaAngulosExternos!=360)
+    {
+        poligono.isValid = false;
+        return
+    }
+    poligono.isValid=true;
     let area = somatorioArea/2;
     let Cx = somatorioCx/(6*area);
     let Cy = somatorioCy/(6*area);
@@ -61,9 +101,6 @@ function calcular_propriedades(poligono)
     area = Math.abs(area);
     Ix = Math.abs(Ix);
     Iy = Math.abs(Iy);
-    console.log("Ix=",Ix)
-    console.log("Iy=",Iy);
-    console.log("Ixy=",Ixy);
     
 
     poligono.area = area;
@@ -251,3 +288,19 @@ function calcularNucleoCentral()
 
         }
 	}
+
+var buf = new ArrayBuffer(4),
+f32=new Float32Array(buf),
+u32=new Uint32Array(buf);
+
+/*function isqrt(x) {
+  var x2 = 0.5 * (f32[0] = x);
+  u32[0] = (0x5f3759df - (u32[0] >> 1));
+  var y = f32[0];
+  y  = y * ( 1.5 - ( x2 * y * y ) );   // 1st iteration
+  return y;
+}*/
+function isqrt(x)
+{
+    return 1/Math.sqrt(x);
+}

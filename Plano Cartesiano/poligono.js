@@ -11,6 +11,7 @@ function Polygon(nome)
 	this.IxCanvas = 0;
 	this.IyCanvas = 0;
 	this.IxyCanvas = 0;
+	this.isValid = true;
 	
 	this.addPontoPorPixel = function(posx,posy)
 	{
@@ -52,6 +53,8 @@ function Polygon(nome)
 	}
 	this.desenharCentroide = function()
 	{
+		if(!this.isValid)
+		{return}
 		sketch.push()
 		sketch.fill('white')
 		sketch.strokeWeight(0);
@@ -63,7 +66,18 @@ function Polygon(nome)
 	this.desenhar = function()
 	{
 		sketch.push();
-		if(this.selected)
+		if(!this.isValid)
+		{
+			sketch.strokeWeight(.2);
+			sketch.stroke('white')
+			sketch.fill("red")
+			sketch.textSize(width/30);
+			sketch.text("Há poligono(s) inválido(s)",-width/2+20,height/2-width/30)
+			sketch.stroke(corContornoInvalido);
+			sketch.strokeWeight(4);
+			sketch.fill(corPoligonoInvalido);
+		}
+		else if(this.selected)
 		{
 			sketch.stroke(corContornoSelecionado);
 			sketch.strokeWeight(8);
