@@ -1,34 +1,6 @@
-function show_hide(id,idproprio)
+function mostrarMenuCompartilhar()
 {
-    
-    let elemento = document.getElementById(id);
-    let botao = document.getElementById(idproprio);
-    let navbar = document.getElementById("navbar");
-    let botoes = document.getElementsByClassName("botoesnav");
-    if(elemento.style.maxHeight == "100%")
-    {
-        elemento.style.maxHeight = "0%";
-        navbar.style.marginRight = 0;
-        for(btn of botoes)
-        {
-            btn.classList.remove("hidden");
-            btn.classList.remove("ativo");
-        }
-
-
-    }
-    else
-    {
-        elemento.style.maxHeight = "100%";
-        navbar.style.marginRight = "-50px";
-        for(btn of botoes)
-        {
-            btn.classList.add("hidden");
-        }
-        botao.classList.remove("hidden");
-        botao.classList.add("ativo");
-
-    }
+    document.getElementById("compartilhamento").classList.toggle("invisivel");
 }
 function limpar_tela()
 {
@@ -36,4 +8,20 @@ function limpar_tela()
     selecionar(0);
     document.getElementById("textoPoligonos").innerHTML = "";
     atualizarUI();
+}
+function toggleBotoesNav()
+{
+    document.getElementById("nav").classList.toggle("invisivel");
+}
+function toggleQRCode()
+{
+    document.getElementById("qrCodeJanela").classList.toggle("collapsed");
+}
+function toggleLinkJanela()
+{
+    document.getElementById("linkJanela").classList.toggle("collapsed");
+}
+function toggleJanelaImportacao()
+{
+    document.getElementById("importacao").classList.toggle("collapsed");
 }

@@ -4,43 +4,56 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+	
+	<link rel="stylesheet" href="navbar.css"></link>
+	<link rel="stylesheet" href="janelaExportar.css"></link>
 	<link rel="stylesheet" href="style.css"></link>
 <title>Plano Cartesiano</title>
 </head>
 <body>
-	<ul id=navbar>
-		<li id=botao_compartilhar class="botoesnav" onclick='show_hide("compartilhamento","botao_compartilhar")'>Exportar</li>
+	<nav id=nav>
+		<div onclick=toggleBotoesNav()></div>
+	<ul id=navbar class=invisivel>
+		<li id=botao_compartilhar class="botoesnav" onclick='mostrarMenuCompartilhar()'>Exportar</li>
+		<li id="botao_importar" class="botoesnav" onclick='toggleJanelaImportacao()'>Importar</li>
 		<li id=botao_limpar class="botoesnav" onclick='limpar_tela()'>Limpar</li>
-		<li id="botao_importar" class="botoesnav" onclick='show_hide("importacao","botao_importar")'>Importar</li>
 		<li id="botao_addpoligono" class="botoesnav" onclick='adicionarPoligono()'>Add Poligono</li>
-		<li id="botao_excluirpoligono" class="botoesnav" onclick='excluirPoligono()'>Excluir Poligono</li>
+		<li id="botao_excluirpoligono" class="botoesnav" onclick='excluirPoligono()'><img href=icones/salvar.png>  Excluir Poligono</li>
 	</ul>
+</nav>
 
-<div id="importacao">
-	<input type="file" id=inputfile>
-	<div class="botao1" onclick=importar_arquivo()>Importar</div>
+<div id="importacao" class="janela collapsed">
+	<div class=btnClose onclick=toggleJanelaImportacao()>Fechar Janela</div>
+	<div id="importacaoContainer">
+		<input type="file" id=inputfile>
+		<div class="botao1" onclick=importar_arquivo()>Importar</div>
+	</div>
 </div>
-<div id=compartilhamento>
+
+<div id="linkJanela" class="janela collapsed">
+	<div class=btnClose onclick=toggleLinkJanela()>Fechar Janela</div>
+	<input id=compartlink value="•Link•" readonly=readonly></input>
+</div>
+<div id="qrCodeJanela" class="janela collapsed">
+	<div class=btnClose onclick=toggleQRCode()>Fechar Janela</div>
+	<div id="qrcode"></div>
+</div>
+
+
+<div id=compartilhamento class=invisivel>
+	<div class=btnClose onclick=mostrarMenuCompartilhar()>Fechar Janela</div>
 	<div class=compartcontainer>
 		<h2>Link</h2>
 		<div id=botao_gerarlink class=botao1 onclick="gerarCodigo()">Gerar Link</div>
-		<input id=compartlink value="•Link•" readonly=readonly></input>
-	</div>
-	
-	<div class=compartcontainer><h2>Salvar no navegador</h2>
-	<div id=botao_armazenar class=botao1 onclick="armazenarNoNavegador()">Salvar</div>
-		</div>
-	
-	<div class=compartcontainer>
+		<h2>Salvar no navegador</h2>
+		<div id=botao_armazenar class=botao1 onclick="armazenarNoNavegador()">Salvar</div>
 		<h2>Gerar QR-CODE</h2>
 		<div id=botao_gerarqrcode class=botao1 onclick="gerarQRCode()">Gerar</div>
-		<div id="qrcode"></div>
-	</div>
-	<div class=compartcontainer>
 		<h2>Gerar .txt</h2>
 		<div id=botao_gerararquivo class=botao1 onclick="gerar_arquivo()">Gerar</div>
 	</div>
 </div>
+
 <div id=canvas2 ></div>
 <div id="textoPoligonos"></div>
 <div id="mostrarPoligonos">>></div>

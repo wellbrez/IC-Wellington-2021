@@ -1,0 +1,158 @@
+.botao1
+{
+    background-color:rgb(91, 146, 121);
+    cursor:pointer;
+    color:#12130F;
+    border-radius:5px;
+    width:auto;
+    height:auto;
+    line-height:70px;
+
+    text-align:center;
+    font-weight:bold;
+    font-size:x-large;
+    margin:10px;
+}
+.botao1:hover
+{
+    background-color:rgb(143, 203, 155);
+}
+#qrcode img
+{
+    position:relative;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    grid-area:q;
+    max-width:90%;
+    max-height:90%;
+    width:100%;
+    object-fit: contain;
+    z-index:500;
+}
+#compartlink
+{
+    height:auto;
+    overflow:auto;
+    overflow-wrap:break-word;
+    background-color:transparent;
+    color:white;
+    text-align:center;
+    border:none;
+    width:100%;
+    padding:0px;
+}
+#qrcode
+{
+    display:grid;
+    grid-template-columns: 5% 1fr 5%;
+    grid-template-rows: 5% 1fr 5%;
+    grid-template-areas:
+    "d d d"
+    "a q c"
+    "a b b";
+    max-width:100%;
+    max-height:100%;
+    overflow:hidden;
+    background:white;
+    z-index:250;
+}
+.janela
+{
+    max-height:100%;
+    position:fixed;
+    display:grid;
+    grid-template-rows:auto 1fr;
+    text-align:center;
+    align-content:center;
+    width:60%;
+    height:80%;
+    left:20%;
+    top:10%;
+    background:black;
+    z-index:250;
+    transition: max-height .5s;
+    border-radius:5px;
+}
+.btnClose
+{
+    color:white;
+    padding:0px;
+    border-radius:5px;
+    height:auto;
+    background:rgba(255,0,0,0.2);
+    cursor:pointer;
+    font-size:x-large;
+}
+.btnClose:hover
+{
+    background:rgba(255,0,0,0.8);
+}
+
+#importacao input
+{
+    padding:30px;
+    color:white;
+    font-size:x-large;
+    font-family:consolas;
+    cursor:default;
+}
+input::-webkit-file-upload-button
+{
+    font-family:consolas;
+    color:white;
+    background:transparent;
+    border:2px solid white;
+    color:rgb(143, 203, 155);
+    margin-left:20px;
+    margin-right:20px;
+    cursor:pointer;
+}
+#importacaoContainer
+{
+    display:grid;
+    grid-template-rows:1fr 1fr 3fr;
+    text-align:center;
+}
+#compartilhamento
+{
+    text-align:center;
+    background-color:rgba(0,0,0,0.3);
+    position:fixed;
+    overflow:hidden;
+    display:grid;
+    grid-template-rows:auto 1fr;;
+
+    width:80vw;
+    height:auto;
+    padding:0px;
+    left:5vw;
+    top:5vh;
+    max-height:90vh;
+    transition: max-height .5s;
+    z-index:201;
+}
+#compartilhamento.invisivel
+{
+    max-height:0%;
+}
+
+#compartilhamento .compartcontainer
+{
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-radius:5px;
+    float:left;
+    margin-bottom:10px;
+    background-color:rgb(0,0,0,0.4);
+    height:100%;
+    width:100%;
+    color:white;
+}
+#compartilhamento .compartcontainer h2
+{
+    width:auto;
+    height:auto;
+    padding:0px;
+}
