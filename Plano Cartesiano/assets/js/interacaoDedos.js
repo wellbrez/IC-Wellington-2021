@@ -1,6 +1,7 @@
 let addponto = true;
 let movimento = true;
 let moverPonto = false;
+let isMobile = false;
 $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function(e)
 	{
         

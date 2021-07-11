@@ -15,6 +15,5 @@ function encode()
             dadosEmString+=";";
         }
     }
-    //return comprimir(dadosEmString)
     return dadosEmString;
 }
