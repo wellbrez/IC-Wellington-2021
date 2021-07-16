@@ -1,11 +1,13 @@
 
 .inputPontos
 {
+    content:border-box;
     border:none;
+    display:block; 
     background-color:transparent;
     color:white;
     overflow:auto;
-    width:auto;
+    max-width:20%;
     cursor:pointer;
     border-radius:20px;
 

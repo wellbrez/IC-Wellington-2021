@@ -1,14 +1,21 @@
-
+:root
+{
+    --corfundo: rgb(91, 146, 121,.4);
+}
 .inputPontos
 {
     border:none;
     background-color:transparent;
     color:white;
     overflow:auto;
-    width:auto;
+    max-width:100%;
     cursor:pointer;
     border-radius:20px;
 
+}
+.inputPontos:hover
+{
+    background-color:rgba(255,255,255,.3)
 }
 .inputPontos:focus
 {
@@ -106,8 +113,31 @@ p{
     max-height:0px;
     overflow:hidden;
 }
+.indicadorPonto
+{
+    grid-area:pi;
+}
+.botaoExcluirPonto
+{
+    grid-area:btc;
+    background-color:var(--corfundo);
+    border:none;
+    border-radius:5px;
+    color:white;
+    cursor:pointer;
+}
+.botaoExcluirPonto:hover
+{
+    background:rgb(85, 0, 0,.5);
+}
 .pontos
 {
+    display:grid;
+    grid-template-columns:10px 1fr 10px 1fr 10px 1fr;
+    grid-template-rows:1fr 1fr;
+    grid-template-areas:
+    "pi pi pi pi pi btc"
+    "p1 ix vg iy p2 btc";
     text-decoration:none;
     cursor:default;
     margin:0px;

@@ -46,11 +46,11 @@ var sketch = function(p)
 		
 		resizewindow();
 
-	}
+	}/*
 	p.mouseWheel = function(event)
 	{
 		mouseWheel(event);
-	}
+	}*/
 	p.draw = function()
 	{
 		p.clear();

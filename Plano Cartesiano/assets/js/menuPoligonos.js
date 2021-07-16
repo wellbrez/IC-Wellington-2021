@@ -148,14 +148,21 @@ function atualizarMostradorDePoligono(iPoligono)
             const xInput = criarElemento("input",`P${iPoligono}P${iPonto}x`,"inputPontos",)
             const yInput = criarElemento("input",`P${iPoligono}P${iPonto}y`,"inputPontos",)
 
-            atribuirTexto(`Ponto ${iPonto}`,divPt);
+            const spanIndicadorPonto = criarElemento("span",null,'indicadorPonto',divPt)
+            atribuirTexto(`Ponto ${iPonto}`,spanIndicadorPonto);
 
-            atribuirNovaLinha(divPt);
-            atribuirTexto("x: ",divPt);
+            atribuirTexto("( ",divPt);
             divPt.appendChild(xInput);
-                atribuirNovaLinha(divPt);
-                atribuirTexto("y: ",divPt);
+            atribuirTexto(" , ",divPt)
             divPt.appendChild(yInput);
+            atribuirTexto(")",divPt);
+
+            const botaoExcluirPonto = criarElemento("button",null,'botaoExcluirPonto',divPt);
+            atribuirTexto(`Excluir P${iPonto}`,botaoExcluirPonto)
+            botaoExcluirPonto.onclick= function(e)
+            {
+                excluirPonto(iPoligono,iPonto);
+            }
 
             xInput.onchange = function(e)
             {

@@ -1,6 +1,5 @@
 
 
-
 function zoom(passos,zoomx,zoomy,posx,posy)
 {
 	//this.incremento = scr_objetivo/tempo;
@@ -70,11 +69,12 @@ function scroll(tempo,origemXinicial,origemYinicial,mv_objetivox,mv_objetivoy)
 		}
 	}
 }
+document.querySelector("#canvas2").addEventListener("wheel",mouseWhel);
 
-function mouseWheel(event)
+function mouseWhel(e)
 {
 	//eventoScroll = new scroll(5, (mouseX-width/2)/escalax*0.3,-(mouseY-height/2)/escalay*0.3);
-	delta_scroll = (Math.abs(event.delta/1000)+1)**Math.sign(-event.delta);
+	delta_scroll = (Math.abs(e.deltaY/1000)+1)**Math.sign(-e.deltaY);
 	escalax_antes = escalax;
 	escalay_antes = escalay;
 	eventoZoom = new zoom(5,delta_scroll,delta_scroll,sketch.mouseX,sketch.mouseY)
@@ -105,6 +105,11 @@ $("#canvas2").on("mousedown mousemove mouseup",function(e)
 	{
 		if(e.type=="mousedown")
 		{
+			/*const inputPontos = document.querySelectorAll(".inputPontos")
+			for (let inputPonto of inputPontos)
+			{
+				inputPontos.blur();
+			}*/
 			if(e.which==1)
 			{
 				e.preventDefault();

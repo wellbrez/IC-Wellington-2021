@@ -98,7 +98,16 @@ function criarPonto(tempo,objx,objy,poligono)
     }
 
 }
-
+function excluirPonto(iPoligono,iPonto)
+{
+    const resposta = window.confirm(`Quer excluir o ponto ${iPonto} do poligono ${iPoligono}?`);
+    if(resposta)
+    {
+        poligonos[iPoligono].pontos.splice(iPonto,1);
+        document.querySelector(`#Pol${iPoligono}`).remove();
+        atualizarUI();
+    }
+}
 
 function selecionar(id)
 {
