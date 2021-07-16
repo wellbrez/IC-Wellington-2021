@@ -115,14 +115,59 @@ var sketch = function(p)
 			p.strokeWeight(2);
 			p.fill(corContorno);
 			p.ellipse(x,y,7,7);
-			
-
-			
 		}
+		
+		/*SohArea.atualizarPropriedades();*/
 		p.strokeWeight(2);
 		p.stroke('rgba(255,255,255,0.6)')
 		p.fill('rgba(0,0,0,0)');
 		p.endShape(p.CLOSE)
+
+		if(eixoPrincipalL1.length>0)
+		{
+			eixosPrincipais();
+		}
+		
+		if(mostrarLN && poligonos[0].pontos.length>=3)
+		{
+			SohArea1 = new Polygon("SohArea1");
+			SohArea2 = new Polygon("SohArea2");
+			const [a,b] = desenharLN(p.mouseX,p.mouseY,areaTotal,IxPrincipal,IyPrincipal);
+		
+			SohArea1.atualizarPropriedades()
+			SohArea2.atualizarPropriedades()
+			if(SohArea1.area>SohArea2.area)
+			{
+				SohArea1.color = "rgba(0,255,0,.4)"
+				SohArea2.color = "rgba(255,0,0,.4)"
+				let percent = SohArea1.area*100 / (poligonos[0].area)
+				document.getElementById("AreaSapata").innerHTML = `Area tracionada:${percent.toFixed(3)}%`;
+			}
+			else
+			{
+				SohArea2.color = "rgba(0,255,0,.4)"
+				SohArea1.color = "rgba(255,0,0,.4)"
+				let percent = SohArea2.area*100 / (poligonos[0].area)
+				document.getElementById("AreaSapata").innerHTML = `Area tracionada:${percent.toFixed(3)}%`;
+			}
+			
+		
+			SohArea1.desenhar();
+			SohArea2.desenhar();
+
+			
+			sketch.fill("white");
+			sketch.strokeWeight(0);
+			sketch.text(`a: ${a.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-20)
+			sketch.text(`b: ${-b.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY))
+			
+		}
+		
+		
+
+
+
+
 		p.pop();
 
 		

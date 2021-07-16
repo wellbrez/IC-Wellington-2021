@@ -16,15 +16,21 @@ function excluirPoligono()
 {
     let id = poligonoSelecionado;
     let certeza = confirm(`Tem certeza de que deseja excluir o Polígono ${id} (${poligonos[id].nome})?`)
+    const mostrador = document.getElementById(`Pol${id}`);
     if(certeza)
     {
         poligonos.splice(id,1);
-        document.getElementById(`Pol${id}`).remove();
+        if(mostrador)
+        {
+            mostrador.remove();
+        }
+        
     }
-    if(poligonoSelecionado==id)
+    if(poligonos.length==0)
     {
-        selecionar(poligonos.length-1);
+        poligonos = [new Polygon()];
     }
+    selecionar(poligonos.length-1);
     atualizarUI();
 }
 function toggleBotoesNav()

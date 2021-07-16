@@ -61,4 +61,5 @@ function carregarImportacaoInicial()
 	{
 		poligonos.push(new Polygon());
 	}
+	atualizarMenuPoligonos();
 }

@@ -7,10 +7,6 @@ function atualizarUI()
         {
             pontosDoNucleoCentral = [];
         }
-        else
-        {
-            poligono.cor
-        }
     }
 
 

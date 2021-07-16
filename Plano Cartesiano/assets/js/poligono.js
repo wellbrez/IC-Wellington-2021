@@ -4,7 +4,7 @@ function Polygon(nome)
     this.pontos = [];
 	this.selected = false;
 	this.positivo = true;
-	this.color = sketch.corPoligonoNormal;
+	this.color;
 	this.area = 0;
 	this.centroideX = 0;
 	this.centroideY = 0;
@@ -85,9 +85,9 @@ function Polygon(nome)
 		}
 		else
 		{
-			sketch.stroke(corContorno)
+			sketch.stroke(this.color||corContorno)
 			sketch.strokeWeight(4)
-			sketch.fill(corPoligono)
+			sketch.fill(this.color||corPoligono)
 		}
 		sketch.beginShape()
 		for(let i=0;i<this.pontos.length;i++)

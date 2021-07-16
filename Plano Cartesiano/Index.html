@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="assets/css/janelaExportar.css"></link>
 	<link rel="stylesheet" href="assets/css/style.css"></link>
 	<link rel="stylesheet" href="assets/css/novoPoligono.css"></link>
-<title>Nucleo Central Musso</title>
+<title>Nucleo Central</title>
 </head>
 <body>
 	<nav id=nav>
@@ -25,6 +25,8 @@
 			<img src=icones/addPol.png>Add Poligono</li>
 		<li id="botao_excluirpoligono" class="botoesnav" onclick='excluirPoligono()'>
 			<img src=icones/excluirPol.png>  Excluir Poligono</li>
+		<li id="botao_modoLN" class="botoesnav" onclick='modoLN()'><img>Visualizar LN</li>
+		<span id="AreaSapata"></span>
 	</ul>
 </nav>
 
@@ -106,6 +108,8 @@
 <script src="assets/js/compartilharWhatsapp.js"></script>
 <script src="assets/js/configurarJanela.js"></script>
 <script src="assets/js/adicionarPoligono.js"></script>
+<script src="assets/js/desenharLN.js"></script>
+<script src="assets/js/vetores.js"></script>
 
 <script>
 	let middledragstart = [0,0];

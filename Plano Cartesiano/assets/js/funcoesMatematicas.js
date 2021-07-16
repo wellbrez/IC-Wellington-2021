@@ -9,6 +9,9 @@ let anguloParaDirecoesPrincipais=0;
 let IxPrincipal=0;
 let IyPrincipal=0;
 let pontosDoNucleoCentral = [];
+let eixoPrincipalL1 =[];
+let eixoPrincipalL2 =[];
+let anguloGlobal = 0;
 function calcular_propriedades(poligono)
 {
     //Organizar pontos;
@@ -192,20 +195,7 @@ function rotacionarVetor(vetor,angulo)
         
     );
 }
-function PVector(x,y)
-{
-    this.x = x;
-    this.y = y;
-    this.xOriginal = x;
-    this.yOriginal = y;
-    this.rotacionar = function(ang)
-    {
-        let xAnterior = this.x;
-        let yAnterior = this.y;
-        this.x = xAnterior * Math.cos(ang) - yAnterior * Math.sin(ang),
-        this.y = xAnterior * Math.sin(ang) + yAnterior * Math.cos(ang)
-    }
-}
+
 
 //Teste com envoltoria
 function calcularNucleoCentral()
@@ -280,7 +270,19 @@ function calcularNucleoCentral()
                 vetorPonto = new PVector(pa,pb);
                 
             }
+            eixoPrincipalL1[0] = (new PVector(0,10));
+            eixoPrincipalL1[1] = (new PVector(0,-10));
+            eixoPrincipalL2[0] = (new PVector(10,0));
+            eixoPrincipalL2[1] = (new PVector(-10,0));
+            eixoPrincipalL1[0].rotacionar(angulo);
+            eixoPrincipalL1[1].rotacionar(angulo);
+            eixoPrincipalL2[0].rotacionar(angulo);
+            eixoPrincipalL2[1].rotacionar(angulo);
+            anguloGlobal = angulo;
             
+
+
+
             vetorPonto.rotacionar(angulo);
             vetorPonto.x+=centroideGlobalX;
             vetorPonto.y+=centroideGlobalY;

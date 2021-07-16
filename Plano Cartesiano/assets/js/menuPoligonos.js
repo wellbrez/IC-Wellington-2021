@@ -13,17 +13,38 @@ function mostrarMenuPontos()
         botaoMostrarPoligonos.innerText = ">>"
     }
     botaoMostrarPoligonos.style.marginLeft = textoPoligonos.style.maxWidth;
-}
 
+}
+function reduzirQtdMostradoresAPoligonos()
+{
+    const mostradores = document.getElementsByClassName('nomePoligono');
+    //igualar qtd mostradores e qtd poligonos
+    if (mostradores && poligonos)
+    {
+        while(mostradores.length>poligonos.length)
+        {
+                mostradores[mostradores.length-1].remove();
+        }
+    }
+    else
+    {
+        throw new Error("mostradores ou poligonos são elementos com problemas");
+    }
+}
 function atualizarMenuPoligonos()
 {
+    reduzirQtdMostradoresAPoligonos()
+    const mostradoresDePoligonos = document.querySelectorAll('.nomePoligono')
+    
     for(let iPoligono=0;iPoligono<poligonos.length;iPoligono++)
     {
-        const mostradorDePoligono = document.getElementById(`Pol${iPoligono}`)
+        let mostradorDePoligono = mostradoresDePoligonos[iPoligono];
+        ;
+        //console.log(mostradoresDePoligonos[iPoligono])
         //Se nao existir o mostrador do poligono, cria um novo.
-        if(mostradorDePoligono==null)
+        if(!mostradorDePoligono || verificarIDs(mostradorDePoligono,iPoligono))
         {
-            criarMostradorDePoligono(iPoligono)
+            mostradorDePoligono = criarMostradorDePoligono(iPoligono)
             criarMostradorDeArea(iPoligono)
         }
         atualizarMostradorDeArea(iPoligono)
@@ -81,12 +102,18 @@ function atualizarValoresDosMostradores(iPonto,iPoligono)
 {
     const xInput = document.getElementById(`P${iPoligono}P${iPonto}x`)
     const yInput = document.getElementById(`P${iPoligono}P${iPonto}y`)
-    xInput.value = poligonos[iPoligono].pontos[iPonto].x.toFixed(2);
+    if(xInput && yInput)
+    {
+        xInput.value = poligonos[iPoligono].pontos[iPonto].x.toFixed(2);
     yInput.value = -poligonos[iPoligono].pontos[iPonto].y.toFixed(2);
+        }
+    
 }
 function atribuirCondicaoDeSelecao(iPonto,iPoligono)
 {
     const divPt = document.getElementById(`P${iPoligono}P${iPonto}`)
+    if(divPt)
+    {
     if(poligonos[iPoligono].pontos[iPonto].ativo)
             {
                 divPt.classList.add('pontoSelecionado');
@@ -99,10 +126,14 @@ function atribuirCondicaoDeSelecao(iPonto,iPoligono)
             {
                 divPt.classList.remove("pontoSelecionado");
             }
+        }
 }
 function atualizarMostradorDeArea(iPoligono)
 {
-    document.getElementById(`Pol${iPoligono}Area`).innerText = poligonos[iPoligono].area.toFixed(2);
+    const spanArea = document.getElementById(`Pol${iPoligono}Area`);
+    if(spanArea)
+    {document.getElementById(`Pol${iPoligono}Area`).innerText = poligonos[iPoligono].area.toFixed(2);}
+    
 }
 
 function atualizarMostradorDePoligono(iPoligono)
@@ -126,17 +157,17 @@ function atualizarMostradorDePoligono(iPoligono)
                 atribuirTexto("y: ",divPt);
             divPt.appendChild(yInput);
 
-            xInput.onchange = function()
+            xInput.onchange = function(e)
             {
                 const vetorDados = pegarValorDaCaixaDeTexto(iPoligono,iPonto);
                 atribuirValorAoPonto(vetorDados);
             }
-            yInput.onchange = function()
+            yInput.onchange = function(e)
             {
                 const vetorDados = pegarValorDaCaixaDeTexto(iPoligono,iPonto);
                 atribuirValorAoPonto(vetorDados);
             }
-            divPt.onclick = function()
+            divPt.onclick = function(e)
             {
                 poligonos[iPoligono].pontos[iPonto].selecionar();
             }
@@ -154,19 +185,22 @@ function criarMostradorDePoligono(iPoligono)
     atribuirNovaLinha(span);
     span.onclick = function() {selecionar(iPoligono)};
     divPontos = criarElemento("div",`Pol${iPoligono}Pontos`,"pontosContainer",divPol)
+    return divPol;
 }
 function criarMostradorDeArea(iPoligono)
 {
     const divPoligonos = document.getElementById("textoPoligonos");
     const span = divPoligonos.querySelector(`#Pol${iPoligono} span`);
-    console.log(span);
-    const areaSpan = criarElemento("span",`Pol${iPoligono}Area`,null,span)
+    //console.log(span);
+    const areaSpan = criarElemento("span",`Pol${iPoligono}Area`,'mostradorArea',span)
     atribuirTexto("Area: ",areaSpan)
 }
 function atualizarVisibilidadeDoMostradorDePontos(iPoligono)
 {
     const divPol = document.getElementById(`Pol${iPoligono}`)
     const divPontos = document.getElementById(`Pol${iPoligono}Pontos`)
+    if (divPol && divPontos)
+    {
     if(poligonoSelecionado==iPoligono)
         {
             divPol.classList.add('textoSelecionado');
@@ -177,6 +211,29 @@ function atualizarVisibilidadeDoMostradorDePontos(iPoligono)
             divPol.classList.remove('textoSelecionado');
             divPontos.classList.add('collapsed')
         }
+    }
+}
+function verificarIDs(mostrador,idnova)
+{
+    const idvelho = mostrador.id.split("Pol")[1];
+    if(idvelho!=idnova)
+    {
+        mostrador.remove();
+        return true
+    }
+    return false
+    /*const idvelho = mostrador.id.split("Pol")[1];
+    console.log(idvelho,idnova);
+    const mostradores= mostrador.querySelectorAll("*");
+    for(elemento of mostradores)
+    {
+        if(elemento.id)
+        {
+            elemento.id.replace(`Pol${idvelho}`,`Pol${idnova}`)
+            elemento.id.replace(`P${idvelho}P`,`P${idnova}P`)
+        }
+    }
+*/
 }
 
 /*function janelaPopUp(texto)
