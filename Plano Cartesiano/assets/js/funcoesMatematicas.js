@@ -23,7 +23,7 @@ function calcular_propriedades(poligono)
     let somatorioIx=0;
     let somatorioIy=0;
     let somatorioIxy=0;
-    let anguloExternoTotal=0;
+    //let anguloExternoTotal=0;
     for(let i=0;i<pontosOrganizados.length-1;i++)
     {
         let xi = pontosOrganizados[i].x;
@@ -47,22 +47,22 @@ function calcular_propriedades(poligono)
         }
         
         //let signedArea =(x0*yi - xi*y0);
-        let v1x = xi - x0;
+        /*let v1x = xi - x0;
         let v1y = yi - y0;
         let v2x = xi1 - xi;
-        let v2y = yi1 - yi;
-        let signedArea = v1x*v2y-v2x*v1y;
-        let anguloExterno = (v1x*v2x + v1y*v2y)*isqrt(v1x**2+v1y**2)*isqrt(v2x**2+v2y**2);
-        anguloExterno = Math.acos(anguloExterno);
+        let v2y = yi1 - yi;*/
+        //let signedArea = v1x*v2y-v2x*v1y;
+        //let anguloExterno = (v1x*v2x + v1y*v2y)*isqrt(v1x**2+v1y**2)*isqrt(v2x**2+v2y**2);
+        //anguloExterno = Math.acos(anguloExterno);
         //console.log(anguloExterno*180/Math.PI)
-        if(signedArea<0)
+        /*if(signedArea<0)
         {
             anguloExternoTotal+=anguloExterno;
         }
         else
         {
             anguloExternoTotal-=anguloExterno;
-        }
+        }*/
 
 
         //somatorioIx += (yi*yi + yi*yi1 + yi1*yi1)*ai;
@@ -70,13 +70,13 @@ function calcular_propriedades(poligono)
         //somatorioIxy += (xi*yi1 + 2*xi*yi + 2*xi1*yi1 + xi1*yi)*ai
     }
     //console.log(anguloExternoTotal*180/Math.PI)
-    let somaAngulosExternos = Math.round(Math.abs(anguloExternoTotal*180/Math.PI))
+    /*let somaAngulosExternos = Math.round(Math.abs(anguloExternoTotal*180/Math.PI))
     if(somaAngulosExternos!=360)
     {
         poligono.isValid = false;
         return
     }
-    poligono.isValid=true;
+    poligono.isValid=true;*/
     let area = somatorioArea/2;
     let Cx = somatorioCx/(6*area);
     let Cy = somatorioCy/(6*area);
