@@ -12,6 +12,7 @@ function Polygon(nome)
 	this.IyCanvas = 0;
 	this.IxyCanvas = 0;
 	this.isValid = true;
+	this.retasIntersectantes=[];
 	
 	this.addPontoPorPixel = function(posx,posy)
 	{

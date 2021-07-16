@@ -166,7 +166,10 @@ var sketch = function(p)
 		
 
 
-
+		/*for(let IP of IPs)
+		{
+			p.ellipse(pixelX(IP.x),pixelY(IP.y),30,30)
+		}*/
 
 		p.pop();
 

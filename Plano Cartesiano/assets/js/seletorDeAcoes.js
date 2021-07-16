@@ -96,6 +96,7 @@ function criarPonto(tempo,objx,objy,poligono)
         poligono.pontos.push(pontoTemporario);
         pontoAssociado = pontoTemporario;
     }
+
 }
 
 

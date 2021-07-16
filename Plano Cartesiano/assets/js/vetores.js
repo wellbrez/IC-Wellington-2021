@@ -1,3 +1,4 @@
+//let IPs = [];
 function LineSegment(P1,P2)
 {
     this.P1 = P1;
@@ -13,10 +14,43 @@ function LineSegment(P1,P2)
         const vx = Pti[0]-this.P2.x;
         const vy = Pti[1]-this.P2.y;
         const produto = ux*vx + uy*vy
+         
         if(produto<0) return false;
         if(produto>this.size) return false;
         return true;
 
+    }
+    this.intersecaoInvalida = function(Pti,L2)
+    {
+        const ux = this.difx;
+        const uy = this.dify;
+        const vx = Pti[0]-this.P2.x;
+        const vy = Pti[1]-this.P2.y;
+        const produto = ux*vx + uy*vy
+        if(produto<0) return false;
+        if(produto>this.size) return false;
+        const u2x = L2.difx;
+        const u2y = L2.dify;
+        const v2x = Pti[0]-L2.P2.x;
+        const v2y = Pti[1]-L2.P2.y;
+        const produto2 = u2x*v2x+u2y*v2y;
+        if(produto2<0) return false;
+        if(produto2>L2.size) return false;
+        return true;         
+    }
+    this.intersectAndInside = function(linha)
+    {
+        const P3 = linha.P1;
+        const P4 = linha.P2;
+        const IP = this.intersect(P3,P4);
+        if(IP)
+        {
+            return this.intersecaoInvalida(IP,linha);
+        }
+        if(!IP)
+        {
+            return false;
+        }
     }
     this.intersect = function(P3,P4)
     {
