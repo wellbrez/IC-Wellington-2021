@@ -108,5 +108,8 @@ function PVector(x,y)
         this.x = xAnterior * Math.cos(ang) - yAnterior * Math.sin(ang),
         this.y = xAnterior * Math.sin(ang) + yAnterior * Math.cos(ang)
     }
-    
+    this.produtoVetorial = function(p2)
+    {
+        return this.x*p2.y - p2.x*this.y
+    }
 }

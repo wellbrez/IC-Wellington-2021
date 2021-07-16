@@ -13,6 +13,7 @@ function Polygon(nome)
 	this.IxyCanvas = 0;
 	this.isValid = true;
 	this.retasIntersectantes=[];
+	this.LN = [];
 	
 	this.addPontoPorPixel = function(posx,posy)
 	{

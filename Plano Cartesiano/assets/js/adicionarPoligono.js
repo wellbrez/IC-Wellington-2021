@@ -49,6 +49,11 @@ function adicionarPerfilI()
     nome.replace(";",",")
     const PolNovo = new Polygon(nome)
     PolNovo.pontos = [Pt1,Pt2,Pt3,Pt4,Pt5,Pt6,Pt7,Pt8,Pt9,Pt10,Pt11,Pt12]
+    if(poligonos.length==1 && poligonos[0].pontos.length==0)
+    {
+        poligonos.pop();
+        atualizarUI();
+    }
 	poligonos.push(PolNovo);
 
 	selecionar(poligonos.length-1);
@@ -85,6 +90,11 @@ function adicionarPerfilRetangular()
     nome.replace(";",",")
     const PolNovo = new Polygon(nome)
     PolNovo.pontos = [Pt1,Pt2,Pt3,Pt4]
+    if(poligonos.length==1 && poligonos[0].pontos.length==0)
+    {
+        poligonos.pop();
+        atualizarUI();
+    }
 	poligonos.push(PolNovo);
 
 	selecionar(poligonos.length-1);
@@ -128,6 +138,11 @@ function adicionarPerfilCircular()
     nome.replace(";",",")
     const PolNovo = new Polygon(nome)
     PolNovo.pontos = pontos
+    if(poligonos.length==1 && poligonos[0].pontos.length==0)
+    {
+        poligonos.pop();
+        atualizarUI();
+    }
 	poligonos.push(PolNovo);
 
 	selecionar(poligonos.length-1);
@@ -172,6 +187,11 @@ function adicionarPerfilElipsoidal()
     nome.replace(";",",")
     const PolNovo = new Polygon(nome)
     PolNovo.pontos = pontos
+    if(poligonos.length==1 && poligonos[0].pontos.length==0)
+    {
+        poligonos.pop();
+        atualizarUI();
+    }
 	poligonos.push(PolNovo);
 
 	selecionar(poligonos.length-1);

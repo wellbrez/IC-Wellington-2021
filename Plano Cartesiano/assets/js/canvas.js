@@ -128,15 +128,45 @@ var sketch = function(p)
 			eixosPrincipais();
 		}
 		
-		if(mostrarLN && poligonos[0].pontos.length>=3)
+
+		if(mostrarLN)
+		{
+			const [a,b] = desenharLN(p.mouseX,p.mouseY,areaTotal,IxPrincipal,IyPrincipal);
+			let areaTotalTracionada=0;
+			for(poligono of PoligonosAreaTracionada)
+			{
+				areaTotalTracionada+=poligono.area;
+			}
+			if(areaTotalTracionada/areaTotal>0.5)
+			{
+				[PoligonosAreaTracionada, PoligonosAreaComprimida] = [PoligonosAreaComprimida,PoligonosAreaTracionada];
+			}
+			for(poligono of PoligonosAreaTracionada)
+			{
+				poligono.atualizarPropriedades();
+				poligono.color = "rgba(255,0,0,.4)";
+				poligono.desenhar();
+			}
+			for(poligono of PoligonosAreaComprimida)
+			{
+				poligono.atualizarPropriedades();
+				poligono.color = "rgba(0,255,0,.4)";
+				poligono.desenhar();
+			}
+			sketch.fill("white");
+			sketch.strokeWeight(0);
+			sketch.text(`a: ${a.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-20)
+			sketch.text(`b: ${-b.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY))
+		}
+		/*if(mostrarLN && poligonos[0].pontos.length>=3)
 		{
 			SohArea1 = new Polygon("SohArea1");
 			SohArea2 = new Polygon("SohArea2");
-			const [a,b] = desenharLN(p.mouseX,p.mouseY,areaTotal,IxPrincipal,IyPrincipal);
+			
 		
 			SohArea1.atualizarPropriedades()
-			SohArea2.atualizarPropriedades()
-			if(SohArea1.area>SohArea2.area)
+			SohArea2.atualizarPropriedades()*/
+			/*if(SohArea1.area>SohArea2.area)
 			{
 				SohArea1.color = "rgba(0,255,0,.4)"
 				SohArea2.color = "rgba(255,0,0,.4)"
@@ -149,19 +179,16 @@ var sketch = function(p)
 				SohArea1.color = "rgba(255,0,0,.4)"
 				let percent = SohArea2.area*100 / (poligonos[0].area)
 				document.getElementById("AreaSapata").innerHTML = `Area tracionada:${percent.toFixed(3)}%`;
-			}
+			}*/
 			
 		
-			SohArea1.desenhar();
-			SohArea2.desenhar();
-
+		/*	SohArea1.desenhar();
+			SohArea2.desenhar();*/
 			
-			sketch.fill("white");
-			sketch.strokeWeight(0);
-			sketch.text(`a: ${a.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-20)
-			sketch.text(`b: ${-b.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY))
 			
-		}
+			
+			
+		
 		
 		
 
