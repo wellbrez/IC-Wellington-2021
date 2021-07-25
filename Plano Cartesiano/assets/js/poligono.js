@@ -1,4 +1,7 @@
-function Polygon(nome)
+let poligonos = [];
+let poligonoSelecionado = 0;
+
+function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 {
     this.nome = (nome==null ? "" : nome);
     this.pontos = [];
@@ -14,6 +17,8 @@ function Polygon(nome)
 	this.isValid = true;
 	this.retasIntersectantes=[];
 	this.LN = [];
+	this.conjunto = conjunto;
+	this.poligonos = pols;
 	
 	this.addPontoPorPixel = function(posx,posy)
 	{
@@ -44,6 +49,12 @@ function Polygon(nome)
 		{
 			this.area = override;
 		}
+		calcularCentroidesGlobais(this.poligonos,this.conjunto);
+		calcularInerciaGlobal(this.poligonos,this.conjunto);
+		this.conjunto.envoltoria = calcularEnvoltoria(this.poligonos,this.conjunto);
+    	atualizarMenuPoligonos();
+
+		calcularNucleoCentral(this.poligonos,this.conjunto);
 		mostrar_area = true;
 	}
 	this.desenharPontos = function()

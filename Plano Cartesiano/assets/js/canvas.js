@@ -79,8 +79,10 @@ var sketch = function(p)
 		//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
 		
 		
-
-		
+		if(propriedadesGlobais.envoltoria)
+		{
+			desenharEnvoltoria(propriedadesGlobais.envoltoria);
+		}
 		for(let poligono of poligonos)
 		{
 			p.push()
@@ -97,7 +99,7 @@ var sketch = function(p)
 		}
 		p.push();
 		p.beginShape()
-		for(let ponto of pontosDoNucleoCentral)
+		for(let ponto of propriedadesGlobais.pontosDoNucleoCentral)
 		{
 			
 			let x = pixelX(ponto.x);
@@ -117,48 +119,52 @@ var sketch = function(p)
 			p.ellipse(x,y,7,7);
 		}
 		
+		
 		/*SohArea.atualizarPropriedades();*/
 		p.strokeWeight(3);
 		p.stroke(corNC)
 		p.fill('rgba(0,0,0,0)');
 		p.endShape(p.CLOSE)
 
-		if(eixoPrincipalL1.length>0)
+		if(propriedadesGlobais.eixoPrincipalL1.length>0)
 		{
 			eixosPrincipais();
 		}
 		
-
+		
 		if(mostrarLN)
 		{
-			const [a,b] = desenharLN(p.mouseX,p.mouseY,areaTotal,IxPrincipal,IyPrincipal);
-			let areaTotalTracionada=0;
-			for(poligono of PoligonosAreaTracionada)
-			{
-				areaTotalTracionada+=poligono.area;
-			}
-			if(areaTotalTracionada/areaTotal>0.5)
-			{
-				[PoligonosAreaTracionada, PoligonosAreaComprimida] = [PoligonosAreaComprimida,PoligonosAreaTracionada];
-			}
-			for(poligono of PoligonosAreaTracionada)
-			{
-				poligono.atualizarPropriedades();
-				poligono.color = "rgba(255,0,0,.4)";
-				poligono.desenhar();
-			}
-			for(poligono of PoligonosAreaComprimida)
-			{
-				poligono.atualizarPropriedades();
-				poligono.color = "rgba(0,255,0,.4)";
-				poligono.desenhar();
-			}
-			sketch.fill("white");
-			sketch.strokeWeight(0);
-			sketch.text(`a: ${a.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-20)
-			sketch.text(`b: ${-b.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY))
+			LN(p);
 		}
 		
+		p.beginShape()
+		for(let ponto of propriedadesAreaComprimida.pontosDoNucleoCentral)
+		{
+			
+			let x = pixelX(ponto.x);
+			let y = pixelY(ponto.y);
+			let xTexto = pixelX(ponto.x)+2;
+			let yTexto = pixelY(ponto.y) -2;
+			let cx = ponto.xOriginal.toFixed(2);
+			let cy = -ponto.yOriginal.toFixed(2);
+
+			p.vertex(x,y);
+			p.fill(corTexto);
+			p.textSize(15);
+			p.strokeWeight(0);
+			p.text(`(${cx} , ${cy})`,xTexto,yTexto)
+			p.strokeWeight(2);
+			p.fill(corContorno);
+			p.ellipse(x,y,7,7);
+		}
+		
+		
+		/*SohArea.atualizarPropriedades();*/
+		p.strokeWeight(3);
+		p.stroke(corNC)
+		p.fill('rgba(0,0,0,0)');
+		p.endShape(p.CLOSE)
+
 		if(eventoScroll!=null){
 			eventoScroll.aplicar()};
 		if(eventoZoom!=null){

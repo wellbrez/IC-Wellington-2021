@@ -1,7 +1,5 @@
 let PoligonosAreaTracionada = [];
 let PoligonosAreaComprimida = [];
-let SohArea1 = new Polygon("SohArea1");
-let SohArea2 = new Polygon("SohArea2");
 let mostrarLN = false;
 function modoLN ()
 {
@@ -11,12 +9,12 @@ function modoLN ()
         document.getElementById("AreaSapata").innerHTML = "";
     }
 }
-function desenharLN(mx,my,A,Ix,Iy)
+function desenharLN(mx,my,A,Ix,Iy,poligonos,conjunto)
 {  
     PoligonosAreaTracionada = [];
     PoligonosAreaComprimida = [];
     let a=0,b=0;
-    for(poligono of poligonos)
+    for(let poligono of poligonos)
     {
         let SohArea1 = new Polygon();
         let SohArea2 = new Polygon();
@@ -26,11 +24,12 @@ function desenharLN(mx,my,A,Ix,Iy)
             {
             
             let Pab = new PVector(posicao_do_pixel_x(mx),posicao_do_pixel_y(my));
-            Pab.x -= centroideGlobalX;
-            Pab.y -= centroideGlobalY;
-            Pab.rotacionar(-anguloGlobal);
+            
+            Pab.x -= conjunto.centroideGlobalX;
+            Pab.y -= conjunto.centroideGlobalY;
+            Pab.rotacionar(-conjunto.anguloGlobal);
             a = Pab.x;
-            b = Pab.y; 
+            b = Pab.y;
 
 
             let x0 = -200;
@@ -40,15 +39,16 @@ function desenharLN(mx,my,A,Ix,Iy)
 
             let y0 =(-1/A -a*x0/Iy)*Ix/b ;
             let ymax =(-1/A -a*xmax/Iy)*Ix/b ;
+            
 
             let P1 = new PVector(x0,y0);
             let P2 = new PVector(xmax,ymax);
-            P1.rotacionar(anguloGlobal);
-            P2.rotacionar(anguloGlobal);
-            P1.x += centroideGlobalX;
-            P2.x += centroideGlobalX;
-            P1.y += centroideGlobalY;
-            P2.y += centroideGlobalY;
+            P1.rotacionar(conjunto.anguloGlobal);
+            P2.rotacionar(conjunto.anguloGlobal);
+            P1.x += conjunto.centroideGlobalX;
+            P2.x += conjunto.centroideGlobalX;
+            P1.y += conjunto.centroideGlobalY;
+            P2.y += conjunto.centroideGlobalY;
             vetorInicioLN = new PVector(P2.x,P2.y);
             vetorLN = new PVector(P1.x-P2.x,P1.y-P2.y);
 
@@ -91,8 +91,9 @@ function desenharLN(mx,my,A,Ix,Iy)
                 }
                 
             }
-            SohArea1.atualizarPropriedades();
-            SohArea2.atualizarPropriedades();
+
+            calcular_propriedades(SohArea1)
+            calcular_propriedades(SohArea2)
             let comprimido = 1;
             if(SohArea1.area!=0)
             {
@@ -136,3 +137,63 @@ function desenharLN(mx,my,A,Ix,Iy)
 }
 
 
+function LN(p)
+    {
+        let i=0;
+
+		recursivaLN(propriedadesGlobais,poligonos,p,i);
+    }
+    function recursivaLN(prop,poligonosCompr,p,iteracao,a=0,b=0)
+    {
+        iteracao++;
+        if(iteracao>10) return;
+        propriedadesAreaComprimida = {...prop};
+		poligonosComprimidos = [...poligonosCompr];
+        
+        if(!a && !b)
+        {
+            [a,b] = desenharLN(p.mouseX,p.mouseY,propriedadesAreaComprimida.areaTotal,propriedadesAreaComprimida.IxPrincipal,propriedadesAreaComprimida.IyPrincipal,poligonosComprimidos,propriedadesAreaComprimida);
+        }
+        else
+        {
+            desenharLN(p.mouseX,p.mouseY,propriedadesAreaComprimida.areaTotal,propriedadesAreaComprimida.IxPrincipal,propriedadesAreaComprimida.IyPrincipal,poligonosComprimidos,propriedadesAreaComprimida);
+        }
+        let areaTotalTracionada=0;
+			for(poligono of PoligonosAreaTracionada)
+			{
+				areaTotalTracionada+=poligono.area;
+			}
+			if(areaTotalTracionada/propriedadesAreaComprimida.areaTotal>0.5)
+			{
+				[PoligonosAreaTracionada, PoligonosAreaComprimida] = [PoligonosAreaComprimida,PoligonosAreaTracionada];
+			}
+            if(areaTotalTracionada == propriedadesAreaComprimida.areaTotal || areaTotalTracionada==0) return;
+			for(let poligono of PoligonosAreaTracionada)
+			{
+                poligono.poligonos = PoligonosAreaTracionada;
+                poligono.conjunto = propriedadesAreaTracionada;
+                poligono.nome = "Tracionado"
+				poligono.atualizarPropriedades();
+				poligono.color = "rgba(255,0,0,.4)";
+				poligono.desenhar();
+			}
+			for(let poligono of PoligonosAreaComprimida)
+			{
+                poligono.poligonos = PoligonosAreaComprimida;
+                poligono.conjunto = propriedadesAreaComprimida;
+                poligono.nome = "Comprimido"
+				poligono.atualizarPropriedades();
+				poligono.color = "rgba(0,255,0,.4)";
+				poligono.desenhar();
+			}
+            if(-propriedadesAreaComprimida.areaTotal+prop.areaTotal<=0.1)
+            {
+                sketch.fill("white");
+			    sketch.strokeWeight(0);
+			    sketch.text(`a: ${a.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-20)
+			    sketch.text(`b: ${-b.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY))
+                document.getElementById("AreaSapata").innerText = (propriedadesAreaComprimida.areaTotal/propriedadesGlobais.areaTotal*100).toFixed(2)+"%"
+                return;
+            }
+            recursivaLN(propriedadesAreaComprimida,PoligonosAreaComprimida,p,iteracao,a,b)
+    }

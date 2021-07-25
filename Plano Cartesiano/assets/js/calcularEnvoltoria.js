@@ -1,9 +1,9 @@
 //iniciando método
-let pontosDaEnvoltoria = [];
-function calcularEnvoltoria()
+function calcularEnvoltoria(poligonos,conjunto)
 {
     let grahamScan = new GrahamScan();
     pontosTotais = [];
+    if(!poligonos) return;
     for (let poligono of poligonos)
     {
         if(poligono.positivo)
@@ -17,13 +17,13 @@ function calcularEnvoltoria()
     
     grahamScan.setPoints(pontosTotais);
     envoltoriaCrua = grahamScan.getHull();  // [1,0], [2,1], [0,1]
-    pontosDaEnvoltoria = [];
+    conjunto.pontosDaEnvoltoria = [];
     for (let point of envoltoriaCrua)
     {
-        pontosDaEnvoltoria.push(point[0]);
-        pontosDaEnvoltoria.push(point[1]);
+        conjunto.pontosDaEnvoltoria.push(point[0]);
+        conjunto.pontosDaEnvoltoria.push(point[1]);
     }
-    return pontosDaEnvoltoria;
+    return conjunto.pontosDaEnvoltoria;
 }
 function desenharEnvoltoria(pontos)
 {
@@ -31,7 +31,8 @@ function desenharEnvoltoria(pontos)
 	sketch.strokeWeight(3.9);
 	sketch.beginShape();
     sketch.fill(0,0,0,0);
-	for(i=0;i<pontos.length;i+=2)
+    if(!pontos) return;
+	for(let i=0;i<pontos.length;i+=2)
 	{
 		sketch.vertex(pixelX(pontos[i]),pixelY(pontos[i+1]));
 	}

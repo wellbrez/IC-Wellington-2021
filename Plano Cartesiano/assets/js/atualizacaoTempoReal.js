@@ -14,15 +14,12 @@ function atualizarUI()
         poligono.atualizarPropriedades();
         if (!poligono.isValid)
         {
-            pontosDoNucleoCentral = [];
+            propriedadesGlobais.pontosDoNucleoCentral = [];
         }
     }
 
 
-	envoltoria = calcularEnvoltoria();
-	desenharEnvoltoria(envoltoria);
-    atualizarMenuPoligonos();
-
+	
     
 
 }

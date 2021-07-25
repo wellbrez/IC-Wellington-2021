@@ -1,17 +1,12 @@
-let areaTotal=0;
-let centroideGlobalX=0;
-let centroideGlobalY=0;
-let inerciaCanvasX=0;
-let inerciaCanvasY=0;
-let maiorInerciaGlobal=0;
-let menorInerciaGlobal=0;
-let anguloParaDirecoesPrincipais=0;
-let IxPrincipal=0;
-let IyPrincipal=0;
-let pontosDoNucleoCentral = [];
-let eixoPrincipalL1 =[];
-let eixoPrincipalL2 =[];
-let anguloGlobal = 0;
+function calcularPropriedadesConjunto(vetorPoligonos,conjunto)
+{
+    for(let poligono of vetorPoligonos)
+    {
+        const [area,Cx,Cy,Ix,Iy,Ixy] = calcular_propriedades(poligono)
+
+    }
+}
+
 function calcular_propriedades(poligono)
 {
     //Organizar pontos;
@@ -45,38 +40,7 @@ function calcular_propriedades(poligono)
             x0 = pontosOrganizados[i-1].x;
             y0 = pontosOrganizados[i-1].y;
         }
-        
-        //let signedArea =(x0*yi - xi*y0);
-        /*let v1x = xi - x0;
-        let v1y = yi - y0;
-        let v2x = xi1 - xi;
-        let v2y = yi1 - yi;*/
-        //let signedArea = v1x*v2y-v2x*v1y;
-        //let anguloExterno = (v1x*v2x + v1y*v2y)*isqrt(v1x**2+v1y**2)*isqrt(v2x**2+v2y**2);
-        //anguloExterno = Math.acos(anguloExterno);
-        //console.log(anguloExterno*180/Math.PI)
-        /*if(signedArea<0)
-        {
-            anguloExternoTotal+=anguloExterno;
-        }
-        else
-        {
-            anguloExternoTotal-=anguloExterno;
-        }*/
-
-
-        //somatorioIx += (yi*yi + yi*yi1 + yi1*yi1)*ai;
-        //somatorioIy += (xi*xi + xi*xi1 + xi1*xi1)*ai;
-        //somatorioIxy += (xi*yi1 + 2*xi*yi + 2*xi1*yi1 + xi1*yi)*ai
     }
-    //console.log(anguloExternoTotal*180/Math.PI)
-    /*let somaAngulosExternos = Math.round(Math.abs(anguloExternoTotal*180/Math.PI))
-    if(somaAngulosExternos!=360)
-    {
-        poligono.isValid = false;
-        return
-    }
-    poligono.isValid=true;*/
     let area = somatorioArea/2;
     let Cx = somatorioCx/(6*area);
     let Cy = somatorioCy/(6*area);
@@ -112,12 +76,10 @@ function calcular_propriedades(poligono)
     poligono.IxCanvas = Ix;
     poligono.IyCanvas = Iy;
     poligono.IxyCanvas = Ixy;
-    calcularCentroidesGlobais();
-    calcularInerciaGlobal();
-    calcularNucleoCentral();
+    
     return [area,Cx,Cy,Ix,Iy,Ixy]
 }
-function calcularCentroidesGlobais()
+function calcularCentroidesGlobais(poligonos,conjunto)
 {
     let somaArea=0;
     let somaXArea=0;
@@ -130,87 +92,82 @@ function calcularCentroidesGlobais()
 		somaYArea+=poligonos[i].centroideY*poligonos[i].area;
 	}
 
-    areaTotal = somaArea;
-    centroideGlobalX = somaXArea/areaTotal;
-    centroideGlobalY = somaYArea/areaTotal;
+    conjunto.areaTotal = somaArea;
+    conjunto.centroideGlobalX = somaXArea/conjunto.areaTotal;
+    conjunto.centroideGlobalY = somaYArea/conjunto.areaTotal;
 }
-function calcularInerciaGlobal()
+function calcularInerciaGlobal(poligonos,conjunto)
 {
 
-		let Ix=0;
-		let Iy=0;
-		let Ixy = 0;
+    let Ix=0;
+    let Iy=0;
+    let Ixy = 0;
 
-		for (let i=0;i<poligonos.length;i++)  //TEOREMA DOS EIXOS PARALELOS COM RETANGULOS
-		{
-			Ix +=poligonos[i].IxCanvas+poligonos[i].area*(poligonos[i].centroideY-centroideGlobalY)**2; 
-			Iy +=poligonos[i].IyCanvas+poligonos[i].area*(poligonos[i].centroideX-centroideGlobalX)**2;
-			Ixy +=poligonos[i].IxyCanvas+poligonos[i].area*(-centroideGlobalX+poligonos[i].centroideX)*(centroideGlobalY-poligonos[i].centroideY); 
-		}
+    let centroideGlobalX = conjunto.centroideGlobalX;
+    let centroideGlobalY = conjunto.centroideGlobalY;
+    for (let i=0;i<poligonos.length;i++)  //TEOREMA DOS EIXOS PARALELOS COM RETANGULOS
+    {
+        Ix +=poligonos[i].IxCanvas+poligonos[i].area*(poligonos[i].centroideY-centroideGlobalY)**2; 
+        Iy +=poligonos[i].IyCanvas+poligonos[i].area*(poligonos[i].centroideX-centroideGlobalX)**2;
+        Ixy +=poligonos[i].IxyCanvas+poligonos[i].area*(-centroideGlobalX+poligonos[i].centroideX)*(centroideGlobalY-poligonos[i].centroideY); 
+    }
 
-		let Imed = (Ix+Iy)/2;
-		let R = (((Ix-Iy)/2)**2+Ixy**2)**0.5;
-		let Imax = Imed+R;
-		let Imin = Imed-R;
-        maiorInerciaGlobal = Imax;
-        menorInerciaGlobal = Imin;
-        inerciaCanvasX = Ix;
-        inerciaCvanasY = Iy;
-        
-		
-		if (Ix>Iy)
-		{
-			anguloParaDirecoesPrincipais = Math.atan(-2*Ixy/(Iy-Ix))/2;
-			Ixnew = Imax;
-			Iynew = Imin;
-		}
-		else if(Iy>Ix)
-		{
-			anguloParaDirecoesPrincipais = Math.atan(-2*Ixy/(Iy-Ix))/2;
-			Iynew=Imax;
-			Ixnew=Imin;
-		}
-		else
-		{
-			anguloParaDirecoesPrincipais = Math.PI/4;
-			if (Ixy>0)
-			{
-				Ixnew = Imax;
-				Iynew = Imin;
-			}
-			else
-			{
-				Iynew = Imax;
-				Ixnew = Imin;
-			}
-		}
-        IxPrincipal = Ixnew;
-        IyPrincipal = Iynew;
-
+    let Imed = (Ix+Iy)/2;
+    let R = (((Ix-Iy)/2)**2+Ixy**2)**0.5;
+    let Imax = Imed+R;
+    let Imin = Imed-R;
+    conjunto.maiorInerciaGlobal = Imax;
+    conjunto.menorInerciaGlobal = Imin;
+    conjunto.inerciaCanvasX = Ix;
+    conjunto.inerciaCvanasY = Iy;
+    
+    
+    if (Ix>Iy)
+    {
+        conjunto.anguloParaDirecoesPrincipais = Math.atan(-2*Ixy/(Iy-Ix))/2;
+        Ixnew = Imax;
+        Iynew = Imin;
+    }
+    else if(Iy>Ix)
+    {
+        conjunto.anguloParaDirecoesPrincipais = Math.atan(-2*Ixy/(Iy-Ix))/2;
+        Iynew=Imax;
+        Ixnew=Imin;
+    }
+    else
+    {
+        conjunto.anguloParaDirecoesPrincipais = Math.PI/4;
+        if (Ixy>0)
+        {
+            Ixnew = Imax;
+            Iynew = Imin;
+        }
+        else
+        {
+            Iynew = Imax;
+            Ixnew = Imin;
+        }
+    }
+    conjunto.IxPrincipal = Ixnew;
+    conjunto.IyPrincipal = Iynew;
 }
 
-function rotacionarVetor(vetor,angulo)
-{
-    return new PVector(
-        
-    );
-}
 
 
 //Teste com envoltoria
-function calcularNucleoCentral()
+function calcularNucleoCentral(poligonos,conjunto)
 	{
-        pontosDoNucleoCentral = [];
+        conjunto.pontosDoNucleoCentral = [];
 
-        let arrayEnvoltoria = pontosDaEnvoltoria.slice();
+        let arrayEnvoltoria = conjunto.pontosDaEnvoltoria.slice();
         arrayEnvoltoria.push(arrayEnvoltoria[0]);
         arrayEnvoltoria.push(arrayEnvoltoria[1]);
 
         
-        let angulo = anguloParaDirecoesPrincipais;
-        let Ixnew = IxPrincipal;
-        let Iynew = IyPrincipal;
-        let A = areaTotal;
+        let angulo = conjunto.anguloParaDirecoesPrincipais;
+        let Ixnew = conjunto.IxPrincipal;
+        let Iynew = conjunto.IyPrincipal;
+        let A = conjunto.areaTotal;
 
         for(let i=0;i<arrayEnvoltoria.length;i+=2)
         {
@@ -218,8 +175,8 @@ function calcularNucleoCentral()
             let x2 = arrayEnvoltoria[i+2];
             let y1 = arrayEnvoltoria[i+1];
             let y2 = arrayEnvoltoria[i+3];
-            let xbarra = centroideGlobalX;
-            let ybarra = centroideGlobalY;
+            let xbarra = conjunto.centroideGlobalX;
+            let ybarra = conjunto.centroideGlobalY;
             let mx1 = -xbarra+x1;
 		    let mx2 = -xbarra+x2;
 		    let my1 = -ybarra+y1;
@@ -270,39 +227,24 @@ function calcularNucleoCentral()
                 vetorPonto = new PVector(pa,pb);
                 
             }
-            eixoPrincipalL1[0] = (new PVector(0,10));
-            eixoPrincipalL1[1] = (new PVector(0,-10));
-            eixoPrincipalL2[0] = (new PVector(10,0));
-            eixoPrincipalL2[1] = (new PVector(-10,0));
-            eixoPrincipalL1[0].rotacionar(angulo);
-            eixoPrincipalL1[1].rotacionar(angulo);
-            eixoPrincipalL2[0].rotacionar(angulo);
-            eixoPrincipalL2[1].rotacionar(angulo);
-            anguloGlobal = angulo;
+            conjunto.eixoPrincipalL1[0] = (new PVector(0,10));
+            conjunto.eixoPrincipalL1[1] = (new PVector(0,-10));
+            conjunto.eixoPrincipalL2[0] = (new PVector(10,0));
+            conjunto.eixoPrincipalL2[1] = (new PVector(-10,0));
+            conjunto.eixoPrincipalL1[0].rotacionar(angulo);
+            conjunto.eixoPrincipalL1[1].rotacionar(angulo);
+            conjunto.eixoPrincipalL2[0].rotacionar(angulo);
+            conjunto.eixoPrincipalL2[1].rotacionar(angulo);
+            conjunto.anguloGlobal = angulo;
             
 
 
 
             vetorPonto.rotacionar(angulo);
-            vetorPonto.x+=centroideGlobalX;
-            vetorPonto.y+=centroideGlobalY;
-            pontosDoNucleoCentral.push(vetorPonto);
+            vetorPonto.x+=conjunto.centroideGlobalX;
+            vetorPonto.y+=conjunto.centroideGlobalY;
+            conjunto.pontosDoNucleoCentral.push(vetorPonto);
 
         }
 	}
-
-var buf = new ArrayBuffer(4),
-f32=new Float32Array(buf),
-u32=new Uint32Array(buf);
-
-/*function isqrt(x) {
-  var x2 = 0.5 * (f32[0] = x);
-  u32[0] = (0x5f3759df - (u32[0] >> 1));
-  var y = f32[0];
-  y  = y * ( 1.5 - ( x2 * y * y ) );   // 1st iteration
-  return y;
-}*/
-function isqrt(x)
-{
-    return 1/Math.sqrt(x);
-}
+    

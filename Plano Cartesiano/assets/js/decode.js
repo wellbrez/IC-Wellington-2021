@@ -1,6 +1,5 @@
-let poligonos = [];
+
 let filestring;
-let poligonoSelecionado = 0;
 
 function decode(dadosCompactados)
 {
