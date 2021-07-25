@@ -108,7 +108,7 @@ var sketch = function(p)
 			let cy = -ponto.yOriginal.toFixed(2);
 
 			p.vertex(x,y);
-			p.fill('white');
+			p.fill(corTexto);
 			p.textSize(15);
 			p.strokeWeight(0);
 			p.text(`(${cx} , ${cy})`,xTexto,yTexto)
@@ -118,8 +118,8 @@ var sketch = function(p)
 		}
 		
 		/*SohArea.atualizarPropriedades();*/
-		p.strokeWeight(2);
-		p.stroke('rgba(255,255,255,0.6)')
+		p.strokeWeight(3);
+		p.stroke(corNC)
 		p.fill('rgba(0,0,0,0)');
 		p.endShape(p.CLOSE)
 
@@ -158,66 +158,11 @@ var sketch = function(p)
 			sketch.text(`a: ${a.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-20)
 			sketch.text(`b: ${-b.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY))
 		}
-		/*if(mostrarLN && poligonos[0].pontos.length>=3)
-		{
-			SohArea1 = new Polygon("SohArea1");
-			SohArea2 = new Polygon("SohArea2");
-			
-		
-			SohArea1.atualizarPropriedades()
-			SohArea2.atualizarPropriedades()*/
-			/*if(SohArea1.area>SohArea2.area)
-			{
-				SohArea1.color = "rgba(0,255,0,.4)"
-				SohArea2.color = "rgba(255,0,0,.4)"
-				let percent = SohArea1.area*100 / (poligonos[0].area)
-				document.getElementById("AreaSapata").innerHTML = `Area tracionada:${percent.toFixed(3)}%`;
-			}
-			else
-			{
-				SohArea2.color = "rgba(0,255,0,.4)"
-				SohArea1.color = "rgba(255,0,0,.4)"
-				let percent = SohArea2.area*100 / (poligonos[0].area)
-				document.getElementById("AreaSapata").innerHTML = `Area tracionada:${percent.toFixed(3)}%`;
-			}*/
-			
-		
-		/*	SohArea1.desenhar();
-			SohArea2.desenhar();*/
-			
-			
-			
-			
-		
-		
-		
-
-
-		/*for(let IP of IPs)
-		{
-			p.ellipse(pixelX(IP.x),pixelY(IP.y),30,30)
-		}*/
-
-		p.pop();
-
 		
 		if(eventoScroll!=null){
 			eventoScroll.aplicar()};
 		if(eventoZoom!=null){
-		eventoZoom.aplicar()}
-		//p.stroke('white');
-		//p.strokeWeight(2);
-		//p.line(-origin_pixeldistx,-origin_pixeldisty,0,0);
-		//p.ellipse(toquex-width/2,toquey-height/2,10,10);
-
-		p.push();
-		p.fill('yellow');
-		p.noStroke;
-
-		
-
-
-
+		eventoZoom.aplicar()} 
 	}
 }
 

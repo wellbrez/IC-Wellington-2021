@@ -88,7 +88,7 @@ function Polygon(nome)
 		else
 		{
 			sketch.stroke(this.color||corContorno)
-			sketch.strokeWeight(4)
+			sketch.strokeWeight(2)
 			sketch.fill(this.color||corPoligono)
 		}
 		sketch.beginShape()

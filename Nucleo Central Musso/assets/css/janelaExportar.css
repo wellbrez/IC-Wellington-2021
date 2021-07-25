@@ -1,8 +1,9 @@
+
 .botao1, .janela button
 {
-    background-color:rgb(91, 146, 121);
+    background-color:var(--background-color-bt1);
     cursor:pointer;
-    color:#12130F;
+    color:var(--color-bt1);
     border-radius:5px;
     width:auto;
     height:auto;
@@ -15,7 +16,7 @@
 }
 .botao1:hover, .janela button:hover
 {
-    background-color:rgb(143, 203, 155);
+    background-color:var(--background-color-bt1-hover);
 }
 #qrcode img
 {
@@ -36,7 +37,7 @@
     overflow:auto;
     overflow-wrap:break-word;
     background-color:transparent;
-    color:white;
+    color:var(--corTexto);
     text-align:center;
     border:none;
     width:100%;
@@ -71,32 +72,32 @@
     height:80%;
     left:20%;
     top:10%;
-    background:black;
+    background:var(--fundoJanela);
     z-index:250;
     transition: max-height .5s;
     border-radius:5px;
 }
 .btnClose
 {
-    color:white;
+    color:var(--corTexto);
     width:100%;
     padding:0px;
     border-radius:5px;
     height:auto;
-    background:rgba(255,0,0,0.2);
+    background:var(--corBtnClose);
     cursor:pointer;
     font-size:x-large;
     grid-area:x;
 }
 .btnClose:hover
 {
-    background:rgba(255,0,0,0.8);
+    background:var(--corBtnCloseHover);
 }
 
 #importacao input
 {
     padding:30px;
-    color:white;
+    color:var(--corTexto);
     font-size:x-large;
     font-family:consolas;
     cursor:default;
@@ -104,10 +105,10 @@
 input::-webkit-file-upload-button
 {
     font-family:consolas;
-    color:white;
+    color:var(--corTexto);
     background:transparent;
-    border:2px solid white;
-    color:rgb(143, 203, 155);
+    border:2px solid var(--corTexto);
+    color:var(--background-color-bt1);
     margin-left:20px;
     margin-right:20px;
     cursor:pointer;
@@ -121,7 +122,7 @@ input::-webkit-file-upload-button
 #compartilhamento
 {
     text-align:center;
-    background-color:rgba(0,0,0,0.3);
+    background-color:var(--fundoJanela);
     position:fixed;
     overflow:hidden;
     display:grid;
@@ -149,10 +150,10 @@ input::-webkit-file-upload-button
     border-radius:5px;
     float:left;
     margin-bottom:10px;
-    background-color:rgb(0,0,0,0.4);
+    background-color:var(--fundoJanela);
     height:100%;
     width:100%;
-    color:white;
+    color:var(--corTexto);
 }
 #compartilhamento .compartcontainer h2
 {

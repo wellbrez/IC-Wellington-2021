@@ -44,6 +44,7 @@ function gerar_arquivo()
 {
     //string_final = JSON.stringify(poligonos).replace(",",",\n")
     let conteudoDoArquivo = encode();
+    conteudoDoArquivo = conteudoDoArquivo.replaceAll(";",";\r\n");
     download("Poligonos",conteudoDoArquivo)
 }
 

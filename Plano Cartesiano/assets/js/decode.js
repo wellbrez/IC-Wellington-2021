@@ -29,11 +29,12 @@ function decode(dadosCompactados)
 			{
 				let x=Number(dadosSeparados[indiceDados])
 				let y=Number(dadosSeparados[indiceDados+1])
-				let ptTemporario = new ponto(x,y,x,y,1);
+				let ptTemporario = new ponto(x,y);
 				poligonos[indicePoligono].pontos.push(ptTemporario);
 				indiceDados+=2;
 			}
 			indicePoligono++;
+			atualizarUI();
 		}
 	}
 	else
@@ -61,5 +62,5 @@ function carregarImportacaoInicial()
 	{
 		poligonos.push(new Polygon());
 	}
-	atualizarMenuPoligonos();
+	atualizarUI();
 }

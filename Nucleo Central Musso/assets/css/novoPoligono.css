@@ -39,15 +39,15 @@
 }
 .input1, .input2, .input3, .input4, .input5, .input6,.inputname
 {
-    background:rgba(255,255,255,.4);;
-    color:white;
+    background:var(--corTexto);
+    color:var(--corTexto);
     outline:none;
     border:none;
     height:100%;
 }
 .label1, .label2, .label3, .label4, .label5, .label6, .labelname
 {
-    color:white;
+    color:var(--corTexto);
     font-weight: bolder;
     margin:0px;
     text-align:left;

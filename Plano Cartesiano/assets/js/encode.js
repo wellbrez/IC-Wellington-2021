@@ -1,19 +1,14 @@
 function encode()
 {
     let dadosEmString = "";
-    for(let i=0;i<poligonos.length;i++)
+    for(let poligono of poligonos)
     {
-        dadosEmString+=`${poligonos[i].nome};${poligonos[i].pontos.length}`;
-        
-        for(let j=0;j<poligonos[i].pontos.length;j++)
+        dadosEmString+=`${poligono.nome};${poligono.pontos.length}`
+        for(let ponto of poligono.pontos)
         {
-            dadosEmString+= `;${poligonos[i].pontos[j].objetivox}`
-            dadosEmString+= `;${poligonos[i].pontos[j].objetivoy}`
+            dadosEmString+=`;${ponto.x};${ponto.y}`
         }
-        if(i<poligonos.length-1)
-        {
-            dadosEmString+=";";
-        }
+        dadosEmString+=";";
     }
-    return dadosEmString;
+    return dadosEmString.slice(0,-1);
 }

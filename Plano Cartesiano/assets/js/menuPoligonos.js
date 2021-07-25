@@ -2,15 +2,15 @@ function mostrarMenuPontos()
 {
     let textoPoligonos = document.getElementById("textoPoligonos");
     let botaoMostrarPoligonos = document.getElementById("mostrarPoligonos");
-    if(textoPoligonos.style.maxWidth!='40vw')
+    if(textoPoligonos.style.maxWidth!='20rem')
     {
-        textoPoligonos.style.maxWidth="40vw";
-        botaoMostrarPoligonos.innerText = "<<"
+        textoPoligonos.style.maxWidth="20rem";
+        botaoMostrarPoligonos.classList.add('active')
     }
     else
     {
         textoPoligonos.style.maxWidth='0px';
-        botaoMostrarPoligonos.innerText = ">>"
+        botaoMostrarPoligonos.classList.remove('active')
     }
     botaoMostrarPoligonos.style.marginLeft = textoPoligonos.style.maxWidth;
 
