@@ -16,8 +16,8 @@ function desenharLN(mx,my,A,Ix,Iy,poligonos,conjunto)
     let a=0,b=0;
     for(let poligono of poligonos)
     {
-        let SohArea1 = new Polygon();
-        let SohArea2 = new Polygon();
+        let SohArea1 = new Polygon('SohArea1', conjuntoNulo,null);
+        let SohArea2 = new Polygon('SohArea2',conjuntoNulo,null);
         let vetorLN;
         
         if(my!=0)
@@ -140,15 +140,21 @@ function desenharLN(mx,my,A,Ix,Iy,poligonos,conjunto)
 function LN(p)
     {
         let i=0;
-
-		recursivaLN(propriedadesGlobais,poligonos,p,i);
+        let pols,propriedadesAreaComprimida;
+        try{
+            [pols,propriedadesAreaComprimida] = recursivaLN(propriedadesGlobais,poligonos,p,i);
+        }
+        catch{pols=[];propriedadesAreaComprimida = conjuntoNulo}
+		
+        return [pols,propriedadesAreaComprimida];
     }
     function recursivaLN(prop,poligonosCompr,p,iteracao,a=0,b=0)
     {
         iteracao++;
-        if(iteracao>10) return;
-        propriedadesAreaComprimida = {...prop};
+        propriedadesAreaComprimida = JSON.parse(JSON.stringify(prop));
 		poligonosComprimidos = [...poligonosCompr];
+        
+        if(iteracao>10) return[poligonosComprimidos,propriedadesAreaComprimida];
         
         if(!a && !b)
         {
@@ -173,6 +179,8 @@ function LN(p)
                 poligono.poligonos = PoligonosAreaTracionada;
                 poligono.conjunto = propriedadesAreaTracionada;
                 poligono.nome = "Tracionado"
+                
+                //console.log(poligono.conjunto);
 				poligono.atualizarPropriedades();
 				poligono.color = "rgba(255,0,0,.4)";
 				poligono.desenhar();
@@ -182,6 +190,7 @@ function LN(p)
                 poligono.poligonos = PoligonosAreaComprimida;
                 poligono.conjunto = propriedadesAreaComprimida;
                 poligono.nome = "Comprimido"
+                //console.log(poligono.conjunto);
 				poligono.atualizarPropriedades();
 				poligono.color = "rgba(0,255,0,.4)";
 				poligono.desenhar();
@@ -193,7 +202,7 @@ function LN(p)
 			    sketch.text(`a: ${a.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-20)
 			    sketch.text(`b: ${-b.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY))
                 document.getElementById("AreaSapata").innerText = (propriedadesAreaComprimida.areaTotal/propriedadesGlobais.areaTotal*100).toFixed(2)+"%"
-                return;
+                return [PoligonosAreaComprimida,propriedadesAreaComprimida];
             }
-            recursivaLN(propriedadesAreaComprimida,PoligonosAreaComprimida,p,iteracao,a,b)
+            return recursivaLN(propriedadesAreaComprimida,PoligonosAreaComprimida,p,iteracao,a,b)
     }

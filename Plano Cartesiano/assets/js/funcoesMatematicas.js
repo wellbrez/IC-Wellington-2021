@@ -155,7 +155,7 @@ function calcularInerciaGlobal(poligonos,conjunto)
 
 
 //Teste com envoltoria
-function calcularNucleoCentral(poligonos,conjunto)
+function calcularNucleoCentral(conjunto)
 	{
         conjunto.pontosDoNucleoCentral = [];
 
@@ -169,7 +169,7 @@ function calcularNucleoCentral(poligonos,conjunto)
         let Iynew = conjunto.IyPrincipal;
         let A = conjunto.areaTotal;
 
-        for(let i=0;i<arrayEnvoltoria.length;i+=2)
+        for(let i=0;i<arrayEnvoltoria.length-2;i+=2)
         {
             let x1 = arrayEnvoltoria[i]
             let x2 = arrayEnvoltoria[i+2];
@@ -227,10 +227,10 @@ function calcularNucleoCentral(poligonos,conjunto)
                 vetorPonto = new PVector(pa,pb);
                 
             }
-            conjunto.eixoPrincipalL1[0] = (new PVector(0,10));
-            conjunto.eixoPrincipalL1[1] = (new PVector(0,-10));
-            conjunto.eixoPrincipalL2[0] = (new PVector(10,0));
-            conjunto.eixoPrincipalL2[1] = (new PVector(-10,0));
+            conjunto.eixoPrincipalL1[0] = new PVector(0,10);
+            conjunto.eixoPrincipalL1[1] = new PVector(0,-10);
+            conjunto.eixoPrincipalL2[0] = new PVector(10,0);
+            conjunto.eixoPrincipalL2[1] = new PVector(-10,0);
             conjunto.eixoPrincipalL1[0].rotacionar(angulo);
             conjunto.eixoPrincipalL1[1].rotacionar(angulo);
             conjunto.eixoPrincipalL2[0].rotacionar(angulo);

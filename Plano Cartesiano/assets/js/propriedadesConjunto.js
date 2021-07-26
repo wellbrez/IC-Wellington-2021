@@ -1,5 +1,6 @@
-function Conjunto()
+function Conjunto(nome)
 {
+    this.nome = nome;
     this.areaTotal=0;
     this.centroideGlobalX=0;
     this.centroideGlobalY=0;
@@ -15,6 +16,7 @@ function Conjunto()
     this.eixoPrincipalL2 =[];
     this.anguloGlobal = 0;
 }
-propriedadesGlobais = new Conjunto();
-propriedadesAreaComprimida = new Conjunto();
+propriedadesGlobais = new Conjunto('global');
+propriedadesAreaComprimida = new Conjunto('comprimido');
 propriedadesAreaTracionada = new Conjunto();
+conjuntoNulo = new Conjunto('nulo');

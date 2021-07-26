@@ -134,8 +134,11 @@ var sketch = function(p)
 		
 		if(mostrarLN)
 		{
-			LN(p);
-		}
+			let [pols, propriedadesAreaComprimida] = LN(p);
+			for(let pol of pols)
+			{
+				pol.atualizarPropriedades();
+			}
 		
 		p.beginShape()
 		for(let ponto of propriedadesAreaComprimida.pontosDoNucleoCentral)
@@ -158,6 +161,7 @@ var sketch = function(p)
 			p.ellipse(x,y,7,7);
 		}
 		
+	}
 		
 		/*SohArea.atualizarPropriedades();*/
 		p.strokeWeight(3);

@@ -54,7 +54,7 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 		this.conjunto.envoltoria = calcularEnvoltoria(this.poligonos,this.conjunto);
     	atualizarMenuPoligonos();
 
-		calcularNucleoCentral(this.poligonos,this.conjunto);
+		calcularNucleoCentral(this.conjunto);
 		mostrar_area = true;
 	}
 	this.desenharPontos = function()
