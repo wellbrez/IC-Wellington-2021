@@ -82,11 +82,11 @@ var sketch = function(p)
 		trollmsg = document.getElementById("trollmsg");
 		if(poligonos[0].pontos.length>=3)
 		{
-			troll.style.top = (pixelY(propriedadesGlobais.centroideGlobalY)+height/2-150)+"px";
+			troll.style.top = (pixelY(propriedadesGlobais.centroideGlobalY)+height/2-20)+"px";
 			troll.style.left = (pixelX(propriedadesGlobais.centroideGlobalX)+width/2-150)+"px";
 			trollmsg.style.maxHeight="50px";
-			trollmsg.style.top = (pixelY(propriedadesGlobais.centroideGlobalY)+height/2+50)+"px";
-			trollmsg.style.left = (pixelX(propriedadesGlobais.centroideGlobalX)+width/2-75)+"px";
+			trollmsg.style.top = (pixelY(propriedadesGlobais.centroideGlobalY)+height/2-50)+"px";
+			trollmsg.style.left = (pixelX(propriedadesGlobais.centroideGlobalX)+width/2-120)+"px";
 
 		}
 		if(propriedadesGlobais.envoltoria)
