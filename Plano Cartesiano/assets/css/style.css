@@ -17,6 +17,30 @@
     --corTextoSelecionado: #5AEDD0;
     --corfundo: #1DA186;
 }
+#troll,#trollmsg
+{
+    position:absolute;
+    display:block;
+    top:20%;
+    left:20%;
+    z-index:300;
+    text-align:center;
+    overflow:hidden;
+}
+#troll
+{
+    max-width:0px;
+    transition: max-width 2s;
+}
+#trollmsg
+{
+    max-height:0px;
+}
+#trollmsg a
+{
+    
+    text-align:center;
+}
 *{
     color:var(--corTexto);
 }

@@ -79,6 +79,16 @@ var sketch = function(p)
 		//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
 		
 		
+		trollmsg = document.getElementById("trollmsg");
+		if(poligonos[0].pontos.length>=3)
+		{
+			troll.style.top = (pixelY(propriedadesGlobais.centroideGlobalY)+height/2-150)+"px";
+			troll.style.left = (pixelX(propriedadesGlobais.centroideGlobalX)+width/2-150)+"px";
+			trollmsg.style.maxHeight="50px";
+			trollmsg.style.top = (pixelY(propriedadesGlobais.centroideGlobalY)+height/2+50)+"px";
+			trollmsg.style.left = (pixelX(propriedadesGlobais.centroideGlobalX)+width/2-75)+"px";
+
+		}
 		if(propriedadesGlobais.envoltoria)
 		{
 			desenharEnvoltoria(propriedadesGlobais.envoltoria);
@@ -135,12 +145,21 @@ var sketch = function(p)
 		if(mostrarLN)
 		{
 			let [pols, propriedadesAreaComprimida] = LN(p);
+			let temNulo = false;
 			for(let pol of pols)
 			{
 				pol.atualizarPropriedades();
+				envoltoria = calcularEnvoltoria(poligonos,propriedadesAreaComprimida);
+				desenharEnvoltoria(envoltoria);
+				poligono.desenharCentroide();
+				if(!pol.isValid)
+				{
+					temNulo = true;
+				}
 			}
-		
-		p.beginShape()
+		if(!temNulo)
+		{
+		/*p.beginShape()
 		for(let ponto of propriedadesAreaComprimida.pontosDoNucleoCentral)
 		{
 			
@@ -161,13 +180,15 @@ var sketch = function(p)
 			p.ellipse(x,y,7,7);
 		}
 		
-	}
 		
+		*/
 		/*SohArea.atualizarPropriedades();*/
-		p.strokeWeight(3);
+		/*p.strokeWeight(3);
 		p.stroke(corNC)
 		p.fill('rgba(0,0,0,0)');
-		p.endShape(p.CLOSE)
+		p.endShape(p.CLOSE)*/
+	}
+		}
 
 		if(eventoScroll!=null){
 			eventoScroll.aplicar()};

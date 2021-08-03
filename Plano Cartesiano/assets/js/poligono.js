@@ -20,7 +20,7 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 	this.conjunto = conjunto;
 	this.poligonos = pols;
 	
-	this.addPontoPorPixel = function(posx,posy)
+	Polygon.prototype.addPontoPorPixel = function(posx,posy)
 	{
 		if(Number.isNaN(posx)||Number.isNaN(posy))
 		{
@@ -31,7 +31,7 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 			posicao_do_pixel_y(posy),
 			this)
 	}
-	this.addPontoPorCoordenada = function(posx,posy)
+	Polygon.prototype.addPontoPorCoordenada = function(posx,posy)
 	{
 		if(Number.isNaN(posx)||Number.isNaN(posy))
 		{
@@ -42,7 +42,7 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 			posy,
 			this);
 	}
-	this.atualizarPropriedades = function(override)
+	Polygon.prototype.atualizarPropriedades = function(override)
 	{
 		calcular_propriedades(this);
 		if(override != null)
@@ -51,20 +51,22 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 		}
 		calcularCentroidesGlobais(this.poligonos,this.conjunto);
 		calcularInerciaGlobal(this.poligonos,this.conjunto);
+		/*
 		this.conjunto.envoltoria = calcularEnvoltoria(this.poligonos,this.conjunto);
     	atualizarMenuPoligonos();
 
 		calcularNucleoCentral(this.conjunto);
+		*/
 		mostrar_area = true;
 	}
-	this.desenharPontos = function()
+	Polygon.prototype.desenharPontos = function()
 	{
 		for(let ponto of this.pontos)
 		{
 			ponto.desenhar();
 		}
 	}
-	this.desenharCentroide = function()
+	Polygon.prototype.desenharCentroide = function()
 	{
 		if(!this.isValid)
 		{return}
@@ -76,7 +78,7 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 		sketch.ellipse(cPixelX,cPixelY,10,10)
 		sketch.pop()
 	}
-	this.desenhar = function()
+	Polygon.prototype.desenhar = function()
 	{
 		sketch.push();
 		if(!this.isValid)

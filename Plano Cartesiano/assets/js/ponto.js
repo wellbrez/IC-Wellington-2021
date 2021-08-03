@@ -11,7 +11,7 @@ function ponto(x,y,objetivox,objetivoy,tempo)
     this.ativo = false;
     this.size = 10;
     //console.log(`x=${x}, y=${y}, objetivox = ${objetivox}, objetivoy = ${objetivoy}, incrementox = ${this.incrementox}`)
-    this.desenhar = function()
+    ponto.prototype.desenhar = function()
     {
         sketch.push()
 		sketch.stroke(corContorno)
@@ -21,7 +21,7 @@ function ponto(x,y,objetivox,objetivoy,tempo)
         sketch.ellipse(pixelX(this.x),pixelY(this.y),this.size,this.size)
         sketch.pop()
     }
-    this.animar = function()
+    ponto.prototype.animar = function()
     {
         if(this.tempo>0)
         {
@@ -33,7 +33,7 @@ function ponto(x,y,objetivox,objetivoy,tempo)
         }
         
     }
-    this.mover = function(objx,objy)
+    ponto.prototype.mover = function(objx,objy)
     {
         this.x = objx;
         this.y = objy;
@@ -44,7 +44,7 @@ function ponto(x,y,objetivox,objetivoy,tempo)
         this.incrementoy = 0;
         atualizarUI();
     }
-    this.selecionar = function()
+    ponto.prototype.selecionar = function()
     {
         desSelecionarPontos();
         this.ativo = true;
@@ -55,13 +55,13 @@ function ponto(x,y,objetivox,objetivoy,tempo)
         
         
     }
-    this.desSelecionar = function()
+    ponto.prototype.desSelecionar = function()
     {
         this.ativo = false;
         this.cor = corBolha;
         this.size=10;
     }
-    this.criarAnimacao = function(objx,objy,tempo)
+    ponto.prototype.criarAnimacao = function(objx,objy,tempo)
     {
         this.objetivox = objx;
         this.objetivoy = objy;
