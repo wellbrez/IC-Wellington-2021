@@ -79,16 +79,7 @@ var sketch = function(p)
 		//rect(-origin_pixeldisty,-origin_pixeldistx,50*escalay,50*escalax);
 		
 		
-		trollmsg = document.getElementById("trollmsg");
-		if(poligonos[0].pontos.length>=3)
-		{
-			troll.style.top = (pixelY(propriedadesGlobais.centroideGlobalY)+height/2-20)+"px";
-			troll.style.left = (pixelX(propriedadesGlobais.centroideGlobalX)+width/2-150)+"px";
-			trollmsg.style.maxHeight="50px";
-			trollmsg.style.top = (pixelY(propriedadesGlobais.centroideGlobalY)+height/2-50)+"px";
-			trollmsg.style.left = (pixelX(propriedadesGlobais.centroideGlobalX)+width/2-120)+"px";
-
-		}
+		
 		if(propriedadesGlobais.envoltoria)
 		{
 			desenharEnvoltoria(propriedadesGlobais.envoltoria);

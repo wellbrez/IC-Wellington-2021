@@ -51,12 +51,12 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 		}
 		calcularCentroidesGlobais(this.poligonos,this.conjunto);
 		calcularInerciaGlobal(this.poligonos,this.conjunto);
-		/*
+		
 		this.conjunto.envoltoria = calcularEnvoltoria(this.poligonos,this.conjunto);
     	atualizarMenuPoligonos();
 
 		calcularNucleoCentral(this.conjunto);
-		*/
+		
 		mostrar_area = true;
 	}
 	Polygon.prototype.desenharPontos = function()
