@@ -53,7 +53,7 @@ function grade(p,intervalo,tipo)
 }
 function eixosPrincipais(propriedadesGlobais)
 {
-	if(!propriedadesGlobais.eixoPrincipalL1)return
+	try{
 	x0 = pixelX(propriedadesGlobais.eixoPrincipalL1[0].x+propriedadesGlobais.centroideGlobalX)
 	y0 = pixelY(propriedadesGlobais.eixoPrincipalL1[0].y+propriedadesGlobais.centroideGlobalY)
 	x1 = pixelX(propriedadesGlobais.eixoPrincipalL1[1].x+propriedadesGlobais.centroideGlobalX)
@@ -64,4 +64,6 @@ function eixosPrincipais(propriedadesGlobais)
 	x1 = pixelX(propriedadesGlobais.eixoPrincipalL2[1].x+propriedadesGlobais.centroideGlobalX)
 	y1 = pixelY(propriedadesGlobais.eixoPrincipalL2[1].y+propriedadesGlobais.centroideGlobalY)
 	sketch.line(x0,y0,x1,y1);
+	}
+	catch{};
 }
