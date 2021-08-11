@@ -156,13 +156,6 @@ $("#canvas2").on("touchstart touchmove touchend touchcancel touchleave",function
         }
         
     }
-    function handleCancel(evt) 
-    {
-    }
-    function handleLeave(evt) 
-    {
-    }
-    
     window.addEventListener("keydown", function (event) {
         if (event.defaultPrevented) {
           return; // Do nothing if the event was already processed

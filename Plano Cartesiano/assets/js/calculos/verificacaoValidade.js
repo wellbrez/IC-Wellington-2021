@@ -70,3 +70,20 @@ function retaContemPonto(r1,p)
     if(p.x == r1.P2.x && p.y == r1.P2.y) return true;
     return false;
 }
+function verificarPoligonosDoConjunto(poligonos,propriedadesGlobais)
+{
+    let valido = true;
+    for (let poligono of poligonos)
+    {
+        poligono.isValid = true;
+        for(let i=0;i<poligono.pontos.length;i++)
+        {
+            if(!verificarValidade(poligono,i))
+            {
+                poligono.isValid = false;
+                valido = false;
+            }
+        }
+    }
+    return valido;
+}

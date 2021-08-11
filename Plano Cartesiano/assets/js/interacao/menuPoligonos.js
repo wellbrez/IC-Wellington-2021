@@ -18,7 +18,6 @@ function mostrarMenuPontos()
 function reduzirQtdMostradoresAPoligonos()
 {
     const mostradores = document.getElementsByClassName('nomePoligono');
-    //igualar qtd mostradores e qtd poligonos
     if (mostradores && poligonos)
     {
         while(mostradores.length>poligonos.length)
@@ -39,9 +38,6 @@ function atualizarMenuPoligonos()
     for(let iPoligono=0;iPoligono<poligonos.length;iPoligono++)
     {
         let mostradorDePoligono = mostradoresDePoligonos[iPoligono];
-        ;
-        //console.log(mostradoresDePoligonos[iPoligono])
-        //Se nao existir o mostrador do poligono, cria um novo.
         if(!mostradorDePoligono || verificarIDs(mostradorDePoligono,iPoligono))
         {
             mostradorDePoligono = criarMostradorDePoligono(iPoligono)
@@ -198,7 +194,6 @@ function criarMostradorDeArea(iPoligono)
 {
     const divPoligonos = document.getElementById("textoPoligonos");
     const span = divPoligonos.querySelector(`#Pol${iPoligono} span`);
-    //console.log(span);
     const areaSpan = criarElemento("span",`Pol${iPoligono}Area`,'mostradorArea',span)
     atribuirTexto("Area: ",areaSpan)
 }
@@ -229,38 +224,4 @@ function verificarIDs(mostrador,idnova)
         return true
     }
     return false
-    /*const idvelho = mostrador.id.split("Pol")[1];
-    console.log(idvelho,idnova);
-    const mostradores= mostrador.querySelectorAll("*");
-    for(elemento of mostradores)
-    {
-        if(elemento.id)
-        {
-            elemento.id.replace(`Pol${idvelho}`,`Pol${idnova}`)
-            elemento.id.replace(`P${idvelho}P`,`P${idnova}P`)
-        }
-    }
-*/
 }
-
-/*function janelaPopUp(texto)
-{
-    const popUp = criarElemento("div",null,"janela",document.body);
-    atribuirTexto(texto,popUp);
-    const inputPopUp = criarElemento("input",null,null,popUp);
-    const botaoClose = criarElemento("button",null,"btnClose",popUp);
-    const botaoOk = criarElemento("button",null,"btnClose",popUp);
-    let status = false;
-    let ok=false;
-    botaoClose.onclick = function()
-    {
-        status = true;
-    }
-    botaoOk.onclick = function()
-    {
-        status = true;
-        ok = true;
-    }
-    if(ok) return inputPopUp.value;
-    popUp.remove();
-}*/

@@ -25,8 +25,10 @@ function calcularEnvoltoria(poligonos,conjunto)
     }
     return conjunto.pontosDaEnvoltoria;
 }
-function desenharEnvoltoria(pontos)
+function desenharEnvoltoria(conjunto)
 {
+    let pontos = conjunto.envoltoria;
+    if(!pontos) return
     sketch.stroke(corEnvoltoria);
 	sketch.strokeWeight(3.9);
 	sketch.beginShape();

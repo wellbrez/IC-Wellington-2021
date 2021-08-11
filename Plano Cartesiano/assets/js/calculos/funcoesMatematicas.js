@@ -1,10 +1,16 @@
-function calcularPropriedadesConjunto(vetorPoligonos,conjunto)
+function calcularPropriedadesConjunto(poligonos,conjunto)
 {
-    for(let poligono of vetorPoligonos)
+    let conjuntoValido = verificarPoligonosDoConjunto(poligonos,propriedadesGlobais);
+    
+    if(!conjuntoValido) return;
+    for(let poligono of poligonos)
     {
         const [area,Cx,Cy,Ix,Iy,Ixy] = calcular_propriedades(poligono)
-
     }
+    calcularCentroidesGlobais(poligonos,conjunto);
+    calcularInerciaGlobal(poligonos,conjunto);
+    calcularEnvoltoria(poligonos,conjunto);
+    calcularNucleoCentral(conjunto);
 }
 
 function calcular_propriedades(poligono)
@@ -148,6 +154,7 @@ function calcularInerciaGlobal(poligonos,conjunto)
             Ixnew = Imin;
         }
     }
+    if(Ixnew==Iynew){conjunto.anguloParaDirecoesPrincipais = 0;}
     conjunto.IxPrincipal = Ixnew;
     conjunto.IyPrincipal = Iynew;
 }

@@ -7,7 +7,20 @@ function modoLN ()
     if(!mostrarLN)
     {
         document.getElementById("AreaSapata").innerHTML = "";
+        document.querySelector('#btnIteracoes').remove();
     }
+    else
+    {
+        let btn = document.createElement('div');
+        btn.classList.add('botao1');
+        btn.id="btnIteracoes"
+        btn.innerText = "Mostrar iteracoes";
+        btn.onclick=toggleIteracoes;
+        document.querySelector("ul#navbar").appendChild(btn);
+    }
+    
+    
+
 }
 function desenharLN(mx,my,A,Ix,Iy,poligonos,conjunto)
 {  
@@ -85,7 +98,7 @@ function desenharLN(mx,my,A,Ix,Iy,poligonos,conjunto)
                     umIntercept = !umIntercept;
                     SohArea1.pontos.push(new ponto(intercept[0],intercept[1]));
                     SohArea2.pontos.push(new ponto(intercept[0],intercept[1]));
-                    sketch.ellipse(pixelX(intercept[0]),pixelY(intercept[1]),20,20);
+                    //sketch.ellipse(pixelX(intercept[0]),pixelY(intercept[1]),20,20);
                     SohArea1.LN.push({x:intercept[0],y:intercept[1]});
                     SohArea2.LN.push({x:intercept[0],y:intercept[1]});
                 }
@@ -118,15 +131,6 @@ function desenharLN(mx,my,A,Ix,Iy,poligonos,conjunto)
                 PoligonosAreaComprimida.push(SohArea2)
                 PoligonosAreaTracionada.push(SohArea1)
             }
-
-            
-            
-
-       /* let x1 = pixelX(P1.x);
-        let y1 = pixelY(P1.y);
-        let x2 = pixelX(P2.x);
-        let y2 = pixelY(P2.y);
-        sketch.line(x1,y1,x2,y2);*/
         }       
         
         
@@ -135,8 +139,13 @@ function desenharLN(mx,my,A,Ix,Iy,poligonos,conjunto)
     
 
 }
-
-
+let desenharIteracoes = false;
+function toggleIteracoes()
+{
+    desenharIteracoes = !desenharIteracoes;
+    if(desenharIteracoes){document.querySelector('#btnIteracoes').classList.add('red')}
+    else{document.querySelector('#btnIteracoes').classList.remove('red')}
+}
 function LN(p)
     {
         let i=0;
@@ -145,16 +154,28 @@ function LN(p)
             [pols,propriedadesAreaComprimida] = recursivaLN(propriedadesGlobais,poligonos,p,i);
         }
         catch{pols=[];propriedadesAreaComprimida = conjuntoNulo}
+        calcularPropriedadesConjunto(pols,propriedadesAreaComprimida);
+        if(propriedadesAreaComprimida.areaTotal>0.1)
+        {
+            desenharPoligonos(pols,sketch, "rgba(0,0,255,.4)",false);
+            atualizarMostradorDeAreaComprimida(propriedadesAreaComprimida)
+        }
+        else
+        {
+            atualizarMostradorDeAreaComprimida({areaTotal:0})
+        }
+        
+        
 		
         return [pols,propriedadesAreaComprimida];
     }
     function recursivaLN(prop,poligonosCompr,p,iteracao,a=0,b=0)
     {
         iteracao++;
-        propriedadesAreaComprimida = JSON.parse(JSON.stringify(prop));
-		poligonosComprimidos = [...poligonosCompr];
+        let propriedadesAreaComprimida = JSON.parse(JSON.stringify(prop));
+		let poligonosComprimidos = [...poligonosCompr];
         
-        if(iteracao>10) return[poligonosComprimidos,propriedadesAreaComprimida];
+        if(iteracao>2000) return[poligonosComprimidos,propriedadesAreaComprimida];
         
         if(!a && !b)
         {
@@ -179,30 +200,47 @@ function LN(p)
                 poligono.poligonos = PoligonosAreaTracionada;
                 poligono.conjunto = propriedadesAreaTracionada;
                 poligono.nome = "Tracionado"
-                
-                //console.log(poligono.conjunto);
 				poligono.atualizarPropriedades();
-				poligono.color = "rgba(255,0,0,.4)";
-				poligono.desenhar();
 			}
 			for(let poligono of PoligonosAreaComprimida)
 			{
                 poligono.poligonos = PoligonosAreaComprimida;
                 poligono.conjunto = propriedadesAreaComprimida;
                 poligono.nome = "Comprimido"
-                //console.log(poligono.conjunto);
 				poligono.atualizarPropriedades();
-				poligono.color = "rgba(0,255,0,.4)";
-				poligono.desenhar();
 			}
-            if(-propriedadesAreaComprimida.areaTotal+prop.areaTotal<=0.1)
+            if(desenharIteracoes)
             {
-                sketch.fill("white");
-			    sketch.strokeWeight(0);
-			    sketch.text(`a: ${a.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-20)
-			    sketch.text(`b: ${-b.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY))
-                document.getElementById("AreaSapata").innerText = (propriedadesAreaComprimida.areaTotal/propriedadesGlobais.areaTotal*100).toFixed(2)+"%"
+                desenharPoligonos(PoligonosAreaComprimida,sketch, "rgba(0,255,0,.4)",false);
+                desenharPoligonos(PoligonosAreaTracionada,sketch,"rgba(255,0,0,.4)",false);
+            }
+            
+
+            //condição de parada
+            const razaoAreasComprimidasIteracao = propriedadesAreaComprimida.areaTotal/prop.areaTotal;
+           
+            if(Math.abs(razaoAreasComprimidasIteracao-1)<0.0001)
+            {
+                desenharCoordenadasNoCanvas(a,b)
+                
                 return [PoligonosAreaComprimida,propriedadesAreaComprimida];
             }
             return recursivaLN(propriedadesAreaComprimida,PoligonosAreaComprimida,p,iteracao,a,b)
+    }
+    function desenharCoordenadasNoCanvas(a,b)
+    {
+        sketch.push()
+        sketch.fill("white");
+			    sketch.strokeWeight(0);
+			    sketch.text(`a: ${a.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-40)
+			    sketch.text(`b: ${-b.toFixed(2)}`,correcaoPixelX(sketch.mouseX),correcaoPixelY(sketch.mouseY)-20)
+                sketch.pop()
+    }
+    function atualizarMostradorDeAreaComprimida(propriedadesAreaComprimida)
+    {
+        document.getElementById("AreaSapata").innerHTML = 
+        "Área comprimida: <br>"+
+        (propriedadesAreaComprimida.areaTotal/propriedadesGlobais.areaTotal*100).toFixed(2)+
+        "%";
+
     }

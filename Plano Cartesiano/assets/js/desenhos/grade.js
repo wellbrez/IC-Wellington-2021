@@ -1,4 +1,4 @@
-function att_intervalo()
+function att_propriedades_canvas()
 {
 
 	if (intervalo*escalax>200)
@@ -22,8 +22,18 @@ function linhas_principais(p,corlp)
 	p.pop()
 }
 
-function grade(p,intervalo)
+function grade(p,intervalo,tipo)
 {
+	if(tipo=='principal')
+	{
+		p.stroke(corGradePrincipal)
+		p.strokeWeight(2)
+	}
+	if(tipo=='secundaria')
+	{
+		p.strokeWeight(1)
+		p.stroke(corGradeSecundaria);
+	}
 	minrangex = Math.floor((origemX-width/2/escalax)/intervalo)*intervalo
 	maxrangex = Math.ceil((origemX+width/2/escalax)/intervalo)*intervalo
 
@@ -41,8 +51,9 @@ function grade(p,intervalo)
 		p.line(-width/2,-origin_pixeldisty+i*escalay,width/2,-origin_pixeldisty+i*escalay)
 	}
 }
-function eixosPrincipais()
+function eixosPrincipais(propriedadesGlobais)
 {
+	if(!propriedadesGlobais.eixoPrincipalL1)return
 	x0 = pixelX(propriedadesGlobais.eixoPrincipalL1[0].x+propriedadesGlobais.centroideGlobalX)
 	y0 = pixelY(propriedadesGlobais.eixoPrincipalL1[0].y+propriedadesGlobais.centroideGlobalY)
 	x1 = pixelX(propriedadesGlobais.eixoPrincipalL1[1].x+propriedadesGlobais.centroideGlobalX)

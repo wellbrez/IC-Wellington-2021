@@ -78,7 +78,7 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 		sketch.ellipse(cPixelX,cPixelY,10,10)
 		sketch.pop()
 	}
-	Polygon.prototype.desenhar = function()
+	Polygon.prototype.desenhar = function(cor=corPoligono)
 	{
 		sketch.push();
 		if(!this.isValid)
@@ -96,13 +96,13 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 		{
 			sketch.stroke(corContornoSelecionado);
 			sketch.strokeWeight(8);
-			sketch.fill(corPoligono);
+			sketch.fill(this.color||cor);
 		}
 		else
 		{
 			sketch.stroke(this.color||corContorno)
 			sketch.strokeWeight(2)
-			sketch.fill(this.color||corPoligono)
+			sketch.fill(this.color||cor)
 		}
 		sketch.beginShape()
 		for(let i=0;i<this.pontos.length;i++)
@@ -115,3 +115,16 @@ function Polygon(nome,conjunto=propriedadesGlobais,pols = poligonos)
 	}
 }
 
+function selecionar(id)
+{
+	desSelecionarPontos();
+	for(pol of poligonos)
+	{
+		pol.selected = false;
+	}
+		poligonoSelecionado = id;
+		poligonos[id].selected = true;
+	
+	
+	atualizarUI();
+}

@@ -109,16 +109,3 @@ function excluirPonto(iPoligono,iPonto)
     }
 }
 
-function selecionar(id)
-{
-	desSelecionarPontos();
-	for(pol of poligonos)
-	{
-		pol.selected = false;
-	}
-		poligonoSelecionado = id;
-		poligonos[id].selected = true;
-	
-	
-	atualizarUI();
-}
