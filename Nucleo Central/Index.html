@@ -25,6 +25,8 @@
 			<img src=icones/addPol.png>Add Poligono</li>
 		<li id="botao_excluirpoligono" class="botoesnav" onclick='excluirPoligono()'>
 			<img src=icones/excluirPol.png>  Excluir Poligono</li>
+		<li id="botao_modoLN" class="botoesnav" onclick='modoLN()'><img>Visualizar %Resistente</li>
+		<span id="AreaSapata"></span>
 	</ul>
 </nav>
 
@@ -81,12 +83,14 @@
 <script src="assets/bibliotecas/decode.js"></script>
 <script src="assets/bibliotecas/encode.js"></script>
 <script src="assets/bibliotecas/geradorQRCode.min.js"></script>
+<script src="assets/bibliotecas/lucioPaivaConvexHull.mjs"></script>
 <script src="assets/bibliotecas/p5.js"></script>
 <script src="assets/bibliotecas/p5.dom.js"></script>
 
 <!--Assets-->
 <script src="./assets/js/calculos/conversoes.js"></script>
 <script src="./assets/js/calculos/funcoesMatematicas.js"></script>
+<script src="./assets/js/calculos/LinhaNeutra.js"></script>
 <script src="./assets/js/calculos/verificacaoValidade.js"></script>
 <script src="./assets/js/calculos/vetores.js"></script>
 
@@ -98,8 +102,10 @@
 <script src="./assets/js/desenhos/canvas.js"></script>
 <script src="./assets/js/desenhos/cores.js"></script>
 <script src="./assets/js/desenhos/grade.js"></script>
+<script src="./assets/js/desenhos/desenharNucleoCentral.js"></script>
 <script src="./assets/js/desenhos/desenharPoligonos.js"></script>
 
+<script src="./assets/js/elementosNucleoCentral/envoltoria.js"></script>
 
 <script src="./assets/js/exportacao/compartilharLink.js"></script>
 <script src="./assets/js/exportacao/compartilharQRCode.js"></script>

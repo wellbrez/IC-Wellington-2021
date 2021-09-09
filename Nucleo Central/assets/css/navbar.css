@@ -1,0 +1,63 @@
+.botoesnav img
+{
+    width:50px;
+}
+#navbar
+{
+    text-decoration:none;
+    padding:0px;
+    width:100%;
+}
+
+#nav.invisivel
+{
+    max-width:20px;
+}
+nav
+{
+    text-decoration:none;
+    position:fixed;
+    display:grid;
+    grid-template-columns:  20px 1fr ;
+    right:0px;
+    z-index:202;
+    transition: max-width 0.5s;
+    background:rgba(255,255,255,.2);
+    border-radius:5px;
+    max-width:100%;
+    height:100%;
+    margin-top:0px;
+}
+nav div
+{
+    background:rgba(255,255,255,.3);
+    cursor:pointer;
+}
+nav div:hover
+{
+    background:rgba(255,255,255,.8);
+    cursor:pointer;
+}
+#navbar .botoesnav
+{
+    left:0;
+    display:grid;
+    grid-template-columns:50px 70px;
+    background-color:var(--btnBkg);
+    place-items:left;
+    z-index:40;
+    border-radius:5px;
+    margin-top:5px;
+    cursor:pointer;
+    user-select:none;
+    transition: padding .5s;
+    overflow:hidden;
+    font-weight:bolder;
+    z-index:203;
+    width:200px;
+    height:50px;
+}
+#navbar .botoesnav:hover
+{
+    background-color:var(--btnBkgHover);
+}

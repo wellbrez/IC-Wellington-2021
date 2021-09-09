@@ -1,0 +1,23 @@
+Passos:
+
+
+Passos para o cálculo do Núcleo Central de um único Poligono:
+1) Definição da Geometria do problema. (Desenho da seção Transversal)
+2) Cálculo do centróide e da área
+3) Rotação para os eixos principais (maxima inercia e minima inercia passantes pelo centroide)
+4) Definição do IxPrincipal e IyPrincipal
+5) Pegar coordenadas do poligono a partir dos novos eixos
+6) Aplicar Equação da Linha Neutra para pares de pontos consecutivos dos poligonos
+7) Desenhar o Núcleo Central com os valores obtidos.
+
+Passos para o cálculo do Núcleo Central de múltiplos Poligonos:
+1) Definição da geometria dos poligonos.
+2) Cálculo do centroide individual de cada poligono.
+3) Cálculo do centroide global dos poligonos.
+4) Rotação para os eixos principais (máxima inércia e mínima inercia)
+5) 
+
+Passos para a implementação do Programa Plano Cartesiano:
+1) P5 Canvas
+2) Equações de transformação de pixels para coordenadas --> Contempla Zoom e Movimentação do Canvas.
+3) Movimentação e Zoom
