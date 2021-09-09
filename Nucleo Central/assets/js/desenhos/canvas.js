@@ -61,7 +61,6 @@ var sketch = function (p) {
     desenharPoligonos(poligonos, p, corPoligono);
     calcularEnvoltoria(poligonos, propriedadesGlobais);
     desenharEnvoltoria(propriedadesGlobais);
-    console.log(propriedadesGlobais);
     desenharNC(propriedadesGlobais, p);
     eixosPrincipais(propriedadesGlobais);
 
