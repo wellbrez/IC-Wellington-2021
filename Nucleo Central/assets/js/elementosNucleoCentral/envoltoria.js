@@ -23,7 +23,6 @@ function calcularEnvoltoria(poligonos, conjunto) {
 function desenharEnvoltoria(conjunto) {
   let pontos = conjunto.pontosDaEnvoltoria;
   if (!pontos) return;
-  console.log("rodei");
   sketch.stroke(corEnvoltoria);
   sketch.strokeWeight(3.9);
   sketch.beginShape();
