@@ -74,7 +74,7 @@ var sketch = function (p) {
         }
       }
       if (!temPoligonoInvalido) {
-        desenharNC(propriedadesAreaComprimida);
+        desenharNC(propriedadesAreaComprimida, p, false);
       }
     }
 
